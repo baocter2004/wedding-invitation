@@ -3,6 +3,7 @@ import { motion } from 'framer-motion';
 import { MapPin, Clock, Send, ExternalLink } from 'lucide-react';
 import ScrollReveal from '../shared/ScrollReveal';
 import GiftEnvelope from '../shared/GiftEnvelope';
+import Countdown from '../shared/Countdown';
 import { resolveGallery, resolveCover, formatDate, PORTRAITS } from '../../../assets/images';
 
 const MinimalWhiteTemplate = ({ weddingData }) => {
@@ -16,7 +17,7 @@ const MinimalWhiteTemplate = ({ weddingData }) => {
     groom_father_name = '', groom_mother_name = '',
     wedding_date = '', lunar_date_text = '',
     intro_text = '', love_story = '',
-    cover_image_path = '',
+    cover_image_path = '', music_url = '',
     events = [], photos = [], bankAccounts = [],
   } = weddingData || {};
 
@@ -34,10 +35,10 @@ const MinimalWhiteTemplate = ({ weddingData }) => {
           <p className="text-[10px] uppercase tracking-[0.7em] text-slate-400 mb-8">{dt.dayName}</p>
 
           <div className="aspect-[4/5] w-full max-w-sm overflow-hidden mb-12 bg-slate-50">
-            <img src={cover} alt="Wedding cover" className="w-full h-full object-cover grayscale-[20%] hover:grayscale-0 transition-all duration-1000" />
+            <img src={cover} alt="Wedding cover" className="w-full h-full object-cover  hover:grayscale-0 transition-all duration-1000" />
           </div>
 
-          <h1 className="text-5xl sm:text-7xl md:text-8xl font-light text-slate-900 leading-[0.85] tracking-tight text-center" style={{ fontFamily: '"Playfair Display", serif' }}>
+          <h1 className="text-5xl sm:text-7xl md:text-8xl font-light text-slate-900 leading-[0.85] tracking-tight text-center" style={{ fontFamily: '"Playfair Display", "Lora", "Times New Roman", serif' }}>
             {bride_name}
             <span className="block text-slate-300 text-3xl italic font-light my-4 tracking-normal">&amp;</span>
             {groom_name}
@@ -48,7 +49,9 @@ const MinimalWhiteTemplate = ({ weddingData }) => {
             <p className="text-xs uppercase tracking-[0.4em] text-slate-400">{dt.day} . {dt.month} . {dt.year}</p>
             <div className="w-12 h-px bg-slate-300" />
           </div>
-          <p className="text-xs text-slate-300 italic">{lunar_date_text}</p>
+          <p className="text-xs text-slate-300 italic mb-8">{lunar_date_text}</p>
+          
+          <Countdown targetDate={wedding_date} primaryColor="#0f172a" />
         </div>
 
         <motion.div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center" initial={{ opacity: 0 }} animate={{ opacity: 0.5 }} transition={{ delay: 1, duration: 1 }}>
@@ -61,7 +64,7 @@ const MinimalWhiteTemplate = ({ weddingData }) => {
         <section className="py-16 sm:py-20 px-8 border-b border-slate-100">
           <div className="max-w-xl mx-auto text-center">
             <p className="text-xs uppercase tracking-[0.5em] text-slate-300 mb-8">Lời Ngỏ</p>
-            <p className="text-lg sm:text-xl text-slate-500 leading-loose italic" style={{ fontFamily: '"Playfair Display", serif' }}>
+            <p className="text-lg sm:text-xl text-slate-500 leading-loose italic" style={{ fontFamily: '"Playfair Display", "Lora", "Times New Roman", serif' }}>
               "{intro_text}"
             </p>
           </div>
@@ -75,7 +78,7 @@ const MinimalWhiteTemplate = ({ weddingData }) => {
             {/* Groom */}
             <div className="py-10 md:py-0 md:pr-12 lg:pr-16 flex flex-col sm:flex-row items-center gap-8">
               <div className="w-32 h-32 rounded-2xl overflow-hidden shrink-0 bg-slate-100">
-                <img src={PORTRAITS.groom} alt="Chú rể" className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-500" />
+                <img src={PORTRAITS.groom} alt="Chú rể" className="w-full h-full object-cover  hover:grayscale-0 transition-all duration-500" />
               </div>
               <div>
                 <p className="text-[10px] uppercase tracking-[0.4em] text-slate-300 mb-3">Nhà Trai</p>
@@ -83,7 +86,7 @@ const MinimalWhiteTemplate = ({ weddingData }) => {
                   <p>Ông: <strong className="text-slate-600">{groom_father_name}</strong></p>
                   <p>Bà: <strong className="text-slate-600">{groom_mother_name}</strong></p>
                 </div>
-                <h3 className="text-2xl font-light text-slate-900" style={{ fontFamily: '"Playfair Display", serif' }}>{groom_full_name}</h3>
+                <h3 className="text-2xl font-light text-slate-900" style={{ fontFamily: '"Playfair Display", "Lora", "Times New Roman", serif' }}>{groom_full_name}</h3>
                 <p className="text-xs text-slate-300 uppercase tracking-widest mt-1">Chú Rể</p>
               </div>
             </div>
@@ -91,7 +94,7 @@ const MinimalWhiteTemplate = ({ weddingData }) => {
             {/* Bride */}
             <div className="py-10 md:py-0 md:pl-12 lg:pl-16 flex flex-col sm:flex-row items-center gap-8">
               <div className="w-32 h-32 rounded-2xl overflow-hidden shrink-0 bg-slate-100">
-                <img src={PORTRAITS.bride} alt="Cô dâu" className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-500" />
+                <img src={PORTRAITS.bride} alt="Cô dâu" className="w-full h-full object-cover  hover:grayscale-0 transition-all duration-500" />
               </div>
               <div>
                 <p className="text-[10px] uppercase tracking-[0.4em] text-slate-300 mb-3">Nhà Gái</p>
@@ -99,7 +102,7 @@ const MinimalWhiteTemplate = ({ weddingData }) => {
                   <p>Ông: <strong className="text-slate-600">{bride_father_name}</strong></p>
                   <p>Bà: <strong className="text-slate-600">{bride_mother_name}</strong></p>
                 </div>
-                <h3 className="text-2xl font-light text-slate-900" style={{ fontFamily: '"Playfair Display", serif' }}>{bride_full_name}</h3>
+                <h3 className="text-2xl font-light text-slate-900" style={{ fontFamily: '"Playfair Display", "Lora", "Times New Roman", serif' }}>{bride_full_name}</h3>
                 <p className="text-xs text-slate-300 uppercase tracking-widest mt-1">Cô Dâu</p>
               </div>
             </div>
@@ -128,7 +131,7 @@ const MinimalWhiteTemplate = ({ weddingData }) => {
               {events.map((event) => (
                 <div key={event.id} className="grid sm:grid-cols-3 gap-4 sm:gap-6 py-10 group">
                   <div>
-                    <h3 className="text-xl font-light text-slate-900 mb-1" style={{ fontFamily: '"Playfair Display", serif' }}>{event.title}</h3>
+                    <h3 className="text-xl font-light text-slate-900 mb-1" style={{ fontFamily: '"Playfair Display", "Lora", "Times New Roman", serif' }}>{event.title}</h3>
                     <p className="text-xs text-slate-300 uppercase tracking-widest">{event.event_type === 'ceremony' ? 'Lễ Cưới' : 'Tiệc Cưới'}</p>
                   </div>
                   <div className="sm:col-span-2 space-y-3 text-slate-500 text-sm">
@@ -165,7 +168,7 @@ const MinimalWhiteTemplate = ({ weddingData }) => {
             <ScrollReveal key={photo.id} delay={i * 0.06}>
               <div className={`overflow-hidden group bg-slate-50 ${i === 0 ? 'md:col-span-2 md:row-span-2' : ''}`}>
                 <img src={photo.image_path} alt={photo.caption || ''}
-                  className="w-full h-full object-cover aspect-square grayscale-[15%] group-hover:grayscale-0 group-hover:scale-105 transition-all duration-700" />
+                  className="w-full h-full object-cover aspect-square   group-hover:scale-105 transition-all duration-700" />
               </div>
             </ScrollReveal>
           ))}
@@ -177,7 +180,7 @@ const MinimalWhiteTemplate = ({ weddingData }) => {
         <ScrollReveal>
           <section className="py-12 sm:py-16 px-6 border-b border-slate-100 text-center">
             <p className="text-[10px] uppercase tracking-[0.5em] text-slate-500 font-bold mb-4">Hộp Mừng Cưới</p>
-            <h2 className="text-2xl sm:text-3xl font-light text-slate-900 mb-4" style={{ fontFamily: '"Playfair Display", serif' }}>Mừng Hôn Lễ</h2>
+            <h2 className="text-2xl sm:text-3xl font-light text-slate-900 mb-4" style={{ fontFamily: '"Playfair Display", "Lora", "Times New Roman", serif' }}>Mừng Hôn Lễ</h2>
             <p className="text-sm text-slate-600 mb-10 max-w-sm mx-auto">Sự hiện diện của quý vị là món quà lớn nhất với chúng tôi.</p>
             <div className="flex flex-wrap justify-center gap-8 sm:gap-12">
               {bankAccounts.map(b => <GiftEnvelope key={b.id} bank={b} primaryColor="#1F2937" />)}
@@ -191,7 +194,7 @@ const MinimalWhiteTemplate = ({ weddingData }) => {
         <section className="py-12 sm:py-16 px-6 bg-slate-900 text-white">
           <div className="max-w-lg mx-auto">
             <p className="text-[10px] uppercase tracking-[0.5em] text-slate-500 text-center mb-4">Xác Nhận</p>
-            <h2 className="text-3xl sm:text-4xl font-light text-center mb-10" style={{ fontFamily: '"Playfair Display", serif' }}>Bạn Sẽ Đến Chứ?</h2>
+            <h2 className="text-3xl sm:text-4xl font-light text-center mb-10" style={{ fontFamily: '"Playfair Display", "Lora", "Times New Roman", serif' }}>Bạn Sẽ Đến Chứ?</h2>
             <form className="space-y-6">
               {[
                 { label: 'Họ và Tên', type: 'text', placeholder: 'Nhập tên của bạn...' },
@@ -223,7 +226,7 @@ const MinimalWhiteTemplate = ({ weddingData }) => {
 
       {/* Footer */}
       <footer className="py-14 text-center border-t border-slate-100">
-        <p className="font-light text-2xl text-slate-900" style={{ fontFamily: '"Playfair Display", serif' }}>{bride_name} &amp; {groom_name}</p>
+        <p className="font-light text-2xl text-slate-900" style={{ fontFamily: '"Playfair Display", "Lora", "Times New Roman", serif' }}>{bride_name} &amp; {groom_name}</p>
         <p className="mt-2 text-[10px] uppercase tracking-[0.5em] text-slate-500 font-bold">{dt.day} . {dt.month} . {dt.year} · LoveKnot</p>
       </footer>
     </div>

@@ -1,4 +1,4 @@
-import { useEffect, useState, useRef } from 'react';
+﻿import { useEffect, useState, useRef } from 'react';
 import { motion } from 'framer-motion';
 import { MapPin, Clock, Heart, Send, Gift, Volume2, VolumeX, ExternalLink } from 'lucide-react';
 import ScrollReveal from '../shared/ScrollReveal';
@@ -71,7 +71,7 @@ const FloralPastelTemplate = ({ weddingData }) => {
         <div className={`relative z-10 flex flex-col items-center transition-all duration-1000 delay-300 ${mounted ? 'opacity-100' : 'opacity-0'}`}>
           <p className="text-xs uppercase tracking-[0.4em] mb-6 opacity-60" style={{ color: rose }}>Trân trọng kính mời</p>
 
-          <h1 className="text-5xl sm:text-7xl md:text-8xl font-bold leading-[1.1] mb-6" style={{ fontFamily: '"Playfair Display", serif', color: '#1a1a1a' }}>
+          <h1 className="text-5xl sm:text-7xl md:text-8xl font-bold leading-[1.1] mb-6" style={{ fontFamily: '"Playfair Display", "Lora", "Times New Roman", serif', color: '#1a1a1a' }}>
             {bride_name}
             <span className="inline-block text-3xl italic font-light mx-4 opacity-50" style={{ color: rose }}>&amp;</span>
             {groom_name}
@@ -79,7 +79,7 @@ const FloralPastelTemplate = ({ weddingData }) => {
 
           <div className="flex items-center gap-4 mt-2">
             <div className="w-10 h-px" style={{ backgroundColor: `${rose}40` }} />
-            <p className="text-lg opacity-80" style={{ fontFamily: '"Playfair Display", serif', color: '#1a1a1a' }}>{dt.full}</p>
+            <p className="text-lg opacity-80" style={{ fontFamily: '"Playfair Display", "Lora", "Times New Roman", serif', color: '#1a1a1a' }}>{dt.full}</p>
             <div className="w-10 h-px" style={{ backgroundColor: `${rose}40` }} />
           </div>
           <p className="text-xs opacity-50 italic mt-3 text-slate-500">{lunar_date_text}</p>
@@ -96,7 +96,7 @@ const FloralPastelTemplate = ({ weddingData }) => {
         <section className="py-12 sm:py-16 px-6">
           <div className="max-w-2xl mx-auto bg-white rounded-3xl p-10 sm:p-14 shadow-sm border" style={{ borderColor: `${rose}15` }}>
             <Heart size={28} className="mx-auto mb-8" style={{ color: rose }} />
-            <h2 className="text-2xl sm:text-3xl font-bold text-center mb-6" style={{ fontFamily: '"Playfair Display", serif', color: '#1a1a1a' }}>Lời Ngỏ</h2>
+            <h2 className="text-2xl sm:text-3xl font-bold text-center mb-6" style={{ fontFamily: '"Playfair Display", "Lora", "Times New Roman", serif', color: '#1a1a1a' }}>Lời Ngỏ</h2>
             <p className="text-base sm:text-lg text-slate-500 leading-loose text-center italic">"{intro_text}"</p>
           </div>
         </section>
@@ -118,7 +118,7 @@ const FloralPastelTemplate = ({ weddingData }) => {
                   <p>Bà: <span className="text-slate-600 font-medium">{bride_mother_name}</span></p>
                 </div>
                 <div className="w-8 h-px mx-auto mb-4" style={{ backgroundColor: rose }} />
-                <h3 className="text-2xl sm:text-3xl font-bold" style={{ fontFamily: '"Playfair Display", serif', color: rose }}>{bride_full_name}</h3>
+                <h3 className="text-2xl sm:text-3xl font-bold" style={{ fontFamily: '"Playfair Display", "Lora", "Times New Roman", serif', color: rose }}>{bride_full_name}</h3>
                 <p className="text-xs uppercase tracking-widest text-slate-300 mt-2">Cô Dâu</p>
               </div>
             </div>
@@ -134,7 +134,7 @@ const FloralPastelTemplate = ({ weddingData }) => {
                   <p>Bà: <span className="text-slate-600 font-medium">{groom_mother_name}</span></p>
                 </div>
                 <div className="w-8 h-px mx-auto mb-4" style={{ backgroundColor: rose }} />
-                <h3 className="text-2xl sm:text-3xl font-bold" style={{ fontFamily: '"Playfair Display", serif', color: rose }}>{groom_full_name}</h3>
+                <h3 className="text-2xl sm:text-3xl font-bold" style={{ fontFamily: '"Playfair Display", "Lora", "Times New Roman", serif', color: rose }}>{groom_full_name}</h3>
                 <p className="text-xs uppercase tracking-widest text-slate-300 mt-2">Chú Rể</p>
               </div>
             </div>
@@ -147,7 +147,7 @@ const FloralPastelTemplate = ({ weddingData }) => {
         <ScrollReveal>
           <section className="py-12 px-6">
             <div className="max-w-2xl mx-auto text-center">
-              <h2 className="text-2xl sm:text-3xl font-bold mb-3" style={{ fontFamily: '"Playfair Display", serif', color: '#1a1a1a' }}>Chuyện Tình Yêu</h2>
+              <h2 className="text-2xl sm:text-3xl font-bold mb-3" style={{ fontFamily: '"Playfair Display", "Lora", "Times New Roman", serif', color: '#1a1a1a' }}>Chuyện Tình Yêu</h2>
               <div className="w-10 h-0.5 mx-auto mb-8" style={{ backgroundColor: rose }} />
               <p className="text-base sm:text-lg text-slate-700 leading-loose">{love_story}</p>
             </div>
@@ -160,7 +160,7 @@ const FloralPastelTemplate = ({ weddingData }) => {
         <div className="max-w-4xl mx-auto">
           <ScrollReveal>
             <div className="text-center mb-12">
-              <h2 className="text-2xl sm:text-3xl font-bold mb-2" style={{ fontFamily: '"Playfair Display", serif', color: '#1a1a1a' }}>Lịch Trình</h2>
+              <h2 className="text-2xl sm:text-3xl font-bold mb-2" style={{ fontFamily: '"Playfair Display", "Lora", "Times New Roman", serif', color: '#1a1a1a' }}>Lịch Trình</h2>
               <p className="text-sm italic text-slate-600 font-medium">{lunar_date_text}</p>
             </div>
           </ScrollReveal>
@@ -177,7 +177,7 @@ const FloralPastelTemplate = ({ weddingData }) => {
                     }
                   </div>
 
-                  <h3 className="text-xl sm:text-2xl font-bold mb-5" style={{ fontFamily: '"Playfair Display", serif', color: '#1a1a1a' }}>{event.title}</h3>
+                  <h3 className="text-xl sm:text-2xl font-bold mb-5" style={{ fontFamily: '"Playfair Display", "Lora", "Times New Roman", serif', color: '#1a1a1a' }}>{event.title}</h3>
 
                   <div className="space-y-4 flex-1 text-slate-600 text-sm sm:text-base font-medium">
                     <div className="flex items-center gap-3">
@@ -214,7 +214,7 @@ const FloralPastelTemplate = ({ weddingData }) => {
       {/* ══ GALLERY ═══════════════════════════════════════════ */}
       <section className="py-12 sm:py-16 px-4 sm:px-6">
         <ScrollReveal>
-          <h2 className="text-2xl sm:text-3xl font-bold text-center mb-12" style={{ fontFamily: '"Playfair Display", serif', color: '#1a1a1a' }}>Album Ảnh</h2>
+          <h2 className="text-2xl sm:text-3xl font-bold text-center mb-12" style={{ fontFamily: '"Playfair Display", "Lora", "Times New Roman", serif', color: '#1a1a1a' }}>Album Ảnh</h2>
         </ScrollReveal>
         <div className="max-w-5xl mx-auto grid grid-cols-2 md:grid-cols-3 gap-3">
           {gallery.map((photo, i) => (
@@ -231,7 +231,7 @@ const FloralPastelTemplate = ({ weddingData }) => {
       {bankAccounts.length > 0 && (
         <ScrollReveal>
           <section className="py-12 sm:py-16 px-6 text-center" style={{ backgroundColor: `${rose}08` }}>
-            <h2 className="text-2xl sm:text-3xl font-bold mb-4" style={{ fontFamily: '"Playfair Display", serif', color: '#1a1a1a' }}>Hộp Mừng Cưới</h2>
+            <h2 className="text-2xl sm:text-3xl font-bold mb-4" style={{ fontFamily: '"Playfair Display", "Lora", "Times New Roman", serif', color: '#1a1a1a' }}>Hộp Mừng Cưới</h2>
             <p className="text-slate-600 font-medium text-sm mb-8 max-w-sm mx-auto">Sự hiện diện của quý vị là món quà quý nhất với chúng tôi.</p>
             <div className="flex flex-wrap justify-center gap-8 sm:gap-12">
               {bankAccounts.map(bank => <GiftEnvelope key={bank.id} bank={bank} primaryColor={rose} />)}
@@ -248,7 +248,7 @@ const FloralPastelTemplate = ({ weddingData }) => {
               <div className="grid md:grid-cols-2 gap-10 md:gap-16 items-center">
                 {/* Left */}
                 <div>
-                  <h2 className="text-3xl sm:text-4xl font-bold mb-4" style={{ fontFamily: '"Playfair Display", serif' }}>Bạn sẽ<br />đến chứ?</h2>
+                  <h2 className="text-3xl sm:text-4xl font-bold mb-4" style={{ fontFamily: '"Playfair Display", "Lora", "Times New Roman", serif' }}>Bạn sẽ<br />đến chứ?</h2>
                   <p className="text-white/70 leading-relaxed text-sm sm:text-base">
                     Vui lòng xác nhận để gia đình chúng tôi có thể chuẩn bị đón tiếp quý vị chu đáo nhất.
                   </p>
@@ -287,7 +287,7 @@ const FloralPastelTemplate = ({ weddingData }) => {
       {/* Footer */}
       <footer className="py-14 text-center border-t" style={{ borderColor: `${rose}15` }}>
         <Heart size={20} className="mx-auto mb-4 opacity-30" style={{ color: rose }} />
-        <p className="font-bold text-lg" style={{ fontFamily: '"Playfair Display", serif', color: '#1a1a1a' }}>{groom_name} & {bride_name}</p>
+        <p className="font-bold text-lg" style={{ fontFamily: '"Playfair Display", "Lora", "Times New Roman", serif', color: '#1a1a1a' }}>{groom_name} & {bride_name}</p>
         <p className="text-xs uppercase tracking-[0.4em] text-slate-300 mt-2">{dt.day}.{dt.month}.{dt.year}</p>
       </footer>
     </div>

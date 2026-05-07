@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+﻿import { useEffect, useRef, useState } from 'react';
 import { MapPin, Clock, Heart, Send, Gift, ExternalLink, Volume2, VolumeX } from 'lucide-react';
 import ScrollReveal from '../shared/ScrollReveal';
 import GiftEnvelope from '../shared/GiftEnvelope';
@@ -88,7 +88,7 @@ const TraditionalRedTemplate = ({ weddingData }) => {
 
           <div className={`relative z-10 text-center transition-all duration-[1200ms] delay-300 ${mounted ? 'opacity-100' : 'opacity-0'}`}>
             <p className="text-sm uppercase tracking-[0.4em] mb-6" style={{ color: cream }}>Trân Trọng Kính Mời</p>
-            <h1 className="text-5xl sm:text-6xl font-bold mb-6 leading-tight" style={{ color: cream, fontFamily: '"Playfair Display", serif' }}>
+            <h1 className="text-5xl sm:text-6xl font-bold mb-6 leading-tight" style={{ color: cream, fontFamily: '"Playfair Display", "Lora", "Times New Roman", serif' }}>
               {groom_name}
               <span className="block text-2xl italic font-light my-2 opacity-70">&amp;</span>
               {bride_name}
@@ -128,7 +128,7 @@ const TraditionalRedTemplate = ({ weddingData }) => {
                   <p>Bà: <strong>{groom_mother_name}</strong></p>
                 </div>
                 <div className="w-10 h-0.5 mx-auto mb-5" style={{ backgroundColor: red }} />
-                <h3 className="text-2xl sm:text-3xl font-bold" style={{ fontFamily: '"Playfair Display", serif', color: red }}>{groom_full_name}</h3>
+                <h3 className="text-2xl sm:text-3xl font-bold" style={{ fontFamily: '"Playfair Display", "Lora", "Times New Roman", serif', color: red }}>{groom_full_name}</h3>
                 <p className="text-xs uppercase tracking-widest mt-2 opacity-40">Chú Rể</p>
               </div>
               {/* Bride's family */}
@@ -139,7 +139,7 @@ const TraditionalRedTemplate = ({ weddingData }) => {
                   <p>Bà: <strong>{bride_mother_name}</strong></p>
                 </div>
                 <div className="w-10 h-0.5 mx-auto mb-5" style={{ backgroundColor: red }} />
-                <h3 className="text-2xl sm:text-3xl font-bold" style={{ fontFamily: '"Playfair Display", serif', color: red }}>{bride_full_name}</h3>
+                <h3 className="text-2xl sm:text-3xl font-bold" style={{ fontFamily: '"Playfair Display", "Lora", "Times New Roman", serif', color: red }}>{bride_full_name}</h3>
                 <p className="text-xs uppercase tracking-widest mt-2 opacity-40">Cô Dâu</p>
               </div>
             </div>
@@ -180,7 +180,7 @@ const TraditionalRedTemplate = ({ weddingData }) => {
                       {idx === 0 ? <Heart size={22} style={{ color: red }} /> : <Gift size={22} style={{ color: red }} />}
                     </div>
                     <div>
-                      <h3 className="text-xl sm:text-2xl font-bold" style={{ color: red, fontFamily: '"Playfair Display", serif' }}>{event.title}</h3>
+                      <h3 className="text-xl sm:text-2xl font-bold" style={{ color: red, fontFamily: '"Playfair Display", "Lora", "Times New Roman", serif' }}>{event.title}</h3>
                       <p className="text-xs uppercase tracking-widest opacity-40 mt-0.5">{event.event_type === 'ceremony' ? 'Lễ Cưới' : 'Tiệc Cưới'}</p>
                     </div>
                   </div>
@@ -249,7 +249,7 @@ const TraditionalRedTemplate = ({ weddingData }) => {
           <section className="py-14 sm:py-20 px-4 sm:px-6 mb-8">
             <div className="max-w-lg mx-auto rounded-3xl overflow-hidden border-2" style={{ borderColor: `${red}30` }}>
               <div className="p-8 sm:p-12" style={{ backgroundColor: red }}>
-                <h2 className="text-2xl sm:text-3xl font-bold text-center mb-2 uppercase tracking-widest" style={{ color: cream, fontFamily: '"Playfair Display", serif' }}>
+                <h2 className="text-2xl sm:text-3xl font-bold text-center mb-2 uppercase tracking-widest" style={{ color: cream, fontFamily: '"Playfair Display", "Lora", "Times New Roman", serif' }}>
                   Gửi Lời Chúc
                 </h2>
                 <p className="text-center text-sm mb-8 opacity-70" style={{ color: cream }}>
@@ -284,7 +284,7 @@ const TraditionalRedTemplate = ({ weddingData }) => {
         {/* Footer */}
         <footer className="py-14 text-center border-t-2" style={{ borderColor: `${red}15` }}>
           <span className="text-2xl font-bold" style={{ color: red }}>囍</span>
-          <p className="mt-3 font-bold text-xl" style={{ fontFamily: '"Playfair Display", serif', color: red }}>{groom_name} & {bride_name}</p>
+          <p className="mt-3 font-bold text-xl" style={{ fontFamily: '"Playfair Display", "Lora", "Times New Roman", serif', color: red }}>{groom_name} & {bride_name}</p>
           <p className="text-xs uppercase tracking-widest mt-2 opacity-30" style={{ color: '#7f1d1d' }}>{dt.year} · LoveKnot</p>
         </footer>
       </main>

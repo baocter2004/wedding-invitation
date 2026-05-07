@@ -126,7 +126,7 @@ const ModernPhotoStoryTemplate = ({ weddingData }) => {
                 return (
                   <ScrollReveal key={photo.id} delay={i * 0.1} className={colSpan}>
                     <div className={`w-full overflow-hidden group bg-slate-200 ${aspect}`}>
-                      <img src={photo.image_path} alt={photo.caption || ''} className="w-full h-full object-cover group-hover:scale-[1.02] transition-transform duration-1000 grayscale-[10%]" />
+                      <img src={photo.image_path} alt={photo.caption || ''} className="w-full h-full object-cover group-hover:scale-[1.02] transition-transform duration-1000 " />
                     </div>
                   </ScrollReveal>
                 );
@@ -145,7 +145,7 @@ const ModernPhotoStoryTemplate = ({ weddingData }) => {
                 {/* Groom */}
                 <div className="md:pr-16 flex flex-col items-center md:items-end text-center md:text-right">
                   <div className="w-48 h-48 mb-8 overflow-hidden">
-                    <img src={PORTRAITS.groom} alt="Groom" className="w-full h-full object-cover grayscale" />
+                    <img src={PORTRAITS.groom} alt="Groom" className="w-full h-full object-cover " />
                   </div>
                   <h4 className="text-4xl font-light mb-2">{groom_full_name}</h4>
                   <p className="text-xs uppercase tracking-widest opacity-50 mb-6">Chú Rể</p>
@@ -159,7 +159,7 @@ const ModernPhotoStoryTemplate = ({ weddingData }) => {
                 {/* Bride */}
                 <div className="pt-16 md:pt-0 md:pl-16 flex flex-col items-center md:items-start text-center md:text-left">
                   <div className="w-48 h-48 mb-8 overflow-hidden">
-                    <img src={PORTRAITS.bride} alt="Bride" className="w-full h-full object-cover grayscale" />
+                    <img src={PORTRAITS.bride} alt="Bride" className="w-full h-full object-cover " />
                   </div>
                   <h4 className="text-4xl font-light mb-2">{bride_full_name}</h4>
                   <p className="text-xs uppercase tracking-widest opacity-50 mb-6">Cô Dâu</p>

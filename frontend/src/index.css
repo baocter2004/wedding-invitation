@@ -3,6 +3,62 @@
 @theme {
   --color-primary: #D98BA5;
   --color-secondary: #FFF7F9;
-  --font-heading: "Playfair Display", serif;
-  --font-body: "Inter", sans-serif;
+  --font-heading: "Playfair Display", "Lora", "Cormorant Garamond", "Times New Roman", serif;
+  --font-body: "Be Vietnam Pro", "Inter", "Helvetica Neue", "Arial", sans-serif;
+}
+
+/* ── Global Vietnamese Typography Fix ─────────────────────── */
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 16px;
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+body {
+  font-family: "Be Vietnam Pro", "Inter", "Helvetica Neue", Arial, sans-serif;
+  line-height: 1.75;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+/* Heading font with Vietnamese support */
+h1, h2, h3, h4, h5, h6,
+.font-serif,
+[style*="Playfair Display"],
+[style*="Cormorant Garamond"],
+[style*="Lora"] {
+  font-family: "Playfair Display", "Lora", "Cormorant Garamond", "Times New Roman", serif;
+  line-height: 1.3;
+  /* Ensure diacritics (dấu) have enough vertical space */
+  overflow: visible;
+}
+
+/* Ensure tiếng Việt diacritics render correctly */
+p, span, div, button, input, select, textarea, label {
+  font-family: inherit;
+  /* Adequate line-height for Vietnamese diacritics above/below chars */
+  line-height: 1.75;
+}
+
+/* Prevent letter-spacing issues with Vietnamese diacritics */
+.tracking-widest,
+.tracking-wider {
+  letter-spacing: 0.1em; /* cap at 0.1em for Viet text */
+}
+
+/* Button text: ensure diacritics not clipped */
+button {
+  line-height: 1.5;
+  overflow: visible;
+}
+
+/* Prevent text-transform uppercase from clipping Vietnamese diacritics */
+.uppercase {
+  /* Vietnamese uppercase (MỞ THIỆP, etc.) needs extra line-height */
+  line-height: 1.6;
 }

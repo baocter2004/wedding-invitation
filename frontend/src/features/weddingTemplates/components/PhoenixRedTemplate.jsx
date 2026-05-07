@@ -1,4 +1,4 @@
-import { useEffect, useState, useRef } from 'react';
+﻿import { useEffect, useState, useRef } from 'react';
 import { MapPin, Clock, Heart, Send, Gift, Volume2, VolumeX, ExternalLink } from 'lucide-react';
 import ScrollReveal from '../shared/ScrollReveal';
 import GiftEnvelope from '../shared/GiftEnvelope';
@@ -75,7 +75,7 @@ const PhoenixRedTemplate = ({ weddingData }) => {
             </div>
           </div>
 
-          <h1 className="text-5xl sm:text-7xl font-bold mb-6 tracking-wide" style={{ fontFamily: '"Playfair Display", serif' }}>
+          <h1 className="text-5xl sm:text-7xl font-bold mb-6 tracking-wide" style={{ fontFamily: '"Playfair Display", "Lora", "Times New Roman", serif' }}>
             {groom_name}
             <span className="block text-xl italic font-light my-4 opacity-70 text-white">&amp;</span>
             {bride_name}
@@ -122,7 +122,7 @@ const PhoenixRedTemplate = ({ weddingData }) => {
                 <p>Bà: <span className="text-slate-800">{groom_mother_name}</span></p>
               </div>
               <div className="w-20 h-px mx-auto mb-6 opacity-20" style={{ backgroundColor: crimson }}></div>
-              <h4 className="text-3xl font-bold" style={{ fontFamily: '"Playfair Display", serif' }}>{groom_full_name}</h4>
+              <h4 className="text-3xl font-bold" style={{ fontFamily: '"Playfair Display", "Lora", "Times New Roman", serif' }}>{groom_full_name}</h4>
               <p className="text-xs uppercase tracking-widest mt-2 opacity-60">Chú Rể</p>
             </div>
 
@@ -137,7 +137,7 @@ const PhoenixRedTemplate = ({ weddingData }) => {
                 <p>Bà: <span className="text-slate-800">{bride_mother_name}</span></p>
               </div>
               <div className="w-20 h-px mx-auto mb-6 opacity-20" style={{ backgroundColor: crimson }}></div>
-              <h4 className="text-3xl font-bold" style={{ fontFamily: '"Playfair Display", serif' }}>{bride_full_name}</h4>
+              <h4 className="text-3xl font-bold" style={{ fontFamily: '"Playfair Display", "Lora", "Times New Roman", serif' }}>{bride_full_name}</h4>
               <p className="text-xs uppercase tracking-widest mt-2 opacity-60">Cô Dâu</p>
             </div>
           </div>
@@ -278,7 +278,7 @@ const PhoenixRedTemplate = ({ weddingData }) => {
 
       {/* Footer */}
       <footer className="py-16 text-center bg-white border-t-8" style={{ borderColor: crimson }}>
-        <h2 className="text-3xl font-bold tracking-wide" style={{ fontFamily: '"Playfair Display", serif' }}>
+        <h2 className="text-3xl font-bold tracking-wide" style={{ fontFamily: '"Playfair Display", "Lora", "Times New Roman", serif' }}>
           {groom_name} <span className="italic opacity-50 mx-2">&amp;</span> {bride_name}
         </h2>
         <p className="mt-4 text-xs font-bold uppercase tracking-[0.4em] opacity-50">{dt.day}.{dt.month}.{dt.year}</p>

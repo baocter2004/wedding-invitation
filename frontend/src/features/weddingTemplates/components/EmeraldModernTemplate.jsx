@@ -1,4 +1,4 @@
-import { useEffect, useState, useRef } from 'react';
+﻿import { useEffect, useState, useRef } from 'react';
 import { MapPin, Clock, Heart, Send, Gift, Volume2, VolumeX, ExternalLink } from 'lucide-react';
 import ScrollReveal from '../shared/ScrollReveal';
 import GiftEnvelope from '../shared/GiftEnvelope';
@@ -63,7 +63,7 @@ const EmeraldModernTemplate = ({ weddingData }) => {
         {/* Left: Text */}
         <div className={`relative z-10 w-full md:w-1/2 flex flex-col justify-center text-center md:text-left transition-all duration-1000 ${mounted ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-12'}`}>
           <p className="text-xs font-bold uppercase tracking-[0.4em] mb-4" style={{ color: emerald }}>Trân Trọng Kính Mời</p>
-          <h1 className="text-5xl sm:text-7xl lg:text-8xl font-light mb-6 leading-[0.9] tracking-tight" style={{ fontFamily: '"Playfair Display", serif' }}>
+          <h1 className="text-5xl sm:text-7xl lg:text-8xl font-light mb-6 leading-[0.9] tracking-tight" style={{ fontFamily: '"Playfair Display", "Lora", "Times New Roman", serif' }}>
             {groom_name}
             <span className="block text-4xl italic font-light my-2 opacity-40">&amp;</span>
             {bride_name}
@@ -94,7 +94,7 @@ const EmeraldModernTemplate = ({ weddingData }) => {
         <ScrollReveal>
           <section className="py-12 sm:py-16 px-6 text-center">
             <Heart size={28} className="mx-auto mb-8" style={{ color: emerald }} />
-            <p className="max-w-3xl mx-auto text-xl sm:text-3xl leading-relaxed font-light italic" style={{ fontFamily: '"Playfair Display", serif' }}>
+            <p className="max-w-3xl mx-auto text-xl sm:text-3xl leading-relaxed font-light italic" style={{ fontFamily: '"Playfair Display", "Lora", "Times New Roman", serif' }}>
               "{intro_text}"
             </p>
           </section>
@@ -117,7 +117,7 @@ const EmeraldModernTemplate = ({ weddingData }) => {
                     <p>Ông: <strong className="font-semibold">{groom_father_name}</strong></p>
                     <p>Bà: <strong className="font-semibold">{groom_mother_name}</strong></p>
                   </div>
-                  <h4 className="text-3xl font-bold" style={{ fontFamily: '"Playfair Display", serif', color: emerald }}>{groom_full_name}</h4>
+                  <h4 className="text-3xl font-bold" style={{ fontFamily: '"Playfair Display", "Lora", "Times New Roman", serif', color: emerald }}>{groom_full_name}</h4>
                   <p className="text-[10px] uppercase tracking-widest mt-2 opacity-40 font-bold">Chú Rể</p>
                 </div>
               </div>
@@ -133,7 +133,7 @@ const EmeraldModernTemplate = ({ weddingData }) => {
                     <p>Ông: <strong className="font-semibold">{bride_father_name}</strong></p>
                     <p>Bà: <strong className="font-semibold">{bride_mother_name}</strong></p>
                   </div>
-                  <h4 className="text-3xl font-bold" style={{ fontFamily: '"Playfair Display", serif', color: emerald }}>{bride_full_name}</h4>
+                  <h4 className="text-3xl font-bold" style={{ fontFamily: '"Playfair Display", "Lora", "Times New Roman", serif', color: emerald }}>{bride_full_name}</h4>
                   <p className="text-[10px] uppercase tracking-widest mt-2 opacity-40 font-bold">Cô Dâu</p>
                 </div>
               </div>
@@ -147,7 +147,7 @@ const EmeraldModernTemplate = ({ weddingData }) => {
             <section className="py-12 sm:py-16 px-6 bg-white/50 border-y" style={{ borderColor: `${emerald}10` }}>
               <div className="max-w-4xl mx-auto flex flex-col md:flex-row items-center gap-10">
                 <div className="w-full md:w-1/3">
-                  <h2 className="text-4xl font-light leading-tight" style={{ fontFamily: '"Playfair Display", serif', color: emerald }}>Chuyện<br />Tình Yêu</h2>
+                  <h2 className="text-4xl font-light leading-tight" style={{ fontFamily: '"Playfair Display", "Lora", "Times New Roman", serif', color: emerald }}>Chuyện<br />Tình Yêu</h2>
                   <div className="w-12 h-1 mt-6" style={{ backgroundColor: emerald }}></div>
                 </div>
                 <div className="w-full md:w-2/3">
@@ -175,7 +175,7 @@ const EmeraldModernTemplate = ({ weddingData }) => {
                     {event.event_type === 'ceremony' ? <Heart size={24} /> : <Gift size={24} />}
                   </div>
 
-                  <h3 className="text-2xl font-bold mb-6" style={{ fontFamily: '"Playfair Display", serif' }}>{event.title}</h3>
+                  <h3 className="text-2xl font-bold mb-6" style={{ fontFamily: '"Playfair Display", "Lora", "Times New Roman", serif' }}>{event.title}</h3>
 
                   <div className="space-y-4 text-sm sm:text-base opacity-80 mb-8">
                     <div className="flex items-center gap-4">
@@ -211,7 +211,7 @@ const EmeraldModernTemplate = ({ weddingData }) => {
         <section className="py-12 sm:py-16 px-4 sm:px-6 bg-white/50 border-t" style={{ borderColor: `${emerald}10` }}>
           <ScrollReveal>
             <div className="text-center mb-10">
-              <h2 className="text-4xl font-light" style={{ fontFamily: '"Playfair Display", serif', color: emerald }}>Khoảnh Khắc</h2>
+              <h2 className="text-4xl font-light" style={{ fontFamily: '"Playfair Display", "Lora", "Times New Roman", serif', color: emerald }}>Khoảnh Khắc</h2>
             </div>
           </ScrollReveal>
 
@@ -244,7 +244,7 @@ const EmeraldModernTemplate = ({ weddingData }) => {
           <section className="py-12 sm:py-16 px-6">
             <div className="max-w-4xl mx-auto rounded-[3rem] overflow-hidden shadow-2xl flex flex-col md:flex-row">
               <div className="w-full md:w-5/12 p-12 flex flex-col justify-center text-white" style={{ backgroundColor: emerald }}>
-                <h2 className="text-4xl font-light mb-6" style={{ fontFamily: '"Playfair Display", serif' }}>Phản Hồi<br />Tham Dự</h2>
+                <h2 className="text-4xl font-light mb-6" style={{ fontFamily: '"Playfair Display", "Lora", "Times New Roman", serif' }}>Phản Hồi<br />Tham Dự</h2>
                 <p className="opacity-80 leading-relaxed text-sm">Vui lòng phản hồi trước 1 tuần để gia đình chúng tôi chuẩn bị đón tiếp quý khách được chu đáo nhất.</p>
               </div>
 
@@ -277,7 +277,7 @@ const EmeraldModernTemplate = ({ weddingData }) => {
         {/* Footer */}
         <footer className="py-16 text-center border-t border-slate-200">
           <p className="text-xs font-bold uppercase tracking-[0.5em] mb-4 opacity-40">Trân Trọng Cảm Ơn</p>
-          <h2 className="text-3xl font-light" style={{ fontFamily: '"Playfair Display", serif', color: emerald }}>
+          <h2 className="text-3xl font-light" style={{ fontFamily: '"Playfair Display", "Lora", "Times New Roman", serif', color: emerald }}>
             {groom_name} <span className="italic opacity-50 text-xl mx-2">&amp;</span> {bride_name}
           </h2>
           <p className="text-[10px] mt-6 opacity-30 uppercase tracking-[0.3em]">Made with ♥ by LoveKnot</p>

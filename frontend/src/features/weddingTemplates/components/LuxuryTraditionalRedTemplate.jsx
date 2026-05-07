@@ -1,4 +1,4 @@
-import { useEffect, useState, useRef } from 'react';
+﻿import { useEffect, useState, useRef } from 'react';
 import { MapPin, Clock, Heart, Send, Volume2, VolumeX, Calendar, Gift } from 'lucide-react';
 import ScrollReveal from '../shared/ScrollReveal';
 import GiftEnvelope from '../shared/GiftEnvelope';
@@ -69,7 +69,7 @@ const LuxuryTraditionalRedTemplate = ({ weddingData }) => {
 
           <p className="text-sm uppercase tracking-[0.4em] font-bold mb-12 opacity-80" style={{ color: wineRed }}>Lễ Thành Hôn</p>
 
-          <h1 className="text-6xl sm:text-8xl font-bold mb-8 leading-[1.1]" style={{ fontFamily: '"Playfair Display", serif' }}>
+          <h1 className="text-6xl sm:text-8xl font-bold mb-8 leading-[1.1]" style={{ fontFamily: '"Playfair Display", "Lora", "Times New Roman", serif' }}>
             {groom_name}
             <span className="block text-2xl italic font-light my-4 opacity-70">&amp;</span>
             {bride_name}
@@ -88,7 +88,7 @@ const LuxuryTraditionalRedTemplate = ({ weddingData }) => {
       <ScrollReveal>
         <section className="py-16 sm:py-12 px-6 border-x-[16px] md:border-x-[32px]" style={{ borderColor: wineRed }}>
           <div className="max-w-3xl mx-auto text-center">
-            <p className="text-2xl sm:text-3xl leading-loose font-medium italic opacity-90" style={{ fontFamily: '"Playfair Display", serif' }}>
+            <p className="text-2xl sm:text-3xl leading-loose font-medium italic opacity-90" style={{ fontFamily: '"Playfair Display", "Lora", "Times New Roman", serif' }}>
               "{intro_text}"
             </p>
           </div>
@@ -113,7 +113,7 @@ const LuxuryTraditionalRedTemplate = ({ weddingData }) => {
                   <p>Ông: <span className="font-bold">{groom_father_name}</span></p>
                   <p>Bà: <span className="font-bold">{groom_mother_name}</span></p>
                 </div>
-                <h4 className="text-4xl font-bold mb-3" style={{ fontFamily: '"Playfair Display", serif' }}>{groom_full_name}</h4>
+                <h4 className="text-4xl font-bold mb-3" style={{ fontFamily: '"Playfair Display", "Lora", "Times New Roman", serif' }}>{groom_full_name}</h4>
                 <p className="text-xs uppercase tracking-widest opacity-60">Trưởng Nam</p>
               </div>
 
@@ -124,7 +124,7 @@ const LuxuryTraditionalRedTemplate = ({ weddingData }) => {
                   <p>Ông: <span className="font-bold">{bride_father_name}</span></p>
                   <p>Bà: <span className="font-bold">{bride_mother_name}</span></p>
                 </div>
-                <h4 className="text-4xl font-bold mb-3" style={{ fontFamily: '"Playfair Display", serif' }}>{bride_full_name}</h4>
+                <h4 className="text-4xl font-bold mb-3" style={{ fontFamily: '"Playfair Display", "Lora", "Times New Roman", serif' }}>{bride_full_name}</h4>
                 <p className="text-xs uppercase tracking-widest opacity-60">Út Nữ</p>
               </div>
 
@@ -201,7 +201,7 @@ const LuxuryTraditionalRedTemplate = ({ weddingData }) => {
           {gallery.map((photo, i) => (
             <ScrollReveal key={photo.id} delay={(i % 4) * 0.1}>
               <div className="aspect-[4/5] overflow-hidden group">
-                <img src={photo.image_path} alt={photo.caption || ''} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-1000 grayscale-[20%]" />
+                <img src={photo.image_path} alt={photo.caption || ''} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-1000 " />
               </div>
             </ScrollReveal>
           ))}

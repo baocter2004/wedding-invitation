@@ -1,8 +1,8 @@
-import { useEffect, useState, useRef } from 'react';
+﻿import { useEffect, useState, useRef } from 'react';
 import { MapPin, Clock, Heart, Send, Gift, Volume2, VolumeX, ExternalLink } from 'lucide-react';
 import ScrollReveal from '../shared/ScrollReveal';
 import GiftEnvelope from '../shared/GiftEnvelope';
-import { resolveGallery, resolveCover, formatDate, PORTRAITS } from '../../../assets/images';
+import { resolveGallery, resolveCover, formatDate, PORTRAITS, DECORATIVE } from '../../../assets/images';
 
 // No continuous animations as per request
 const LuxuryGoldTemplate = ({ weddingData }) => {
@@ -66,11 +66,11 @@ const LuxuryGoldTemplate = ({ weddingData }) => {
             
             <div className="w-56 sm:w-64 aspect-[3/4] mx-auto mb-12 p-2 border" style={{ borderColor: `${gold}40` }}>
               <div className="w-full h-full overflow-hidden">
-                <img src={cover} alt="Couple" className="w-full h-full object-cover grayscale-[30%]" />
+                <img src={cover} alt="Couple" className="w-full h-full object-cover " />
               </div>
             </div>
 
-            <h1 className="text-5xl sm:text-7xl font-light mb-6 tracking-wide" style={{ fontFamily: '"Playfair Display", serif', color: gold }}>
+            <h1 className="text-5xl sm:text-7xl font-light mb-6 tracking-wide" style={{ fontFamily: '"Playfair Display", "Lora", "Times New Roman", serif', color: gold }}>
               {groom_name}
               <span className="block text-2xl italic font-extralight my-4 opacity-50">&amp;</span>
               {bride_name}
@@ -97,6 +97,11 @@ const LuxuryGoldTemplate = ({ weddingData }) => {
           </section>
         </ScrollReveal>
 
+        {/* ══ DIVIDER ══════════════════════════════════════════ */}
+        <div className="flex justify-center py-6 opacity-60 border-x" style={{ borderColor: `${gold}20` }}>
+          <img src={DECORATIVE.goldOrnament} alt="divider" className="h-8 object-contain" />
+        </div>
+
         {/* ══ FAMILY ══════════════════════════════════════════ */}
         <ScrollReveal>
           <section className="py-12 sm:py-16 border-x border-t" style={{ borderColor: `${gold}20` }}>
@@ -107,27 +112,27 @@ const LuxuryGoldTemplate = ({ weddingData }) => {
               {/* Groom */}
               <div className="text-center group">
                 <div className="w-32 h-32 rounded-full mx-auto mb-8 p-1 border border-dashed transition-transform duration-700 group-hover:scale-105" style={{ borderColor: gold }}>
-                  <img src={PORTRAITS.groom} alt="Groom" className="w-full h-full rounded-full object-cover grayscale opacity-80" />
+                  <img src={PORTRAITS.groom} alt="Groom" className="w-full h-full rounded-full object-cover  opacity-80" />
                 </div>
                 <div className="space-y-1 mb-6 text-sm text-slate-400">
                   <p>Ông: <span className="text-slate-200">{groom_father_name}</span></p>
                   <p>Bà: <span className="text-slate-200">{groom_mother_name}</span></p>
                 </div>
                 <div className="w-6 h-px mx-auto mb-6" style={{ backgroundColor: `${gold}50` }}></div>
-                <h3 className="text-3xl font-light tracking-wide mb-2" style={{ fontFamily: '"Playfair Display", serif', color: gold }}>{groom_full_name}</h3>
+                <h3 className="text-3xl font-light tracking-wide mb-2" style={{ fontFamily: '"Playfair Display", "Lora", "Times New Roman", serif', color: gold }}>{groom_full_name}</h3>
                 <p className="text-[10px] uppercase tracking-widest opacity-40">Chú Rể</p>
               </div>
               {/* Bride */}
               <div className="text-center group">
                 <div className="w-32 h-32 rounded-full mx-auto mb-8 p-1 border border-dashed transition-transform duration-700 group-hover:scale-105" style={{ borderColor: gold }}>
-                  <img src={PORTRAITS.bride} alt="Bride" className="w-full h-full rounded-full object-cover grayscale opacity-80" />
+                  <img src={PORTRAITS.bride} alt="Bride" className="w-full h-full rounded-full object-cover  opacity-80" />
                 </div>
                 <div className="space-y-1 mb-6 text-sm text-slate-400">
                   <p>Ông: <span className="text-slate-200">{bride_father_name}</span></p>
                   <p>Bà: <span className="text-slate-200">{bride_mother_name}</span></p>
                 </div>
                 <div className="w-6 h-px mx-auto mb-6" style={{ backgroundColor: `${gold}50` }}></div>
-                <h3 className="text-3xl font-light tracking-wide mb-2" style={{ fontFamily: '"Playfair Display", serif', color: gold }}>{bride_full_name}</h3>
+                <h3 className="text-3xl font-light tracking-wide mb-2" style={{ fontFamily: '"Playfair Display", "Lora", "Times New Roman", serif', color: gold }}>{bride_full_name}</h3>
                 <p className="text-[10px] uppercase tracking-widest opacity-40">Cô Dâu</p>
               </div>
             </div>
@@ -145,6 +150,11 @@ const LuxuryGoldTemplate = ({ weddingData }) => {
             </section>
           </ScrollReveal>
         )}
+
+        {/* ══ DIVIDER ══════════════════════════════════════════ */}
+        <div className="flex justify-center py-6 opacity-60 border-x" style={{ borderColor: `${gold}20` }}>
+          <img src={DECORATIVE.goldOrnament} alt="divider" className="h-8 object-contain" />
+        </div>
 
         {/* ══ EVENTS ══════════════════════════════════════════ */}
         <section className="py-16 sm:py-12 px-6 sm:px-12 border-x border-t" style={{ borderColor: `${gold}20` }}>
@@ -164,7 +174,7 @@ const LuxuryGoldTemplate = ({ weddingData }) => {
                       {event.event_type === 'ceremony' ? <Heart size={16} /> : <Gift size={16} />}
                     </div>
                     <div>
-                      <h3 className="text-xl sm:text-2xl font-light" style={{ fontFamily: '"Playfair Display", serif', color: gold }}>{event.title}</h3>
+                      <h3 className="text-xl sm:text-2xl font-light" style={{ fontFamily: '"Playfair Display", "Lora", "Times New Roman", serif', color: gold }}>{event.title}</h3>
                     </div>
                   </div>
 
@@ -209,7 +219,7 @@ const LuxuryGoldTemplate = ({ weddingData }) => {
               <ScrollReveal key={photo.id} delay={(i % 3) * 0.08}>
                 <div className="overflow-hidden group relative">
                   <div className="absolute inset-0 z-10 border transition-opacity duration-500 opacity-0 group-hover:opacity-100 m-2 pointer-events-none" style={{ borderColor: `${gold}50` }}></div>
-                  <img src={photo.image_path} alt={photo.caption || ''} className="w-full aspect-square object-cover grayscale-[40%] group-hover:grayscale-0 transition-all duration-700 group-hover:scale-105" />
+                  <img src={photo.image_path} alt={photo.caption || ''} className="w-full aspect-square object-cover   transition-all duration-700 group-hover:scale-105" />
                 </div>
               </ScrollReveal>
             ))}
@@ -233,7 +243,7 @@ const LuxuryGoldTemplate = ({ weddingData }) => {
         <ScrollReveal>
           <section className="py-16 sm:py-12 px-6 border-x border-t" style={{ borderColor: `${gold}20` }}>
             <div className="max-w-xl mx-auto text-center">
-              <h2 className="text-3xl sm:text-4xl font-light mb-4 tracking-wide" style={{ fontFamily: '"Playfair Display", serif', color: gold }}>Tham Dự</h2>
+              <h2 className="text-3xl sm:text-4xl font-light mb-4 tracking-wide" style={{ fontFamily: '"Playfair Display", "Lora", "Times New Roman", serif', color: gold }}>Tham Dự</h2>
               <p className="text-xs uppercase tracking-[0.2em] opacity-50 mb-12 text-slate-400">Vui lòng phản hồi</p>
               
               <form className="space-y-6 text-left">
@@ -262,7 +272,7 @@ const LuxuryGoldTemplate = ({ weddingData }) => {
 
         {/* Footer */}
         <footer className="py-16 text-center border" style={{ borderColor: `${gold}20` }}>
-          <p className="text-2xl font-light tracking-wide" style={{ fontFamily: '"Playfair Display", serif', color: gold }}>
+          <p className="text-2xl font-light tracking-wide" style={{ fontFamily: '"Playfair Display", "Lora", "Times New Roman", serif', color: gold }}>
             {groom_name} <span className="italic opacity-50 mx-1">&amp;</span> {bride_name}
           </p>
           <p className="mt-4 text-[9px] opacity-40 tracking-[0.4em] uppercase text-slate-400">{dt.day}.{dt.month}.{dt.year}</p>

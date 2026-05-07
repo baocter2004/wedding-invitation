@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from 'react';
+﻿import React, { useEffect, useState, useRef } from 'react';
 import { motion } from 'framer-motion';
 import { MapPin, Calendar, Clock, Heart, Send, Volume2, VolumeX, ExternalLink } from 'lucide-react';
 import ScrollReveal from '../shared/ScrollReveal';
@@ -87,7 +87,7 @@ const GreenRusticTemplate = ({ weddingData }) => {
 
           <ScrollReveal delay={0.3}>
             <p className="text-[10px] sm:text-xs tracking-[0.5em] uppercase mb-6 opacity-60">Thân Mời Tham Dự Lễ Cưới</p>
-            <h1 className="text-5xl md:text-7xl font-bold mb-4" style={{ fontFamily: '"Playfair Display", serif', color: primaryColor }}>
+            <h1 className="text-5xl md:text-7xl font-bold mb-4" style={{ fontFamily: '"Playfair Display", "Lora", "Times New Roman", serif', color: primaryColor }}>
               {groom_name}
               <span className="block text-2xl italic font-light my-2 opacity-60">&amp;</span>
               {bride_name}
@@ -114,6 +114,11 @@ const GreenRusticTemplate = ({ weddingData }) => {
           </section>
         </ScrollReveal>
 
+        {/* ══ DIVIDER ══════════════════════════════════════════ */}
+        <div className="flex justify-center my-4 sm:my-8 opacity-60">
+          <img src={DECORATIVE.emeraldDivider} alt="divider" className="h-8 sm:h-12 object-contain" />
+        </div>
+
         {/* ══ FAMILY ══════════════════════════════════════════ */}
         <ScrollReveal>
           <section className="py-12 sm:py-16 px-6 sm:px-8">
@@ -122,7 +127,7 @@ const GreenRusticTemplate = ({ weddingData }) => {
               {/* Groom */}
               <div className="bg-white/60 p-8 sm:p-10 rounded-3xl border shadow-sm" style={{ borderColor: `${primaryColor}15` }}>
                 <div className="w-24 h-24 rounded-full overflow-hidden mx-auto mb-6">
-                  <img src={PORTRAITS.groom} alt="Groom" className="w-full h-full object-cover grayscale opacity-80" />
+                  <img src={PORTRAITS.groom} alt="Groom" className="w-full h-full object-cover  opacity-80" />
                 </div>
                 <h3 className="text-[10px] tracking-[0.4em] uppercase opacity-50 mb-6 font-bold">Nhà Trai</h3>
                 <div className="text-sm space-y-1 mb-6 opacity-80">
@@ -130,14 +135,14 @@ const GreenRusticTemplate = ({ weddingData }) => {
                   <p>Bà: <strong className="text-base font-medium">{groom_mother_name}</strong></p>
                 </div>
                 <div className="h-0.5 w-10 mx-auto mb-6" style={{ backgroundColor: `${primaryColor}20` }}></div>
-                <h4 className="text-2xl sm:text-3xl font-bold" style={{ fontFamily: '"Playfair Display", serif' }}>{groom_full_name}</h4>
+                <h4 className="text-2xl sm:text-3xl font-bold" style={{ fontFamily: '"Playfair Display", "Lora", "Times New Roman", serif' }}>{groom_full_name}</h4>
                 <p className="text-[10px] uppercase tracking-widest mt-2 opacity-40">Chú Rể</p>
               </div>
 
               {/* Bride */}
               <div className="bg-white/60 p-8 sm:p-10 rounded-3xl border shadow-sm" style={{ borderColor: `${primaryColor}15` }}>
                 <div className="w-24 h-24 rounded-full overflow-hidden mx-auto mb-6">
-                  <img src={PORTRAITS.bride} alt="Bride" className="w-full h-full object-cover grayscale opacity-80" />
+                  <img src={PORTRAITS.bride} alt="Bride" className="w-full h-full object-cover  opacity-80" />
                 </div>
                 <h3 className="text-[10px] tracking-[0.4em] uppercase opacity-50 mb-6 font-bold">Nhà Gái</h3>
                 <div className="text-sm space-y-1 mb-6 opacity-80">
@@ -145,7 +150,7 @@ const GreenRusticTemplate = ({ weddingData }) => {
                   <p>Bà: <strong className="text-base font-medium">{bride_mother_name}</strong></p>
                 </div>
                 <div className="h-0.5 w-10 mx-auto mb-6" style={{ backgroundColor: `${primaryColor}20` }}></div>
-                <h4 className="text-2xl sm:text-3xl font-bold" style={{ fontFamily: '"Playfair Display", serif' }}>{bride_full_name}</h4>
+                <h4 className="text-2xl sm:text-3xl font-bold" style={{ fontFamily: '"Playfair Display", "Lora", "Times New Roman", serif' }}>{bride_full_name}</h4>
                 <p className="text-[10px] uppercase tracking-widest mt-2 opacity-40">Cô Dâu</p>
               </div>
             </div>
@@ -157,7 +162,7 @@ const GreenRusticTemplate = ({ weddingData }) => {
           <ScrollReveal>
             <section className="py-12 sm:py-16 px-8 bg-white/40 border-y" style={{ borderColor: `${primaryColor}10` }}>
               <div className="text-center mb-10">
-                <h2 className="text-3xl font-bold mb-4" style={{ fontFamily: '"Playfair Display", serif' }}>Câu Chuyện Tình Yêu</h2>
+                <h2 className="text-3xl font-bold mb-4" style={{ fontFamily: '"Playfair Display", "Lora", "Times New Roman", serif' }}>Câu Chuyện Tình Yêu</h2>
                 <div className="w-16 h-px mx-auto" style={{ backgroundColor: `${primaryColor}30` }}></div>
               </div>
               <div className="max-w-2xl mx-auto text-base sm:text-lg leading-loose italic opacity-80 text-center">
@@ -167,11 +172,16 @@ const GreenRusticTemplate = ({ weddingData }) => {
           </ScrollReveal>
         )}
 
+        {/* ══ DIVIDER ══════════════════════════════════════════ */}
+        <div className="flex justify-center my-4 sm:my-8 opacity-60">
+          <img src={DECORATIVE.emeraldDivider} alt="divider" className="h-8 sm:h-12 object-contain" />
+        </div>
+
         {/* ══ EVENTS ══════════════════════════════════════════ */}
         <section className="py-12 sm:py-16 px-6 sm:px-8">
           <ScrollReveal>
             <div className="text-center mb-10">
-              <h2 className="text-3xl sm:text-4xl font-bold mb-3" style={{ fontFamily: '"Playfair Display", serif' }}>Chương Trình</h2>
+              <h2 className="text-3xl sm:text-4xl font-bold mb-3" style={{ fontFamily: '"Playfair Display", "Lora", "Times New Roman", serif' }}>Chương Trình</h2>
               <p className="text-[10px] tracking-widest uppercase opacity-50 font-bold">{lunar_date_text}</p>
             </div>
           </ScrollReveal>
@@ -184,7 +194,7 @@ const GreenRusticTemplate = ({ weddingData }) => {
                     <Calendar size={100} />
                   </div>
 
-                  <h3 className="text-2xl font-bold mb-6 pb-4 border-b" style={{ borderColor: `${primaryColor}15`, fontFamily: '"Playfair Display", serif' }}>{event.title}</h3>
+                  <h3 className="text-2xl font-bold mb-6 pb-4 border-b" style={{ borderColor: `${primaryColor}15`, fontFamily: '"Playfair Display", "Lora", "Times New Roman", serif' }}>{event.title}</h3>
 
                   <div className="space-y-5 text-sm sm:text-base opacity-80">
                     <div className="flex items-start gap-4">
@@ -220,7 +230,7 @@ const GreenRusticTemplate = ({ weddingData }) => {
         <section className="py-12 sm:py-16 px-4 sm:px-6 bg-[#2D4F1E]/5">
           <ScrollReveal>
             <div className="text-center mb-12">
-              <h2 className="text-3xl sm:text-4xl font-bold" style={{ fontFamily: '"Playfair Display", serif' }}>Kỷ Niệm</h2>
+              <h2 className="text-3xl sm:text-4xl font-bold" style={{ fontFamily: '"Playfair Display", "Lora", "Times New Roman", serif' }}>Kỷ Niệm</h2>
             </div>
           </ScrollReveal>
           <div className="columns-2 md:columns-3 gap-3 sm:gap-4 space-y-3 sm:space-y-4 max-w-5xl mx-auto">
@@ -238,7 +248,7 @@ const GreenRusticTemplate = ({ weddingData }) => {
         {bankAccounts.length > 0 && (
           <ScrollReveal>
             <section className="py-12 sm:py-16 px-6 text-center border-b" style={{ borderColor: `${primaryColor}10` }}>
-              <h2 className="text-3xl font-bold mb-4" style={{ fontFamily: '"Playfair Display", serif' }}>Hộp Mừng Cưới</h2>
+              <h2 className="text-3xl font-bold mb-4" style={{ fontFamily: '"Playfair Display", "Lora", "Times New Roman", serif' }}>Hộp Mừng Cưới</h2>
               <p className="text-sm opacity-60 mb-8 italic max-w-sm mx-auto">Sự hiện diện của quý khách là món quà quý giá nhất.</p>
               <div className="flex flex-wrap justify-center gap-8 sm:gap-12">
                 {bankAccounts.map(b => <GiftEnvelope key={b.id} bank={b} primaryColor={primaryColor} />)}
@@ -251,7 +261,7 @@ const GreenRusticTemplate = ({ weddingData }) => {
         <ScrollReveal>
           <section className="py-12 sm:py-16 px-6">
             <div className="max-w-lg mx-auto bg-white/60 backdrop-blur-md p-8 sm:p-12 rounded-[2.5rem] border shadow-sm" style={{ borderColor: `${primaryColor}20` }}>
-              <h2 className="text-3xl font-bold text-center mb-3" style={{ fontFamily: '"Playfair Display", serif' }}>Gửi Lời Chúc</h2>
+              <h2 className="text-3xl font-bold text-center mb-3" style={{ fontFamily: '"Playfair Display", "Lora", "Times New Roman", serif' }}>Gửi Lời Chúc</h2>
               <p className="text-center text-xs uppercase tracking-widest opacity-50 mb-10">Phản hồi tham dự</p>
 
               <form className="space-y-5">
@@ -281,7 +291,7 @@ const GreenRusticTemplate = ({ weddingData }) => {
         {/* Footer */}
         <footer className="py-16 text-center" style={{ backgroundColor: `${primaryColor}05` }}>
           <p className="text-[10px] tracking-[0.5em] uppercase opacity-40 mb-4 font-bold">Trân trọng cảm ơn</p>
-          <h2 className="text-3xl sm:text-4xl font-bold" style={{ fontFamily: '"Playfair Display", serif' }}>
+          <h2 className="text-3xl sm:text-4xl font-bold" style={{ fontFamily: '"Playfair Display", "Lora", "Times New Roman", serif' }}>
             {groom_name} <span className="text-xl italic font-light opacity-50 mx-1">&amp;</span> {bride_name}
           </h2>
           <div className="mt-8 text-[9px] opacity-30 tracking-[0.3em] uppercase">Made with ♥ by LoveKnot</div>
