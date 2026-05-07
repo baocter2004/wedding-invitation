@@ -1,13 +1,24 @@
-﻿import { useEffect, useState, useRef } from 'react';
-import { MapPin, Clock, Heart, Send, Volume2, VolumeX, Calendar, Gift } from 'lucide-react';
+import React, { useEffect, useState, useRef } from 'react';
+import { motion, useScroll, useTransform } from 'framer-motion';
+import { MapPin, Clock, Heart, Send, Volume2, VolumeX, Calendar, Gift, Sparkles, ExternalLink, ChevronDown } from 'lucide-react';
 import ScrollReveal from '../shared/ScrollReveal';
 import GiftEnvelope from '../shared/GiftEnvelope';
+import FloatingDecorativeElements from '../shared/FloatingDecorativeElements';
 import { resolveGallery, resolveCover, formatDate, PORTRAITS } from '../../../assets/images';
 
 const LuxuryTraditionalRedTemplate = ({ weddingData }) => {
   const [mounted, setMounted] = useState(false);
   const [isPlaying, setIsPlaying] = useState(false);
   const audioRef = useRef(null);
+  const heroRef = useRef(null);
+
+  const { scrollYProgress } = useScroll({
+    target: heroRef,
+    offset: ["start start", "end start"]
+  });
+
+  const heroY = useTransform(scrollYProgress, [0, 1], [0, 200]);
+  const heroOpacity = useTransform(scrollYProgress, [0, 0.8], [1, 0]);
 
   useEffect(() => {
     setMounted(true);
@@ -16,14 +27,16 @@ const LuxuryTraditionalRedTemplate = ({ weddingData }) => {
       audioRef.current.loop = true;
     }
     return () => audioRef.current?.pause();
-  }, []);
+  }, [weddingData?.music_url]);
 
   const toggleMusic = () => {
     if (!audioRef.current) return;
     if (isPlaying) audioRef.current.pause();
-    else audioRef.current.play();
+    else audioRef.current.play().catch(e => console.error("Audio play failed:", e));
     setIsPlaying(p => !p);
   };
+
+  if (!mounted) return null;
 
   const {
     bride_name = '', groom_name = '',
@@ -37,222 +50,408 @@ const LuxuryTraditionalRedTemplate = ({ weddingData }) => {
     theme_config_json = {},
   } = weddingData || {};
 
-  const wineRed = theme_config_json?.primary_color || '#7F1D1D'; // Red 900
-  const gold = theme_config_json?.secondary_color || '#D4AF37'; // Metallic Gold
-  const cream = '#FDFBF7';
+  const primaryColor = theme_config_json?.primary_color || '#881337'; // Deep Crimson
+  const accentColor = theme_config_json?.secondary_color || '#D4AF37'; // Royal Gold
 
   const gallery = resolveGallery(photos);
   const cover = resolveCover(cover_image_path);
   const dt = formatDate(wedding_date);
 
   return (
-    <div className="min-h-screen font-serif selection:bg-[#7F1D1D] selection:text-[#D4AF37]" style={{ backgroundColor: cream, color: wineRed }}>
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 1.5 }}
+      className="min-h-screen font-serif antialiased selection:bg-red-900 selection:text-white overflow-x-hidden"
+      style={{ backgroundColor: '#FDFCF8', color: '#1a1a1a' }}
+    >
+      <FloatingDecorativeElements count={15} type="heart" color={primaryColor} />
 
-      {/* Music Toggle */}
+      {/* ══ MUSIC CONTROL ═════════════════════════════════════ */}
       {weddingData?.music_url && (
-        <button onClick={toggleMusic} className="fixed bottom-6 right-6 z-50 w-12 h-12 rounded-full shadow-2xl flex items-center justify-center transition hover:scale-110 border"
-          style={{ backgroundColor: wineRed, borderColor: gold }}>
-          {isPlaying ? <Volume2 size={18} style={{ color: gold }} className="animate-pulse" /> : <VolumeX size={18} style={{ color: cream }} className="opacity-50" />}
-        </button>
+        <motion.button
+          initial={{ scale: 0, opacity: 0 }}
+          animate={{ scale: 1, opacity: 1 }}
+          onClick={toggleMusic}
+          className="fixed bottom-10 right-10 z-50 w-14 h-14 rounded-full shadow-2xl flex items-center justify-center border-2 transition-all hover:scale-110 active:scale-95 group overflow-hidden"
+          style={{ backgroundColor: 'white', borderColor: `${primaryColor}20` }}
+        >
+          <div className="absolute inset-0 bg-gradient-to-tr from-transparent via-red-50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
+          {isPlaying ? (
+            <div className="relative">
+              <Volume2 size={20} style={{ color: primaryColor }} className="animate-pulse" />
+              <motion.div
+                animate={{ scale: [1, 1.4, 1], opacity: [0.2, 0, 0.2] }}
+                transition={{ duration: 3, repeat: Infinity }}
+                className="absolute inset-0 rounded-full bg-red-500/20"
+              />
+            </div>
+          ) : (
+            <VolumeX size={20} className="text-slate-300 group-hover:text-red-900 transition-colors" />
+          )}
+        </motion.button>
       )}
 
-      {/* ══ HERO ════════════════════════════════════════════ */}
-      <section className="relative min-h-screen flex flex-col items-center justify-center p-6 text-center border-x-[16px] md:border-x-[32px] border-t-[16px] md:border-t-[32px]" style={{ borderColor: wineRed }}>
+      {/* ══ HERO SECTION ══════════════════════════════════════ */}
+      <section ref={heroRef} className="relative h-screen flex flex-col items-center justify-center overflow-hidden bg-[#0A0A0A]">
+        {/* Cinematic Background */}
+        <motion.div
+          style={{ y: heroY, opacity: 0.65 }}
+          className="absolute inset-0 z-0"
+        >
+          <img src={cover} alt="" className="w-full h-full object-cover brightness-[0.45]" />
+          <div className="absolute inset-0 bg-gradient-to-b from-black/80 via-transparent to-black" />
+        </motion.div>
 
-        {/* Inner Gold Frame */}
-        <div className="absolute inset-4 md:inset-8 border-2 pointer-events-none" style={{ borderColor: gold, opacity: 0.3 }}></div>
+        {/* Decorative Elements */}
+        <div className="absolute inset-10 border border-white/20 pointer-events-none z-10" />
 
-        <div className={`relative z-10 w-full max-w-2xl mx-auto transition-all duration-1000 ${mounted ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'}`}>
-          <div className="mb-8 w-20 h-20 mx-auto rounded-full border-2 flex items-center justify-center" style={{ borderColor: wineRed, backgroundColor: wineRed }}>
-            <span className="text-3xl font-bold leading-none" style={{ color: gold }}>囍</span>
-          </div>
+        {/* Corner Ornaments */}
+        <div className="absolute top-16 left-16 w-20 h-20 border-t-2 border-l-2 opacity-60 z-10" style={{ borderColor: accentColor }} />
+        <div className="absolute top-16 right-16 w-20 h-20 border-t-2 border-r-2 opacity-60 z-10" style={{ borderColor: accentColor }} />
+        <div className="absolute bottom-16 left-16 w-20 h-20 border-b-2 border-l-2 opacity-60 z-10" style={{ borderColor: accentColor }} />
+        <div className="absolute bottom-16 right-16 w-20 h-20 border-b-2 border-r-2 opacity-60 z-10" style={{ borderColor: accentColor }} />
 
-          <p className="text-sm uppercase tracking-[0.4em] font-bold mb-12 opacity-80" style={{ color: wineRed }}>Lễ Thành Hôn</p>
+        <motion.div
+          style={{ opacity: heroOpacity }}
+          className="relative z-20 text-center px-6"
+        >
+          <motion.div
+            initial={{ y: 50, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            transition={{ duration: 1.5, ease: "easeOut" }}
+          >
+            <div className="mb-12 flex items-center justify-center gap-6">
+              <div className="h-px w-12 bg-white/40" />
+              <span className="text-4xl font-bold tracking-[0.3em] select-none" style={{ color: accentColor }}>囍</span>
+              <div className="h-px w-12 bg-white/40" />
+            </div>
 
-          <h1 className="text-6xl sm:text-8xl font-bold mb-8 leading-[1.1]" style={{ fontFamily: '"Playfair Display", "Lora", "Times New Roman", serif' }}>
-            {groom_name}
-            <span className="block text-2xl italic font-light my-4 opacity-70">&amp;</span>
-            {bride_name}
-          </h1>
+            <p className="text-[10px] sm:text-xs text-white/70 uppercase tracking-[0.8em] font-black mb-12">The Royal Invitation</p>
 
-          <div className="flex items-center justify-center gap-6 mt-12 mb-4">
-            <div className="w-16 h-px" style={{ backgroundColor: wineRed, opacity: 0.3 }}></div>
-            <p className="text-base uppercase tracking-[0.4em] font-bold">{dt.day} . {dt.month} . {dt.year}</p>
-            <div className="w-16 h-px" style={{ backgroundColor: wineRed, opacity: 0.3 }}></div>
-          </div>
-          <p className="text-sm italic opacity-70">{lunar_date_text}</p>
-        </div>
+            <h1 className="text-6xl sm:text-[7rem] lg:text-[9rem] font-bold tracking-tighter leading-[0.8] mb-12" style={{ fontFamily: '"Playfair Display", serif', color: 'white' }}>
+              <span className="block">{groom_name}</span>
+              <span className="flex items-center justify-center gap-10 my-12">
+                <div className="h-px flex-1 max-w-[120px] bg-white/20" />
+                <span className="text-4xl italic font-light text-white/50">&</span>
+                <div className="h-px flex-1 max-w-[120px] bg-white/20" />
+              </span>
+              <span className="block" style={{ color: accentColor }}>{bride_name}</span>
+            </h1>
+
+            <div className="mt-20 flex flex-col items-center gap-10">
+              <div className="flex items-center gap-12">
+                <div className="flex flex-col items-center">
+                  <span className="text-5xl sm:text-7xl font-light text-white tracking-widest">{dt.day}</span>
+                  <span className="text-[10px] uppercase tracking-widest font-black text-white/50 mt-3">Day</span>
+                </div>
+                <div className="h-16 w-px bg-white/20" />
+                <div className="flex flex-col items-center">
+                  <span className="text-5xl sm:text-7xl font-light text-white tracking-widest">{dt.month}</span>
+                  <span className="text-[10px] uppercase tracking-widest font-black text-white/50 mt-3">Month</span>
+                </div>
+                <div className="h-16 w-px bg-white/20" />
+                <div className="flex flex-col items-center">
+                  <span className="text-5xl sm:text-7xl font-light text-white tracking-widest">{dt.year}</span>
+                  <span className="text-[10px] uppercase tracking-widest font-black text-white/50 mt-3">Year</span>
+                </div>
+              </div>
+              <p className="text-xs italic font-medium tracking-[0.4em] text-white/70 uppercase">{lunar_date_text}</p>
+            </div>
+          </motion.div>
+        </motion.div>
+
+        {/* Scroll Indicator */}
+        <motion.div
+          animate={{ y: [0, 10, 0] }}
+          transition={{ duration: 4, repeat: Infinity }}
+          className="absolute bottom-10 flex flex-col items-center gap-3 opacity-40"
+        >
+          <div className="w-px h-20 bg-gradient-to-b from-white to-transparent" />
+        </motion.div>
       </section>
 
-      {/* ══ INTRO ═══════════════════════════════════════════ */}
-      <ScrollReveal>
-        <section className="py-16 sm:py-12 px-6 border-x-[16px] md:border-x-[32px]" style={{ borderColor: wineRed }}>
-          <div className="max-w-3xl mx-auto text-center">
-            <p className="text-2xl sm:text-3xl leading-loose font-medium italic opacity-90" style={{ fontFamily: '"Playfair Display", "Lora", "Times New Roman", serif' }}>
-              "{intro_text}"
-            </p>
+      {/* ══ CONTENT AREA ══════════════════════════════════════ */}
+      <main className="relative z-30">
+
+        {/* ══ INTRO QUOTE ═════════════════════════════════════ */}
+        <section className="py-32 px-8 text-center bg-white border-b border-slate-50 relative overflow-hidden">
+          <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[70vw] h-[70vw] bg-red-50/40 rounded-full blur-[150px] -z-10" />
+          <ScrollReveal variant="blur-reveal">
+            <div className="max-w-4xl mx-auto">
+              <Sparkles size={32} className="mx-auto mb-12 opacity-30 text-red-900" />
+              <p className="text-3xl sm:text-5xl leading-[1.3] font-light italic text-slate-950" style={{ fontFamily: '"Playfair Display", serif' }}>
+                "{intro_text}"
+              </p>
+              <div className="mt-16 flex items-center justify-center gap-6">
+                <div className="h-px w-20 bg-slate-200" />
+                <span className="text-3xl opacity-40 text-red-900">囍</span>
+                <div className="h-px w-20 bg-slate-200" />
+              </div>
+            </div>
+          </ScrollReveal>
+        </section>
+
+        {/* ══ FAMILIES ═════════════════════════════════════════ */}
+        <section className="py-32 px-8 bg-white">
+          <div className="max-w-6xl mx-auto">
+            <ScrollReveal variant="fade-up">
+              <div className="text-center mb-24">
+                <span className="text-[10px] uppercase tracking-[1em] font-black text-red-900/30 mb-6 block">Grand Lineage</span>
+                <h2 className="text-6xl sm:text-7xl font-bold tracking-tighter text-slate-950" style={{ fontFamily: '"Playfair Display", serif' }}>Hai Gia Đình</h2>
+              </div>
+            </ScrollReveal>
+
+            <div className="grid md:grid-cols-2 gap-16 sm:gap-32">
+              {/* Groom's Side */}
+              <ScrollReveal variant="mask-reveal">
+                <div className="flex flex-col items-center text-center group">
+                  <div className="relative w-64 h-[26rem] mb-12 overflow-hidden rounded-[2.5rem] shadow-[0_60px_120px_-20px_rgba(0,0,0,0.2)] transition-all duration-700 group-hover:scale-[1.02]">
+                    <img src={PORTRAITS.groom} alt="Groom" className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105" />
+                    <div className="absolute inset-0 border-[20px] border-white/10 pointer-events-none" />
+                  </div>
+
+                  <div className="space-y-10 mb-12">
+                    <div className="flex flex-col">
+                      <span className="text-[10px] uppercase tracking-widest text-slate-400 mb-3 font-bold">Thân phụ</span>
+                      <span className="text-3xl font-bold text-slate-950 tracking-tight">{groom_father_name}</span>
+                    </div>
+                    <div className="flex flex-col">
+                      <span className="text-[10px] uppercase tracking-widest text-slate-400 mb-3 font-bold">Thân mẫu</span>
+                      <span className="text-3xl font-bold text-slate-950 tracking-tight">{groom_mother_name}</span>
+                    </div>
+                  </div>
+
+                  <div className="h-px w-12 bg-slate-200 mb-8" />
+                  <h3 className="text-5xl font-bold tracking-tighter text-red-950" style={{ fontFamily: '"Playfair Display", serif' }}>{groom_full_name}</h3>
+                  <span className="text-[10px] uppercase tracking-[0.5em] font-black text-red-900/30 mt-4 block">The Groom</span>
+                </div>
+              </ScrollReveal>
+
+              {/* Bride's Side */}
+              <ScrollReveal variant="mask-reveal" delay={0.2}>
+                <div className="flex flex-col items-center text-center group">
+                  <div className="relative w-64 h-[26rem] mb-12 overflow-hidden rounded-[2.5rem] shadow-[0_60px_120px_-20px_rgba(0,0,0,0.2)] transition-all duration-700 group-hover:scale-[1.02]">
+                    <img src={PORTRAITS.bride} alt="Bride" className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105" />
+                    <div className="absolute inset-0 border-[20px] border-white/10 pointer-events-none" />
+                  </div>
+
+                  <div className="space-y-10 mb-12">
+                    <div className="flex flex-col">
+                      <span className="text-[10px] uppercase tracking-widest text-slate-400 mb-3 font-bold">Thân phụ</span>
+                      <span className="text-3xl font-bold text-slate-950 tracking-tight">{bride_father_name}</span>
+                    </div>
+                    <div className="flex flex-col">
+                      <span className="text-[10px] uppercase tracking-widest text-slate-400 mb-3 font-bold">Thân mẫu</span>
+                      <span className="text-3xl font-bold text-slate-950 tracking-tight">{bride_mother_name}</span>
+                    </div>
+                  </div>
+
+                  <div className="h-px w-12 bg-slate-200 mb-8" />
+                  <h3 className="text-5xl font-bold tracking-tighter text-red-950" style={{ fontFamily: '"Playfair Display", serif' }}>{bride_full_name}</h3>
+                  <span className="text-[10px] uppercase tracking-[0.5em] font-black text-red-900/30 mt-4 block">The Bride</span>
+                </div>
+              </ScrollReveal>
+            </div>
           </div>
         </section>
-      </ScrollReveal>
 
-      {/* ══ FAMILY ══════════════════════════════════════════ */}
-      <ScrollReveal>
-        <section className="py-16 px-6 border-x-[16px] md:border-x-[32px]" style={{ borderColor: wineRed }}>
-          <div className="max-w-5xl mx-auto">
-            <div className="text-center mb-20">
-              <h2 className="text-3xl font-bold uppercase tracking-widest mb-6">Trân Trọng Kính Báo</h2>
-              <div className="w-20 h-1 mx-auto" style={{ backgroundColor: gold }}></div>
-            </div>
-
-            <div className="grid md:grid-cols-2 gap-16 md:gap-8 text-center divide-y md:divide-y-0 md:divide-x" style={{ borderColor: `${wineRed}20` }}>
-
-              {/* Groom */}
-              <div className="pt-8 md:pt-0">
-                <h3 className="text-sm font-bold uppercase tracking-[0.4em] opacity-60 mb-10">Nhà Trai</h3>
-                <div className="text-lg space-y-2 mb-10 font-medium">
-                  <p>Ông: <span className="font-bold">{groom_father_name}</span></p>
-                  <p>Bà: <span className="font-bold">{groom_mother_name}</span></p>
+        {/* ══ LOVE STORY ══════════════════════════════════════ */}
+        {love_story && (
+          <section className="py-32 px-8 bg-[#FDFCF8]">
+            <ScrollReveal variant="blur-reveal">
+              <div className="max-w-5xl mx-auto flex flex-col lg:flex-row items-center gap-16 lg:gap-24">
+                <div className="w-full lg:w-1/3 text-center lg:text-left">
+                  <span className="text-[10px] uppercase tracking-[0.8em] font-black opacity-30 mb-8 block">Our Romance</span>
+                  <h2 className="text-6xl font-bold leading-none tracking-tighter text-slate-950" style={{ fontFamily: '"Playfair Display", serif' }}>
+                    Duyên <br /> Tình <br /> <span className="text-red-900">Thắm</span>
+                  </h2>
+                  <div className="mt-8 h-1.5 w-20 bg-red-900 opacity-20 mx-auto lg:mx-0" />
                 </div>
-                <h4 className="text-4xl font-bold mb-3" style={{ fontFamily: '"Playfair Display", "Lora", "Times New Roman", serif' }}>{groom_full_name}</h4>
-                <p className="text-xs uppercase tracking-widest opacity-60">Trưởng Nam</p>
-              </div>
-
-              {/* Bride */}
-              <div className="pt-16 md:pt-0">
-                <h3 className="text-sm font-bold uppercase tracking-[0.4em] opacity-60 mb-10">Nhà Gái</h3>
-                <div className="text-lg space-y-2 mb-10 font-medium">
-                  <p>Ông: <span className="font-bold">{bride_father_name}</span></p>
-                  <p>Bà: <span className="font-bold">{bride_mother_name}</span></p>
+                <div className="w-full lg:w-2/3">
+                  <p className="text-xl sm:text-4xl font-light leading-[1.4] text-slate-800 italic">
+                    "{love_story}"
+                  </p>
                 </div>
-                <h4 className="text-4xl font-bold mb-3" style={{ fontFamily: '"Playfair Display", "Lora", "Times New Roman", serif' }}>{bride_full_name}</h4>
-                <p className="text-xs uppercase tracking-widest opacity-60">Út Nữ</p>
               </div>
+            </ScrollReveal>
+          </section>
+        )}
 
+        {/* ══ TIMELINE ═════════════════════════════════════════ */}
+        <section className="py-32 px-8 bg-white">
+          <div className="max-w-6xl mx-auto">
+            <ScrollReveal variant="fade-up">
+              <div className="text-center mb-24">
+                <h2 className="text-6xl sm:text-[7rem] font-bold tracking-tighter text-slate-950 mb-8" style={{ fontFamily: '"Playfair Display", serif' }}>Timeline</h2>
+                <div className="flex items-center justify-center gap-8">
+                  <div className="h-px w-16 bg-slate-200" />
+                  <p className="text-[10px] font-black tracking-[0.6em] uppercase text-red-900/40">{lunar_date_text}</p>
+                  <div className="h-px w-16 bg-slate-200" />
+                </div>
+              </div>
+            </ScrollReveal>
+
+            <div className="grid lg:grid-cols-2 gap-10 sm:gap-16">
+              {events.map((event, idx) => (
+                <ScrollReveal key={event.id} delay={idx * 0.2} variant="mask-reveal">
+                  <div className="group relative bg-white rounded-[4rem] p-10 sm:p-16 shadow-[0_15px_60px_rgba(0,0,0,0.03)] border border-slate-50 hover:shadow-[0_80px_150px_-30px_rgba(136,19,55,0.18)] transition-all duration-700 overflow-hidden text-center flex flex-col items-center">
+                    <div className="w-24 h-24 rounded-full bg-red-50 flex items-center justify-center mb-10 group-hover:scale-110 transition-transform shadow-inner">
+                      {event.event_type === 'ceremony' ? <Calendar size={32} className="text-red-900 opacity-40" /> : <Sparkles size={32} className="text-red-900 opacity-40" />}
+                    </div>
+
+                    <h3 className="text-4xl font-bold tracking-tight mb-12 text-slate-950" style={{ fontFamily: '"Playfair Display", serif' }}>{event.title}</h3>
+
+                    <div className="space-y-12 mb-16 w-full">
+                      <div className="flex flex-col items-center">
+                        <Clock size={24} className="mb-5 text-red-700/60" />
+                        <span className="text-3xl font-bold text-slate-950">{new Date(event.event_time).toLocaleTimeString('vi-VN', { hour: '2-digit', minute: '2-digit' })}</span>
+                        <span className="text-[10px] uppercase tracking-widest font-black mt-3 text-slate-500">{new Date(event.event_time).toLocaleDateString('vi-VN', { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' })}</span>
+                      </div>
+
+                      <div className="flex flex-col items-center">
+                        <MapPin size={24} className="mb-5 text-red-700/60" />
+                        <p className="text-2xl font-bold text-slate-950 mb-2">{event.venue_name}</p>
+                        <p className="text-base leading-relaxed max-w-sm mx-auto text-slate-700">{event.address}</p>
+                        {event.note && (
+                          <div className="mt-8 p-6 rounded-[2rem] bg-red-50 text-red-900/70 italic text-sm border border-red-900/10">
+                            {event.note}
+                          </div>
+                        )}
+                      </div>
+                    </div>
+
+                    <motion.a
+                      whileHover={{ scale: 1.05 }}
+                      whileTap={{ scale: 0.95 }}
+                      href={event.map_url}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="w-full sm:w-auto min-w-[220px] py-6 px-12 rounded-full font-black uppercase tracking-[0.4em] text-[10px] text-white transition-all shadow-xl hover:opacity-95"
+                      style={{ backgroundColor: primaryColor }}
+                    >
+                      XEM BẢN ĐỒ <ExternalLink size={14} className="inline ml-2 -mt-1" />
+                    </motion.a>
+                  </div>
+                </ScrollReveal>
+              ))}
             </div>
           </div>
         </section>
-      </ScrollReveal>
 
-      {/* ══ EVENTS ══════════════════════════════════════════ */}
-      <section className="py-16 px-6 bg-white border-x-[16px] md:border-x-[32px]" style={{ borderColor: wineRed }}>
-        <div className="max-w-5xl mx-auto">
-          <ScrollReveal>
-            <div className="text-center mb-20">
-              <h2 className="text-3xl font-bold uppercase tracking-widest mb-6">Chương Trình Tổ Chức</h2>
-              <div className="w-20 h-1 mx-auto mb-6" style={{ backgroundColor: gold }}></div>
-              <p className="text-sm italic opacity-70 font-bold">{lunar_date_text}</p>
+        {/* ══ GALLERY ══════════════════════════════════════════ */}
+        <section className="py-32 px-6 bg-white">
+          <ScrollReveal variant="fade-up">
+            <div className="text-center mb-24">
+              <span className="text-[10px] uppercase tracking-[1.2em] font-black text-red-900/30 mb-6 block">Pastel Moments</span>
+              <h2 className="text-6xl sm:text-[7rem] font-bold tracking-tighter text-slate-950" style={{ fontFamily: '"Playfair Display", serif' }}>Gallery</h2>
             </div>
           </ScrollReveal>
 
-          <div className="grid md:grid-cols-2 gap-12">
-            {events.map((event, idx) => (
-              <ScrollReveal key={event.id} delay={idx * 0.1}>
-                <div className="h-full border-2 p-10 sm:p-12 text-center" style={{ borderColor: wineRed }}>
-                  <div className="w-16 h-16 mx-auto rounded-full border-2 flex items-center justify-center mb-8" style={{ borderColor: gold, color: wineRed }}>
-                    {event.event_type === 'ceremony' ? <Heart size={24} /> : <Gift size={24} />}
+          <div className="columns-1 sm:columns-2 lg:columns-4 gap-8 space-y-8 max-w-[1400px] mx-auto px-4">
+            {gallery.map((photo, i) => (
+              <ScrollReveal key={photo.id} delay={(i % 4) * 0.1} variant="scale-up">
+                <div className="break-inside-avoid rounded-[3rem] overflow-hidden shadow-lg group relative border border-slate-100 p-2 bg-white">
+                  <img src={photo.image_path} alt="" className="w-full rounded-[2.5rem] object-cover transition-transform duration-[4s] group-hover:scale-110" />
+                  <div className="absolute inset-0 bg-red-900/80 opacity-0 group-hover:opacity-100 transition-opacity duration-700 flex items-center justify-center p-10 text-center backdrop-blur-[4px]">
+                    <p className="text-[10px] uppercase tracking-[0.6em] font-black text-white border-b border-white/30 pb-6">{photo.caption || 'Royal Portrait'}</p>
                   </div>
-
-                  <h3 className="text-2xl font-bold uppercase tracking-wider mb-8">{event.title}</h3>
-
-                  <div className="space-y-4 mb-10 font-medium">
-                    <div className="flex items-center justify-center gap-3">
-                      <Clock size={18} style={{ color: gold }} />
-                      <p>
-                        <strong className="text-xl">{new Date(event.event_time).toLocaleTimeString('vi-VN', { hour: '2-digit', minute: '2-digit' })}</strong>
-                        <span className="mx-2 opacity-50">|</span>
-                        {new Date(event.event_time).toLocaleDateString('vi-VN')}
-                      </p>
-                    </div>
-                    <div className="flex items-start justify-center gap-3">
-                      <MapPin size={18} className="mt-1 shrink-0" style={{ color: gold }} />
-                      <div className="text-left">
-                        <p className="font-bold text-lg">{event.venue_name}</p>
-                        <p className="opacity-80 mt-1">{event.address}</p>
-                        {event.note && <p className="text-sm italic opacity-60 mt-2">{event.note}</p>}
-                      </div>
-                    </div>
-                  </div>
-
-                  <a href={event.map_url} target="_blank" rel="noreferrer"
-                    className="inline-block border py-3 px-8 font-bold uppercase tracking-widest text-sm transition-colors hover:text-white"
-                    style={{ borderColor: wineRed, color: wineRed, '--tw-hover-bg': wineRed }}
-                    onMouseEnter={(e) => e.target.style.backgroundColor = wineRed}
-                    onMouseLeave={(e) => e.target.style.backgroundColor = 'transparent'}
-                  >
-                    Xem Bản Đồ
-                  </a>
                 </div>
               </ScrollReveal>
             ))}
           </div>
-        </div>
-      </section>
+        </section>
 
-      {/* ══ GALLERY ═════════════════════════════════════════ */}
-      <section className="py-24 px-4 border-x-[16px] md:border-x-[32px]" style={{ borderColor: wineRed }}>
-        <ScrollReveal>
-          <div className="text-center mb-10">
-            <h2 className="text-3xl font-bold uppercase tracking-widest mb-6">Album Ảnh</h2>
-            <div className="w-20 h-1 mx-auto" style={{ backgroundColor: gold }}></div>
-          </div>
-        </ScrollReveal>
-
-        <div className="max-w-6xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-2">
-          {gallery.map((photo, i) => (
-            <ScrollReveal key={photo.id} delay={(i % 4) * 0.1}>
-              <div className="aspect-[4/5] overflow-hidden group">
-                <img src={photo.image_path} alt={photo.caption || ''} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-1000 " />
+        {/* ══ GIFTS ═══════════════════════════════════════════ */}
+        {bankAccounts.length > 0 && (
+          <section className="py-32 px-8 text-center bg-white border-y border-slate-50 relative overflow-hidden">
+            <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[80vw] h-[80vw] bg-red-50/30 rounded-full blur-[150px] -z-10" />
+            <ScrollReveal variant="blur-reveal">
+              <h2 className="text-[10px] font-black uppercase tracking-[1em] text-red-900/40 mb-12">Registry</h2>
+              <h3 className="text-5xl sm:text-[7rem] font-bold mb-16 tracking-tighter text-slate-950" style={{ fontFamily: '"Playfair Display", serif' }}>Hộp Mừng Cưới</h3>
+              <p className="max-w-3xl mx-auto text-xl sm:text-2xl font-light italic text-slate-600 mb-20 leading-relaxed px-6">
+                "Sự hiện diện của quý khách là món quà trân quý nhất. <br className="hidden sm:block" />
+                Gia đình xin chân thành cảm ơn mọi tấm lòng và lời chúc mừng."
+              </p>
+              <div className="flex flex-wrap justify-center gap-12 sm:gap-20">
+                {bankAccounts.map(b => (
+                  <div key={b.id} className="p-6 bg-white/80 backdrop-blur-3xl rounded-[4rem] shadow-xl border border-white transition-transform hover:scale-105">
+                    <GiftEnvelope bank={b} primaryColor={primaryColor} />
+                  </div>
+                ))}
               </div>
             </ScrollReveal>
-          ))}
-        </div>
-      </section>
-
-      {/* ══ GIFTS ═══════════════════════════════════════════ */}
-      {bankAccounts.length > 0 && (
-        <ScrollReveal>
-          <section className="py-16 px-6 text-center border-x-[16px] md:border-x-[32px]" style={{ borderColor: wineRed }}>
-            <h2 className="text-3xl font-bold uppercase tracking-widest mb-6">Hỷ Sự</h2>
-            <div className="w-20 h-1 mx-auto mb-10" style={{ backgroundColor: gold }}></div>
-            <p className="text-lg opacity-90 mb-10 italic font-medium max-w-xl mx-auto">Sự hiện diện của quý khách là niềm vinh hạnh và món quà quý giá nhất đối với gia đình chúng tôi.</p>
-            <div className="flex flex-wrap justify-center gap-8 sm:gap-12">
-              {bankAccounts.map(b => <GiftEnvelope key={b.id} bank={b} primaryColor={wineRed} />)}
-            </div>
           </section>
-        </ScrollReveal>
-      )}
+        )}
 
-      {/* ══ RSVP ════════════════════════════════════════════ */}
-      <ScrollReveal>
-        <section className="py-16 px-6 text-white border-[16px] md:border-[32px] border-t-0" style={{ backgroundColor: wineRed, borderColor: wineRed }}>
-          <div className="max-w-2xl mx-auto text-center border-2 p-10 sm:p-16" style={{ borderColor: gold }}>
-            <h2 className="text-3xl font-bold uppercase tracking-widest mb-8">Hồi Đáp</h2>
-            <p className="text-sm opacity-80 mb-12 font-medium">Kính mong quý khách xác nhận tham dự để gia đình chuẩn bị đón tiếp được chu đáo nhất.</p>
+        {/* ══ RSVP FORM ════════════════════════════════════════ */}
+        <section className="py-32 px-8 bg-white max-w-6xl mx-auto">
+          <ScrollReveal variant="mask-reveal">
+            <div className="flex flex-col lg:flex-row items-center gap-20 lg:gap-32">
+              <div className="w-full lg:w-1/2 text-center lg:text-left">
+                <span className="text-[10px] uppercase tracking-[1em] font-black text-red-900/30 mb-8 block">R.S.V.P</span>
+                <h2 className="text-7xl sm:text-[8rem] font-black tracking-tighter text-slate-950 mb-10 leading-[0.85]" style={{ fontFamily: '"Playfair Display", serif' }}>Bạn Sẽ <br /> Đến Chứ?</h2>
+                <p className="text-xl text-slate-600 font-light leading-relaxed mb-16 max-w-md italic">
+                  Kính mong quý khách xác nhận thông tin tham dự để chúng tôi có thể đón tiếp quý vị một cách chu đáo nhất.
+                </p>
+                <div className="flex items-center justify-center lg:justify-start gap-10 opacity-30">
+                  <div className="w-20 h-20 rounded-full border border-red-900 flex items-center justify-center">
+                    <Heart size={32} className="text-red-900" />
+                  </div>
+                  <span className="text-[10px] uppercase tracking-[0.6em] font-black text-slate-950">Awaiting your reply</span>
+                </div>
+              </div>
 
-            <form className="space-y-6 text-left">
-              <div>
-                <label className="block text-xs font-bold uppercase tracking-[0.2em] mb-2" style={{ color: gold }}>Họ và Tên</label>
-                <input type="text" className="w-full bg-transparent border-b-2 px-2 py-4 outline-none focus:border-white transition-colors placeholder:text-white/30" style={{ borderColor: `${gold}50` }} placeholder="Nhập tên..." />
+              <div className="w-full lg:w-1/2 bg-white p-10 sm:p-20 rounded-[4rem] shadow-[0_80px_150px_-30px_rgba(136,19,55,0.15)] border border-slate-100">
+                <form className="space-y-12">
+                  <div className="group relative">
+                    <label className="block text-[10px] uppercase tracking-[0.4em] mb-4 text-slate-500 group-focus-within:text-red-900 transition-all font-bold">Họ và Tên</label>
+                    <input type="text" placeholder="Họ tên của quý khách..." className="w-full bg-transparent border-b-2 border-slate-200 py-4 text-2xl font-bold text-slate-950 outline-none transition-all duration-500 focus:border-red-900 placeholder:text-slate-200" />
+                  </div>
+
+                  <div className="group relative">
+                    <label className="block text-[10px] uppercase tracking-[0.4em] mb-4 text-slate-500 group-focus-within:text-red-900 transition-all font-bold">Số Lượng</label>
+                    <div className="relative">
+                      <select className="w-full bg-transparent border-b-2 border-slate-200 py-4 text-2xl font-bold text-slate-950 outline-none transition-all duration-500 focus:border-red-900 appearance-none cursor-pointer">
+                        <option>1 Khách</option>
+                        <option>2 Khách</option>
+                        <option>Cả gia đình</option>
+                      </select>
+                      <ChevronDown size={24} className="absolute right-0 top-1/2 -translate-y-1/2 pointer-events-none text-slate-400" />
+                    </div>
+                  </div>
+
+                  <motion.button
+                    whileHover={{ scale: 1.02 }}
+                    whileTap={{ scale: 0.98 }}
+                    type="button"
+                    className="w-full py-8 text-white font-black transition-all shadow-xl flex items-center justify-center gap-5 uppercase tracking-[0.8em] text-[10px] rounded-full group/btn"
+                    style={{ backgroundColor: primaryColor }}>
+                    XÁC NHẬN <Send size={18} className="group-hover/btn:translate-x-2 transition-transform" />
+                  </motion.button>
+                </form>
               </div>
-              <div>
-                <label className="block text-xs font-bold uppercase tracking-[0.2em] mb-2" style={{ color: gold }}>Xác Nhận</label>
-                <select className="w-full bg-transparent border-b-2 px-2 py-4 outline-none focus:border-white transition-colors appearance-none" style={{ borderColor: `${gold}50` }}>
-                  <option className="bg-red-900">Chắc chắn sẽ đến</option>
-                  <option className="bg-red-900">Rất tiếc không thể đến</option>
-                </select>
-              </div>
-              <div>
-                <label className="block text-xs font-bold uppercase tracking-[0.2em] mb-2" style={{ color: gold }}>Lời Chúc</label>
-                <textarea rows="3" className="w-full bg-transparent border-b-2 px-2 py-4 outline-none focus:border-white transition-colors resize-none placeholder:text-white/30" style={{ borderColor: `${gold}50` }} placeholder="Viết lời chúc..."></textarea>
-              </div>
-              <button type="button" className="w-full py-5 font-bold uppercase tracking-[0.3em] text-sm flex items-center justify-center gap-2 transition hover:bg-white hover:text-red-900 mt-10 border-2" style={{ borderColor: gold, color: gold }}>
-                Gửi Phản Hồi <Send size={16} />
-              </button>
-            </form>
-          </div>
+            </div>
+          </ScrollReveal>
         </section>
-      </ScrollReveal>
-    </div>
+
+        {/* ══ FOOTER ═══════════════════════════════════════════ */}
+        <footer className="py-32 text-center bg-[#0A0A0A] text-white">
+          <ScrollReveal variant="blur-reveal">
+            <p className="text-[10px] uppercase tracking-[1.5em] font-black mb-16 text-white/30">The Eternal Bond</p>
+            <h2 className="text-6xl sm:text-[8rem] font-black tracking-tighter mb-20" style={{ fontFamily: '"Playfair Display", serif' }}>
+              {groom_name} <span className="text-white/30 italic font-light mx-6">&</span> {bride_name}
+            </h2>
+            <div className="flex items-center justify-center gap-12 opacity-20">
+              <div className="h-px w-24 bg-white/20" />
+              <span className="text-5xl" style={{ color: accentColor }}>囍</span>
+              <div className="h-px w-24 bg-white/20" />
+            </div>
+            <p className="mt-32 text-[10px] opacity-10 uppercase tracking-[1.5em] font-black">Powered by iWedding Masterpiece</p>
+          </ScrollReveal>
+        </footer>
+      </main>
+    </motion.div>
   );
 };
 

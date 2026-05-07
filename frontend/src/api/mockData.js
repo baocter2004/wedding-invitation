@@ -6,10 +6,10 @@ export const mockData = {
   templates: [
     {
       id: 1,
-      code: 'floral_pastel',
-      name: 'Floral Pastel',
+      code: 'lang-man-hoa',
+      name: 'Lãng Mạn Hoa',
       category: 'floral',
-      component_name: 'FloralPastelTemplate',
+      component_name: 'lang-man-hoa',
       default_config_json: {
         primary_color: '#D98BA5',
         secondary_color: '#FFF7F9',
@@ -26,10 +26,10 @@ export const mockData = {
     },
     {
       id: 2,
-      code: 'minimal_white',
-      name: 'Minimal White',
+      code: 'toi-gian-trang',
+      name: 'Tối Giản Trắng',
       category: 'minimalist',
-      component_name: 'MinimalWhiteTemplate',
+      component_name: 'toi-gian-trang',
       default_config_json: {
         primary_color: '#111827',
         secondary_color: '#FFFFFF',
@@ -45,10 +45,10 @@ export const mockData = {
     },
     {
       id: 3,
-      code: 'traditional_red',
-      name: 'Đỏ Truyền Thống',
+      code: 'truyen-thong-do',
+      name: 'Truyền Thống Đỏ',
       category: 'traditional',
-      component_name: 'TraditionalRedTemplate',
+      component_name: 'truyen-thong-do',
       default_config_json: {
         primary_color: '#B91C1C',
         secondary_color: '#FFF1D6',
@@ -64,10 +64,10 @@ export const mockData = {
     },
     {
       id: 4,
-      code: 'luxury_gold',
-      name: 'Vàng Sang Trọng',
+      code: 'hoang-gia-vang',
+      name: 'Hoàng Gia Vàng',
       category: 'luxury',
-      component_name: 'LuxuryGoldTemplate',
+      component_name: 'hoang-gia-vang',
       default_config_json: {
         primary_color: '#C8A951',
         secondary_color: '#111111',
@@ -83,10 +83,10 @@ export const mockData = {
     },
     {
       id: 5,
-      code: 'modern_photo',
-      name: 'Tạp Chí Hiện Đại',
+      code: 'phim-anh-hien-dai',
+      name: 'Phim Ảnh Hiện Đại',
       category: 'modern',
-      component_name: 'ModernPhotoStoryTemplate',
+      component_name: 'phim-anh-hien-dai',
       default_config_json: {
         primary_color: '#111827',
         secondary_color: '#F8FAFC',
@@ -102,10 +102,10 @@ export const mockData = {
     },
     {
       id: 6,
-      code: 'green_rustic',
-      name: 'Hoa Mộc Xanh',
+      code: 'moc-mac-xanh',
+      name: 'Mộc Mạc Xanh',
       category: 'floral',
-      component_name: 'GreenRusticTemplate',
+      component_name: 'moc-mac-xanh',
       default_config_json: {
         primary_color: '#2D4F1E',
         secondary_color: '#FDFCF8',
@@ -122,10 +122,10 @@ export const mockData = {
     },
     {
       id: 7,
-      code: 'hoang_kim_do',
-      name: 'Hoàng Kim Đỏ',
+      code: 'sang-trong-truyen-thong',
+      name: 'Sang Trọng Truyền Thống',
       category: 'traditional',
-      component_name: 'LuxuryTraditionalRedTemplate',
+      component_name: 'sang-trong-truyen-thong',
       default_config_json: {
         primary_color: '#8B0000',
         secondary_color: '#C8A951',
@@ -141,10 +141,10 @@ export const mockData = {
     },
     {
       id: 8,
-      code: 'song_phung_do',
-      name: 'Song Phụng Đỏ',
+      code: 'phuong-hoang-lua',
+      name: 'Phượng Hoàng Lửa',
       category: 'traditional',
-      component_name: 'PhoenixRedTemplate',
+      component_name: 'phuong-hoang-lua',
       default_config_json: {
         primary_color: '#B00000',
         secondary_color: '#F8E2AF',
@@ -160,10 +160,10 @@ export const mockData = {
     },
     {
       id: 9,
-      code: 'emerald_modern',
-      name: 'Hiện Đại (Emerald)',
+      code: 'hien-dai-luc-bao',
+      name: 'Hiện Đại Lục Bảo',
       category: 'modern',
-      component_name: 'EmeraldModernTemplate',
+      component_name: 'hien-dai-luc-bao',
       default_config_json: {
         primary_color: '#00B14F',
         secondary_color: '#F4F7F6',

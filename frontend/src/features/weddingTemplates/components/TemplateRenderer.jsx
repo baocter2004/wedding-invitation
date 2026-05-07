@@ -11,21 +11,25 @@ import EmeraldModernTemplate from './EmeraldModernTemplate';
 import WelcomeCover from '../shared/WelcomeCover';
 
 const TEMPLATES = {
-  MinimalWhiteTemplate,
-  FloralPastelTemplate,
-  LuxuryGoldTemplate,
-  TraditionalRedTemplate,
-  ModernPhotoStoryTemplate,
-  GreenRusticTemplate,
-  LuxuryTraditionalRedTemplate,
-  PhoenixRedTemplate,
-  EmeraldModernTemplate,
+  'toi-gian-trang': MinimalWhiteTemplate,
+  'lang-man-hoa': FloralPastelTemplate,
+  'hoang-gia-vang': LuxuryGoldTemplate,
+  'truyen-thong-do': TraditionalRedTemplate,
+  'phim-anh-hien-dai': ModernPhotoStoryTemplate,
+  'moc-mac-xanh': GreenRusticTemplate,
+  'sang-trong-truyen-thong': LuxuryTraditionalRedTemplate,
+  'phuong-hoang-lua': PhoenixRedTemplate,
+  'hien-dai-luc-bao': EmeraldModernTemplate,
 };
 
 const TemplateRenderer = ({ componentName, weddingData }) => {
   const [coverOpen, setCoverOpen] = useState(false);
 
-  const TemplateComponent = TEMPLATES[componentName];
+  // Fallback to Vietnamese slug if the componentName passed is old English identifier
+  const templateSlug = TEMPLATES[componentName] ? componentName : 
+    Object.keys(TEMPLATES).find(key => TEMPLATES[key].name === componentName) || componentName;
+
+  const TemplateComponent = TEMPLATES[templateSlug];
 
   if (!TemplateComponent) {
     return (
@@ -41,7 +45,7 @@ const TemplateRenderer = ({ componentName, weddingData }) => {
       {!coverOpen && (
         <WelcomeCover
           weddingData={weddingData}
-          templateId={componentName}
+          templateId={templateSlug}
           onOpen={() => setCoverOpen(true)}
         />
       )}

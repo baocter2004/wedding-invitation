@@ -1,13 +1,25 @@
-﻿import { useEffect, useState, useRef } from 'react';
-import { MapPin, Clock, Heart, Send, Gift, Volume2, VolumeX, ExternalLink } from 'lucide-react';
+import React, { useEffect, useState, useRef } from 'react';
+import { motion, useScroll, useTransform, AnimatePresence } from 'framer-motion';
+import { MapPin, Clock, Heart, Send, Gift, Volume2, VolumeX, ExternalLink, Sparkles, Calendar, ChevronDown } from 'lucide-react';
 import ScrollReveal from '../shared/ScrollReveal';
 import GiftEnvelope from '../shared/GiftEnvelope';
+import FloatingDecorativeElements from '../shared/FloatingDecorativeElements';
 import { resolveGallery, resolveCover, formatDate, PORTRAITS } from '../../../assets/images';
 
 const PhoenixRedTemplate = ({ weddingData }) => {
   const [mounted, setMounted] = useState(false);
   const [isPlaying, setIsPlaying] = useState(false);
   const audioRef = useRef(null);
+  const heroRef = useRef(null);
+
+  const { scrollYProgress } = useScroll({
+    target: heroRef,
+    offset: ["start start", "end start"]
+  });
+
+  const heroScale = useTransform(scrollYProgress, [0, 1], [1, 1.1]);
+  const heroOpacity = useTransform(scrollYProgress, [0, 0.8], [1, 0]);
+  const heroY = useTransform(scrollYProgress, [0, 1], [0, 150]);
 
   useEffect(() => {
     setMounted(true);
@@ -16,14 +28,16 @@ const PhoenixRedTemplate = ({ weddingData }) => {
       audioRef.current.loop = true;
     }
     return () => audioRef.current?.pause();
-  }, []);
+  }, [weddingData?.music_url]);
 
   const toggleMusic = () => {
     if (!audioRef.current) return;
     if (isPlaying) audioRef.current.pause();
-    else audioRef.current.play();
+    else audioRef.current.play().catch(e => console.error("Audio play failed:", e));
     setIsPlaying(p => !p);
   };
+
+  if (!mounted) return null;
 
   const {
     bride_name = '', groom_name = '',
@@ -37,253 +51,393 @@ const PhoenixRedTemplate = ({ weddingData }) => {
     theme_config_json = {},
   } = weddingData || {};
 
-  const crimson = theme_config_json?.primary_color || '#881337'; // Deep Rose 900
-  const gold = theme_config_json?.secondary_color || '#FBBF24'; // Amber 400
-  const bg = '#FCF8F5';
+  const primaryColor = theme_config_json?.primary_color || '#881337';
+  const accentColor = theme_config_json?.secondary_color || '#FBBF24';
+  const bgColor = '#050505';
 
   const gallery = resolveGallery(photos);
   const cover = resolveCover(cover_image_path);
   const dt = formatDate(wedding_date);
 
   return (
-    <div className="min-h-screen font-serif antialiased selection:bg-[#881337] selection:text-[#FBBF24]" style={{ backgroundColor: bg, color: crimson }}>
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 1.5 }}
+      className="min-h-screen font-serif antialiased selection:bg-red-900 selection:text-white overflow-x-hidden"
+      style={{ backgroundColor: bgColor, color: '#FDFCF8' }}
+    >
+      <FloatingDecorativeElements count={12} type="circle" color={accentColor} />
 
-      {/* Music */}
+      {/* ══ MUSIC PLAYER ═════════════════════════════════════ */}
       {weddingData?.music_url && (
-        <button onClick={toggleMusic} className="fixed bottom-6 right-6 z-50 w-12 h-12 rounded-full shadow-xl flex items-center justify-center transition hover:scale-110 border-2"
-          style={{ backgroundColor: bg, borderColor: crimson }}>
-          {isPlaying ? <Volume2 size={18} style={{ color: crimson }} className="animate-pulse" /> : <VolumeX size={18} className="text-slate-400" />}
-        </button>
+        <motion.button
+          initial={{ opacity: 0, scale: 0.8 }}
+          animate={{ opacity: 1, scale: 1 }}
+          onClick={toggleMusic}
+          className="fixed bottom-10 right-10 z-50 w-14 h-14 rounded-2xl bg-black/80 backdrop-blur-md shadow-2xl flex items-center justify-center border transition-all hover:scale-110 active:scale-95 group"
+          style={{ borderColor: `${accentColor}20` }}
+        >
+          {isPlaying ? (
+            <div className="relative">
+              <Volume2 size={20} style={{ color: accentColor }} className="animate-pulse" />
+              <motion.div
+                animate={{ scale: [1, 1.4, 1], opacity: [0.2, 0, 0.2] }}
+                transition={{ duration: 3, repeat: Infinity }}
+                className="absolute inset-0 rounded-2xl bg-white/5"
+              />
+            </div>
+          ) : (
+            <VolumeX size={20} className="text-slate-500 group-hover:text-white transition-colors" />
+          )}
+        </motion.button>
       )}
 
-      {/* ══ HERO ════════════════════════════════════════════ */}
-      <section className="relative min-h-screen flex flex-col items-center justify-center p-6 text-center" style={{ backgroundColor: crimson, color: gold }}>
-        {/* Ornate corner borders */}
-        <div className="absolute top-6 left-6 w-24 h-24 border-t-4 border-l-4 opacity-50" style={{ borderColor: gold }}></div>
-        <div className="absolute top-6 right-6 w-24 h-24 border-t-4 border-r-4 opacity-50" style={{ borderColor: gold }}></div>
-        <div className="absolute bottom-6 left-6 w-24 h-24 border-b-4 border-l-4 opacity-50" style={{ borderColor: gold }}></div>
-        <div className="absolute bottom-6 right-6 w-24 h-24 border-b-4 border-r-4 opacity-50" style={{ borderColor: gold }}></div>
+      {/* ══ HERO SECTION ══════════════════════════════════════ */}
+      <section ref={heroRef} className="relative h-screen flex flex-col items-center justify-center overflow-hidden bg-black">
+        {/* Cinematic Parallax Background */}
+        <motion.div
+          style={{ scale: heroScale, opacity: 0.4 }}
+          className="absolute inset-0 z-0 pointer-events-none"
+        >
+          <img src={cover} alt="" className="w-full h-full object-cover brightness-50" />
+          <div className="absolute inset-0 bg-gradient-to-b from-transparent via-black to-black" />
+        </motion.div>
 
-        <div className={`relative z-10 transition-all duration-1000 w-full max-w-xl mx-auto ${mounted ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'}`}>
-          <div className="mb-10 mx-auto w-16 h-16 rounded-full border-2 flex items-center justify-center" style={{ borderColor: gold }}>
-            <span className="text-2xl font-bold leading-none">囍</span>
-          </div>
+        {/* Abstract Light Streaks */}
+        <div className="absolute top-[-10%] right-[-5%] w-[60vw] h-[60vw] bg-red-900/10 rounded-full blur-[150px] pointer-events-none z-10" />
+        <div className="absolute bottom-[-10%] left-[-5%] w-[50vw] h-[50vw] bg-amber-900/10 rounded-full blur-[120px] pointer-events-none z-10" />
 
-          <div className="aspect-[4/5] mx-auto mb-12 p-2 border-2" style={{ borderColor: gold }}>
-            <div className="w-full h-full overflow-hidden bg-black/20">
-              <img src={cover} alt="Couple" className="w-full h-full object-cover" />
+        <motion.div
+          style={{ opacity: heroOpacity, y: heroY }}
+          className="relative z-20 text-center px-8"
+        >
+          <motion.div
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 1.5, ease: "easeOut" }}
+          >
+            <div className="mb-10 flex items-center justify-center gap-6">
+              <div className="h-px w-10 bg-white/20" />
+              <div className="w-20 h-20 rounded-full border-2 flex items-center justify-center text-3xl font-bold bg-white/5 backdrop-blur-md shadow-2xl transition-transform hover:rotate-12 duration-700" style={{ borderColor: accentColor }}>
+                <span style={{ color: accentColor }}>囍</span>
+              </div>
+              <div className="h-px w-10 bg-white/20" />
             </div>
-          </div>
 
-          <h1 className="text-5xl sm:text-7xl font-bold mb-6 tracking-wide" style={{ fontFamily: '"Playfair Display", "Lora", "Times New Roman", serif' }}>
-            {groom_name}
-            <span className="block text-xl italic font-light my-4 opacity-70 text-white">&amp;</span>
-            {bride_name}
-          </h1>
+            <p className="text-[10px] sm:text-[10px] text-white/60 uppercase tracking-[1.2em] font-black mb-12">Eternal Phoenix Union</p>
 
-          <div className="flex items-center justify-center gap-6 mt-10">
-            <div className="w-16 h-px" style={{ backgroundColor: gold }}></div>
-            <p className="text-sm uppercase tracking-[0.4em] font-bold text-white">{dt.day} . {dt.month} . {dt.year}</p>
-            <div className="w-16 h-px" style={{ backgroundColor: gold }}></div>
-          </div>
-          <p className="mt-4 text-sm italic opacity-80">{lunar_date_text}</p>
-        </div>
+            <h1 className="text-6xl sm:text-[7rem] md:text-[8rem] font-bold tracking-tighter leading-[0.8] mb-12" style={{ fontFamily: '"Playfair Display", serif', color: accentColor }}>
+              {groom_name}
+              <span className="flex items-center justify-center gap-8 my-10">
+                <div className="h-px flex-1 max-w-[120px] bg-white/20" />
+                <span className="text-3xl italic font-light text-white/20">&</span>
+                <div className="h-px flex-1 max-w-[120px] bg-white/20" />
+              </span>
+              {bride_name}
+            </h1>
+
+            <div className="flex flex-wrap justify-center items-center gap-10 sm:gap-16">
+              <div className="flex flex-col items-center">
+                <span className="text-5xl sm:text-7xl font-light tracking-tighter text-white/90">{dt.day}</span>
+                <span className="text-[10px] uppercase tracking-widest font-black text-white/40 mt-3">Day</span>
+              </div>
+              <div className="h-16 w-px bg-white/10 hidden sm:block" />
+              <div className="flex flex-col items-center">
+                <span className="text-5xl sm:text-7xl font-light tracking-tighter text-white/90">{dt.month}</span>
+                <span className="text-[10px] uppercase tracking-widest font-black text-white/40 mt-3">Month</span>
+              </div>
+              <div className="h-16 w-px bg-white/10 hidden sm:block" />
+              <div className="flex flex-col items-center">
+                <span className="text-5xl sm:text-7xl font-light tracking-tighter text-white/90">{dt.year}</span>
+                <span className="text-[10px] uppercase tracking-widest font-black text-white/40 mt-3">Year</span>
+              </div>
+            </div>
+
+            <p className="mt-16 text-xs italic font-medium tracking-[0.4em] text-white/40 uppercase">
+              {lunar_date_text}
+            </p>
+          </motion.div>
+        </motion.div>
+
+        {/* Scroll Indicator */}
+        <motion.div
+          animate={{ y: [0, 10, 0] }}
+          transition={{ duration: 4, repeat: Infinity }}
+          className="absolute bottom-10 flex flex-col items-center gap-3 opacity-25"
+        >
+          <div className="w-px h-20 bg-gradient-to-b from-white to-transparent" />
+        </motion.div>
       </section>
 
-      {/* ══ INTRO ═══════════════════════════════════════════ */}
-      <ScrollReveal>
-        <section className="py-16 sm:py-12 px-6 text-center">
-          <div className="max-w-2xl mx-auto">
-            <Heart size={24} className="mx-auto mb-10 opacity-50" />
-            <p className="text-lg sm:text-2xl leading-loose italic font-medium">
-              "{intro_text}"
-            </p>
-          </div>
+      {/* ══ CONTENT AREA ══════════════════════════════════════ */}
+      <main className="relative z-30 w-full max-w-6xl mx-auto px-6 sm:px-12">
+
+        {/* ══ INTRO QUOTE ═════════════════════════════════════ */}
+        <section className="py-32 text-center">
+          <ScrollReveal variant="blur-reveal">
+            <div className="max-w-4xl mx-auto px-6">
+              <Sparkles size={32} className="mx-auto mb-12 opacity-20" style={{ color: accentColor }} />
+              <p className="text-3xl sm:text-5xl leading-[1.3] font-light italic text-white/90" style={{ fontFamily: '"Playfair Display", serif' }}>
+                "{intro_text}"
+              </p>
+              <div className="mt-16 w-24 h-px mx-auto bg-white/10" />
+            </div>
+          </ScrollReveal>
         </section>
-      </ScrollReveal>
 
-      {/* ══ FAMILY ══════════════════════════════════════════ */}
-      <ScrollReveal>
-        <section className="py-12 px-6 max-w-5xl mx-auto">
-          <div className="text-center mb-10">
-            <h2 className="text-3xl sm:text-4xl font-bold uppercase tracking-widest mb-4">Hai Gia Đình</h2>
-            <div className="w-12 h-1 mx-auto" style={{ backgroundColor: crimson }}></div>
-          </div>
-
-          <div className="grid md:grid-cols-2 gap-8">
-            {/* Groom */}
-            <div className="bg-white p-10 sm:p-12 shadow-xl text-center border-t-8" style={{ borderColor: crimson }}>
-              <h3 className="text-sm font-bold uppercase tracking-[0.3em] opacity-50 mb-8">Nhà Trai</h3>
-              <div className="w-32 h-32 mx-auto rounded-full overflow-hidden border-4 mb-8" style={{ borderColor: gold }}>
-                <img src={PORTRAITS.groom} alt="Groom" className="w-full h-full object-cover" />
-              </div>
-              <div className="space-y-2 mb-8 font-medium">
-                <p>Ông: <span className="text-slate-800">{groom_father_name}</span></p>
-                <p>Bà: <span className="text-slate-800">{groom_mother_name}</span></p>
-              </div>
-              <div className="w-20 h-px mx-auto mb-6 opacity-20" style={{ backgroundColor: crimson }}></div>
-              <h4 className="text-3xl font-bold" style={{ fontFamily: '"Playfair Display", "Lora", "Times New Roman", serif' }}>{groom_full_name}</h4>
-              <p className="text-xs uppercase tracking-widest mt-2 opacity-60">Chú Rể</p>
+        {/* ══ FAMILIES ═════════════════════════════════════════ */}
+        <section className="py-24">
+          <ScrollReveal variant="fade-up">
+            <div className="text-center mb-24">
+              <span className="text-[10px] uppercase tracking-[1em] font-black opacity-30 mb-6 block">Ancestral Heritage</span>
+              <div className="h-px w-20 bg-white/10 mx-auto" />
             </div>
+          </ScrollReveal>
 
-            {/* Bride */}
-            <div className="bg-white p-10 sm:p-12 shadow-xl text-center border-t-8" style={{ borderColor: crimson }}>
-              <h3 className="text-sm font-bold uppercase tracking-[0.3em] opacity-50 mb-8">Nhà Gái</h3>
-              <div className="w-32 h-32 mx-auto rounded-full overflow-hidden border-4 mb-8" style={{ borderColor: gold }}>
-                <img src={PORTRAITS.bride} alt="Bride" className="w-full h-full object-cover" />
-              </div>
-              <div className="space-y-2 mb-8 font-medium">
-                <p>Ông: <span className="text-slate-800">{bride_father_name}</span></p>
-                <p>Bà: <span className="text-slate-800">{bride_mother_name}</span></p>
-              </div>
-              <div className="w-20 h-px mx-auto mb-6 opacity-20" style={{ backgroundColor: crimson }}></div>
-              <h4 className="text-3xl font-bold" style={{ fontFamily: '"Playfair Display", "Lora", "Times New Roman", serif' }}>{bride_full_name}</h4>
-              <p className="text-xs uppercase tracking-widest mt-2 opacity-60">Cô Dâu</p>
-            </div>
-          </div>
-        </section>
-      </ScrollReveal>
-
-      {/* ══ LOVE STORY ══════════════════════════════════════ */}
-      {love_story && (
-        <ScrollReveal>
-          <section className="py-16 sm:py-12 px-6">
-            <div className="max-w-3xl mx-auto text-center border-4 p-8 sm:p-16" style={{ borderColor: crimson }}>
-              <h2 className="text-3xl font-bold uppercase tracking-widest mb-6">Chuyện Tình Yêu</h2>
-              <div className="w-12 h-1 mx-auto mb-10" style={{ backgroundColor: crimson }}></div>
-              <p className="text-lg leading-loose font-medium italic opacity-90">{love_story}</p>
-            </div>
-          </section>
-        </ScrollReveal>
-      )}
-
-      {/* ══ EVENTS ══════════════════════════════════════════ */}
-      <section className="py-16 px-6 max-w-4xl mx-auto">
-        <ScrollReveal>
-          <div className="text-center mb-10">
-            <h2 className="text-3xl sm:text-4xl font-bold uppercase tracking-widest mb-4">Lịch Trình</h2>
-            <div className="w-12 h-1 mx-auto mb-4" style={{ backgroundColor: crimson }}></div>
-            <p className="text-sm italic opacity-60 font-bold">{lunar_date_text}</p>
-          </div>
-        </ScrollReveal>
-
-        <div className="space-y-8">
-          {events.map((event, idx) => (
-            <ScrollReveal key={event.id} delay={idx * 0.1}>
-              <div className="flex flex-col sm:flex-row bg-white shadow-xl">
-                <div className="sm:w-1/3 p-8 flex flex-col items-center justify-center text-center text-white" style={{ backgroundColor: crimson }}>
-                  {event.event_type === 'ceremony' ? <Heart size={32} className="mb-4" style={{ color: gold }} /> : <Gift size={32} className="mb-4" style={{ color: gold }} />}
-                  <h3 className="text-2xl font-bold uppercase tracking-wider mb-2">{event.title}</h3>
-                  <p className="text-xs uppercase tracking-widest opacity-70">{event.event_type === 'ceremony' ? 'Lễ Cưới' : 'Tiệc Cưới'}</p>
+          <div className="grid md:grid-cols-2 gap-16 sm:gap-32 max-w-5xl mx-auto">
+            {/* Groom side */}
+            <ScrollReveal variant="mask-reveal">
+              <div className="flex flex-col items-center text-center group">
+                <div className="relative w-64 h-80 mb-12 overflow-hidden rounded-[2.5rem] shadow-[0_60px_120px_-20px_rgba(0,0,0,0.8)] transition-all duration-700 group-hover:scale-[1.02]">
+                  <img src={PORTRAITS.groom} alt="Groom" className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105" />
+                  <div className="absolute inset-0 border-[20px] border-white/5 pointer-events-none" />
                 </div>
-                
-                <div className="sm:w-2/3 p-8 sm:p-10 flex flex-col justify-center text-slate-800 font-medium">
-                  <div className="space-y-5 mb-8">
-                    <div className="flex items-center gap-4">
-                      <Clock size={20} style={{ color: crimson }} />
-                      <p className="text-lg">
-                        <strong style={{ color: crimson }}>{new Date(event.event_time).toLocaleTimeString('vi-VN', { hour: '2-digit', minute: '2-digit' })}</strong>
-                        <span className="mx-2 opacity-30">|</span>
-                        {new Date(event.event_time).toLocaleDateString('vi-VN')}
-                      </p>
+
+                <div className="space-y-10 mb-12">
+                  <div className="flex flex-col">
+                    <span className="text-[10px] uppercase tracking-widest opacity-40 mb-3 font-bold">Thân phụ</span>
+                    <span className="text-3xl font-bold text-white">{groom_father_name}</span>
+                  </div>
+                  <div className="flex flex-col">
+                    <span className="text-[10px] uppercase tracking-widest opacity-40 mb-3 font-bold">Thân mẫu</span>
+                    <span className="text-3xl font-bold text-white">{groom_mother_name}</span>
+                  </div>
+                </div>
+
+                <div className="h-px w-12 bg-white/10 mb-8" />
+                <h3 className="text-5xl font-bold tracking-tighter" style={{ color: accentColor, fontFamily: '"Playfair Display", serif' }}>{groom_full_name}</h3>
+                <span className="text-[10px] uppercase tracking-[0.5em] font-black opacity-30 mt-4 block">The Groom</span>
+              </div>
+            </ScrollReveal>
+
+            {/* Bride side */}
+            <ScrollReveal variant="mask-reveal" delay={0.2}>
+              <div className="flex flex-col items-center text-center group">
+                <div className="relative w-64 h-80 mb-12 overflow-hidden rounded-[2.5rem] shadow-[0_60px_120px_-20px_rgba(0,0,0,0.8)] transition-all duration-700 group-hover:scale-[1.02]">
+                  <img src={PORTRAITS.bride} alt="Bride" className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105" />
+                  <div className="absolute inset-0 border-[20px] border-white/5 pointer-events-none" />
+                </div>
+
+                <div className="space-y-10 mb-12">
+                  <div className="flex flex-col">
+                    <span className="text-[10px] uppercase tracking-widest opacity-40 mb-3 font-bold">Thân phụ</span>
+                    <span className="text-3xl font-bold text-white">{bride_father_name}</span>
+                  </div>
+                  <div className="flex flex-col">
+                    <span className="text-[10px] uppercase tracking-widest opacity-40 mb-3 font-bold">Thân mẫu</span>
+                    <span className="text-3xl font-bold text-white">{bride_mother_name}</span>
+                  </div>
+                </div>
+
+                <div className="h-px w-12 bg-white/10 mb-8" />
+                <h3 className="text-5xl font-bold tracking-tighter" style={{ color: accentColor, fontFamily: '"Playfair Display", serif' }}>{bride_full_name}</h3>
+                <span className="text-[10px] uppercase tracking-[0.5em] font-black opacity-30 mt-4 block">The Bride</span>
+              </div>
+            </ScrollReveal>
+          </div>
+        </section>
+
+        {/* ══ LOVE STORY ══════════════════════════════════════ */}
+        {love_story && (
+          <section className="py-32 text-center">
+            <ScrollReveal variant="blur-reveal">
+              <span className="text-[10px] uppercase tracking-[1em] font-black opacity-30 mb-6 block">The Eternal Legend</span>
+              <h2 className="text-6xl sm:text-[7rem] font-bold tracking-tighter mb-16 text-white" style={{ fontFamily: '"Playfair Display", serif' }}>Hành Trình Yêu</h2>
+              <div className="max-w-4xl mx-auto px-6">
+                <p className="text-xl sm:text-4xl font-light leading-[1.5] italic text-white/60">
+                  "{love_story}"
+                </p>
+              </div>
+              <div className="mt-16 flex justify-center opacity-10">
+                <Heart size={48} fill="white" />
+              </div>
+            </ScrollReveal>
+          </section>
+        )}
+
+        {/* ══ EVENTS TIMELINE ═══════════════════════════════════ */}
+        <section className="py-24 px-6">
+          <ScrollReveal variant="fade-up">
+            <div className="text-center mb-24">
+              <h2 className="text-6xl sm:text-[7rem] font-bold tracking-tighter text-white mb-8" style={{ fontFamily: '"Playfair Display", serif' }}>Timeline</h2>
+              <div className="flex items-center justify-center gap-8">
+                <div className="h-px w-16 bg-white/20" />
+                <p className="text-[10px] font-black tracking-[0.5em] uppercase opacity-40">{lunar_date_text}</p>
+                <div className="h-px w-16 bg-white/20" />
+              </div>
+            </div>
+          </ScrollReveal>
+
+          <div className="grid lg:grid-cols-2 gap-10 sm:gap-16 max-w-5xl mx-auto">
+            {events.map((event, idx) => (
+              <ScrollReveal key={event.id} delay={idx * 0.2} variant="mask-reveal">
+                <div className="group relative bg-white/5 backdrop-blur-3xl rounded-[3.5rem] p-10 sm:p-16 border border-white/10 hover:bg-white/15 transition-all duration-700 overflow-hidden text-center flex flex-col items-center shadow-2xl">
+                  {/* Glowing Accent */}
+                  <div className="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-amber-500/40 to-transparent" />
+
+                  <div className="w-20 h-20 rounded-full bg-white/5 flex items-center justify-center mb-10 group-hover:scale-110 transition-transform shadow-inner">
+                    {event.event_type === 'ceremony' ? <Calendar size={32} className="text-white opacity-40" /> : <Sparkles size={32} className="text-white opacity-40" />}
+                  </div>
+
+                  <h3 className="text-4xl font-bold tracking-tight mb-12 text-white" style={{ fontFamily: '"Playfair Display", serif' }}>{event.title}</h3>
+
+                  <div className="space-y-12 mb-16 w-full">
+                    <div className="flex flex-col items-center">
+                      <Clock size={20} className="mb-5 opacity-50" style={{ color: accentColor }} />
+                      <span className="text-3xl font-bold text-white">{new Date(event.event_time).toLocaleTimeString('vi-VN', { hour: '2-digit', minute: '2-digit' })}</span>
+                      <span className="text-[10px] uppercase tracking-widest font-black mt-3 text-white/60">{new Date(event.event_time).toLocaleDateString('vi-VN', { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' })}</span>
                     </div>
-                    <div className="flex items-start gap-4">
-                      <MapPin size={20} className="shrink-0 mt-1" style={{ color: crimson }} />
-                      <div>
-                        <p className="text-lg font-bold">{event.venue_name}</p>
-                        <p className="opacity-80 mt-1">{event.address}</p>
-                        {event.note && <p className="text-sm italic opacity-60 mt-2 p-2 bg-slate-50 border-l-2" style={{ borderColor: crimson }}>{event.note}</p>}
-                      </div>
+
+                    <div className="flex flex-col items-center">
+                      <MapPin size={20} className="mb-5 opacity-50" style={{ color: accentColor }} />
+                      <p className="text-2xl font-bold text-white mb-2">{event.venue_name}</p>
+                      <p className="text-base leading-relaxed max-w-sm mx-auto text-white/60">{event.address}</p>
+                      {event.note && (
+                        <div className="mt-8 p-6 rounded-[2rem] bg-white/5 italic text-sm text-white/30">
+                          {event.note}
+                        </div>
+                      )}
                     </div>
                   </div>
 
-                  <a href={event.map_url} target="_blank" rel="noreferrer"
-                    className="self-start inline-flex items-center gap-2 px-6 py-3 font-bold uppercase tracking-widest text-sm text-white transition-opacity hover:opacity-80"
-                    style={{ backgroundColor: crimson }}>
-                    Bản Đồ <ExternalLink size={16} />
-                  </a>
+                  <motion.a
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                    href={event.map_url}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="w-full sm:w-auto min-w-[200px] py-6 px-12 rounded-full font-black uppercase tracking-[0.3em] text-[10px] text-black transition-all shadow-xl hover:opacity-95 active:scale-95"
+                    style={{ backgroundColor: accentColor }}>
+                    XEM BẢN ĐỒ <ExternalLink size={14} className="inline ml-2 -mt-1" />
+                  </motion.a>
                 </div>
-              </div>
-            </ScrollReveal>
-          ))}
-        </div>
-      </section>
-
-      {/* ══ GALLERY ═════════════════════════════════════════ */}
-      <section className="py-16 sm:py-20 bg-white border-y" style={{ borderColor: `${crimson}20` }}>
-        <ScrollReveal>
-          <div className="text-center mb-10">
-            <h2 className="text-3xl sm:text-4xl font-bold uppercase tracking-widest mb-4">Album Ảnh</h2>
-            <div className="w-12 h-1 mx-auto" style={{ backgroundColor: crimson }}></div>
-          </div>
-        </ScrollReveal>
-        
-        <div className="max-w-6xl mx-auto px-4 grid grid-cols-2 md:grid-cols-3 gap-4">
-          {gallery.map((photo, i) => (
-            <ScrollReveal key={photo.id} delay={(i % 3) * 0.1}>
-              <div className="overflow-hidden shadow-md group border-4" style={{ borderColor: bg }}>
-                <img src={photo.image_path} alt={photo.caption || ''} className="w-full aspect-square object-cover group-hover:scale-110 transition-transform duration-1000" />
-              </div>
-            </ScrollReveal>
-          ))}
-        </div>
-      </section>
-
-      {/* ══ GIFTS ═══════════════════════════════════════════ */}
-      {bankAccounts.length > 0 && (
-        <ScrollReveal>
-          <section className="py-16 sm:py-12 px-6 text-center">
-            <h2 className="text-3xl font-bold uppercase tracking-widest mb-4">Hộp Mừng Cưới</h2>
-            <div className="w-12 h-1 mx-auto mb-10" style={{ backgroundColor: crimson }}></div>
-            <p className="text-base opacity-80 mb-10 italic font-medium">Sự hiện diện của quý khách là niềm vinh hạnh cho gia đình chúng tôi.</p>
-            <div className="flex flex-wrap justify-center gap-8 sm:gap-12">
-              {bankAccounts.map(b => <GiftEnvelope key={b.id} bank={b} primaryColor={crimson} />)}
-            </div>
-          </section>
-        </ScrollReveal>
-      )}
-
-      {/* ══ RSVP ════════════════════════════════════════════ */}
-      <ScrollReveal>
-        <section className="py-16 px-6 text-white" style={{ backgroundColor: crimson }}>
-          <div className="max-w-lg mx-auto text-center">
-            <span className="inline-block w-12 h-12 rounded-full border-2 mb-8 flex items-center justify-center mx-auto" style={{ borderColor: gold, color: gold }}>
-              <Heart size={20} />
-            </span>
-            <h2 className="text-3xl sm:text-4xl font-bold uppercase tracking-widest mb-12">Gửi Lời Chúc</h2>
-            
-            <form className="space-y-6 text-left">
-              <div>
-                <label className="block text-xs font-bold uppercase tracking-[0.2em] mb-2" style={{ color: gold }}>Họ và Tên</label>
-                <input type="text" className="w-full bg-black/20 border-b-2 px-4 py-4 outline-none focus:border-white transition-colors text-white placeholder:text-white/40" style={{ borderColor: `${gold}50` }} placeholder="Nhập tên..." />
-              </div>
-              <div>
-                <label className="block text-xs font-bold uppercase tracking-[0.2em] mb-2" style={{ color: gold }}>Xác Nhận</label>
-                <select className="w-full bg-black/20 border-b-2 px-4 py-4 outline-none focus:border-white transition-colors text-white appearance-none" style={{ borderColor: `${gold}50` }}>
-                  <option className="bg-red-900">Sẽ tham dự</option>
-                  <option className="bg-red-900">Rất tiếc không thể đến</option>
-                </select>
-              </div>
-              <div>
-                <label className="block text-xs font-bold uppercase tracking-[0.2em] mb-2" style={{ color: gold }}>Lời Chúc</label>
-                <textarea rows="3" className="w-full bg-black/20 border-b-2 px-4 py-4 outline-none focus:border-white transition-colors text-white resize-none placeholder:text-white/40" style={{ borderColor: `${gold}50` }} placeholder="Viết lời chúc..."></textarea>
-              </div>
-              <button type="button" className="w-full py-5 font-bold uppercase tracking-[0.3em] text-sm flex items-center justify-center gap-2 transition hover:opacity-90 mt-8 text-black" style={{ backgroundColor: gold }}>
-                Gửi Phản Hồi <Send size={16} />
-              </button>
-            </form>
+              </ScrollReveal>
+            ))}
           </div>
         </section>
-      </ScrollReveal>
 
-      {/* Footer */}
-      <footer className="py-16 text-center bg-white border-t-8" style={{ borderColor: crimson }}>
-        <h2 className="text-3xl font-bold tracking-wide" style={{ fontFamily: '"Playfair Display", "Lora", "Times New Roman", serif' }}>
-          {groom_name} <span className="italic opacity-50 mx-2">&amp;</span> {bride_name}
-        </h2>
-        <p className="mt-4 text-xs font-bold uppercase tracking-[0.4em] opacity-50">{dt.day}.{dt.month}.{dt.year}</p>
-      </footer>
-    </div>
+        {/* ══ GALLERY ═════════════════════════════════════════ */}
+        <section className="py-32">
+          <ScrollReveal variant="fade-up">
+            <div className="text-center mb-24 px-6">
+              <span className="text-[10px] uppercase tracking-[1em] font-black opacity-30 mb-6 block">Cinematic Journey</span>
+              <h2 className="text-6xl sm:text-[7rem] font-bold tracking-tighter text-white" style={{ fontFamily: '"Playfair Display", serif' }}>Gallery</h2>
+            </div>
+          </ScrollReveal>
+
+          <div className="columns-1 sm:columns-2 lg:columns-4 gap-6 space-y-6 max-w-[1400px] mx-auto px-4">
+            {gallery.map((photo, i) => (
+              <ScrollReveal key={photo.id} delay={(i % 4) * 0.1} variant="scale-up">
+                <div className="break-inside-avoid rounded-[2.5rem] overflow-hidden shadow-2xl group relative border border-white/10 bg-slate-900">
+                  <img src={photo.image_path} alt="" className="w-full object-cover transition-transform duration-[4s] group-hover:scale-105" />
+                  <div className="absolute inset-0 bg-black/80 opacity-0 group-hover:opacity-100 transition-opacity duration-700 flex items-center justify-center p-10 text-center backdrop-blur-[4px]">
+                    <p className="text-[10px] uppercase tracking-[0.5em] font-black text-white border-b border-white/30 pb-6">{photo.caption || 'Special Moment'}</p>
+                  </div>
+                </div>
+              </ScrollReveal>
+            ))}
+          </div>
+        </section>
+
+        {/* ══ GIFTS ═══════════════════════════════════════════ */}
+        {bankAccounts.length > 0 && (
+          <section className="py-32 text-center bg-white/5 rounded-[4rem] my-32 border border-white/5 relative overflow-hidden">
+            <ScrollReveal variant="blur-reveal">
+              <h2 className="text-[10px] font-black uppercase tracking-[1em] opacity-40 mb-10">Registry</h2>
+              <h3 className="text-5xl sm:text-[6rem] font-bold mb-16 tracking-tighter text-white" style={{ fontFamily: '"Playfair Display", serif' }}>Hộp Mừng Cưới</h3>
+              <p className="max-w-3xl mx-auto text-xl sm:text-2xl font-light italic text-white/40 mb-20 leading-relaxed px-6">
+                "Sự hiện diện của quý khách là món quà trân quý nhất. <br className="hidden sm:block" />
+                Gia đình xin chân thành cảm ơn mọi tấm lòng và lời chúc mừng."
+              </p>
+              <div className="flex flex-wrap justify-center gap-12 sm:gap-20">
+                {bankAccounts.map(b => (
+                  <div key={b.id} className="p-6 bg-white/5 rounded-[3rem] transition-transform hover:scale-105 border border-white/10 backdrop-blur-xl">
+                    <GiftEnvelope bank={b} primaryColor={accentColor} />
+                  </div>
+                ))}
+              </div>
+            </ScrollReveal>
+          </section>
+        )}
+
+        {/* ══ RSVP FORM ════════════════════════════════════════ */}
+        <section className="py-32 px-8">
+          <ScrollReveal variant="mask-reveal">
+            <div className="max-w-6xl mx-auto flex flex-col lg:flex-row items-center gap-20 lg:gap-32">
+              <div className="w-full lg:w-1/2 text-center lg:text-left">
+                <span className="text-[10px] uppercase tracking-[1em] font-black opacity-40 mb-8 block">R.S.V.P</span>
+                <h2 className="text-7xl sm:text-[8rem] font-black tracking-tighter text-white mb-10 leading-[0.9]" style={{ fontFamily: '"Playfair Display", serif' }}>Bạn Sẽ <br /> Tham Dự <br /> <span style={{ color: accentColor }}>Chứ?</span></h2>
+                <p className="text-xl text-white/40 font-light leading-relaxed mb-12 max-w-md italic">
+                  Kính mong quý khách xác nhận thông tin tham dự để chúng tôi có thể đón tiếp quý vị một cách chu đáo nhất.
+                </p>
+                <div className="flex items-center justify-center lg:justify-start gap-10 opacity-30">
+                  <div className="w-16 h-16 rounded-full border border-white flex items-center justify-center">
+                    <Heart size={24} />
+                  </div>
+                  <span className="text-[10px] uppercase tracking-[0.6em] font-black">Awaiting your response</span>
+                </div>
+              </div>
+
+              <div className="w-full lg:w-1/2 bg-white/5 p-10 sm:p-20 rounded-[4rem] border border-white/10 shadow-2xl backdrop-blur-3xl">
+                <form className="space-y-12">
+                  <div className="group relative">
+                    <label className="block text-[10px] uppercase tracking-[0.4em] mb-4 text-white/40 group-focus-within:text-white transition-all font-bold">Họ và Tên</label>
+                    <input type="text" placeholder="Họ tên của quý khách..." className="w-full bg-transparent border-b-2 border-white/10 py-4 text-2xl font-bold text-white outline-none transition-all duration-500 focus:border-white placeholder:text-white/20" />
+                  </div>
+
+                  <div className="group relative">
+                    <label className="block text-[10px] uppercase tracking-[0.4em] mb-4 text-white/40 group-focus-within:text-white transition-all font-bold">Xác Nhận</label>
+                    <div className="relative">
+                      <select className="w-full bg-transparent border-b-2 border-white/10 py-4 text-2xl font-bold text-white outline-none transition-all duration-500 focus:border-white appearance-none cursor-pointer">
+                        <option className="bg-[#050505]">Sẽ tham dự</option>
+                        <option className="bg-[#050505]">Tiếc là không thể</option>
+                      </select>
+                      <ChevronDown size={20} className="absolute right-0 top-1/2 -translate-y-1/2 pointer-events-none text-white/30" />
+                    </div>
+                  </div>
+
+                  <motion.button
+                    whileHover={{ scale: 1.02 }}
+                    whileTap={{ scale: 0.98 }}
+                    type="button"
+                    className="w-full py-8 text-black font-black transition-all shadow-xl flex items-center justify-center gap-5 uppercase tracking-[0.6em] text-[10px] rounded-full group/btn"
+                    style={{ backgroundColor: accentColor }}>
+                    XÁC NHẬN <Send size={18} className="group-hover/btn:translate-x-2 transition-transform" />
+                  </motion.button>
+                </form>
+              </div>
+            </div>
+          </ScrollReveal>
+        </section>
+
+        {/* ══ FOOTER ═══════════════════════════════════════════ */}
+        <footer className="py-32 text-center border-t border-white/5">
+          <ScrollReveal variant="blur-reveal">
+            <p className="text-[10px] uppercase tracking-[1.5em] font-black mb-12 opacity-20">Eternal Phoenix</p>
+            <h2 className="text-6xl sm:text-[8rem] font-black tracking-tighter text-white mb-16" style={{ fontFamily: '"Playfair Display", serif' }}>
+              {groom_name} <span className="opacity-20 italic font-light mx-6" style={{ color: accentColor }}>&</span> {bride_name}
+            </h2>
+            <div className="flex items-center justify-center gap-10 opacity-20">
+              <div className="h-px w-20 bg-white/20" />
+              <Sparkles size={24} style={{ color: accentColor }} />
+              <div className="h-px w-20 bg-white/20" />
+            </div>
+            <p className="mt-32 text-[10px] opacity-20 uppercase tracking-[1.5em] font-black">Powered by iWedding Phoenix Collection</p>
+          </ScrollReveal>
+        </footer>
+      </main>
+    </motion.div>
   );
 };
 

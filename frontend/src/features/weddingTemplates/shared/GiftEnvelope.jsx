@@ -92,7 +92,7 @@ const GiftEnvelope = ({ bank, primaryColor = '#D98BA5' }) => {
             >
               <div className="flex items-center gap-2 mb-3">
                 <Sparkles size={15} style={{ color: primaryColor }} />
-                <p className="text-[11px] sm:text-xs uppercase tracking-[0.22em] text-slate-600 font-semibold">
+                <p className="text-xs sm:text-xs uppercase tracking-[0.22em] text-slate-600 font-semibold">
                   Mừng cưới online
                 </p>
                 <Sparkles size={15} style={{ color: primaryColor }} />
@@ -134,7 +134,7 @@ const GiftEnvelope = ({ bank, primaryColor = '#D98BA5' }) => {
                 <Heart size={24} className="mb-2 opacity-70" style={{ color: primaryColor }} />
               </motion.div>
               <span className="text-slate-700 font-serif italic text-lg">Mừng Cưới</span>
-              <p className="text-[11px] text-slate-500 mt-1 tracking-[0.1em] uppercase">Chạm để mở phong thư</p>
+              <p className="text-xs text-slate-500 mt-1 tracking-[0.1em] uppercase">Chạm để mở phong thư</p>
             </div>
           )}
         </motion.div>
