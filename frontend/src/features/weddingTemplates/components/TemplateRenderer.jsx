@@ -41,6 +41,7 @@ const TemplateRenderer = ({ componentName, weddingData }) => {
       {!coverOpen && (
         <WelcomeCover
           weddingData={weddingData}
+          templateId={componentName}
           onOpen={() => setCoverOpen(true)}
         />
       )}

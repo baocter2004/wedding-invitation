@@ -1,4 +1,4 @@
-﻿import { useEffect, useState, useRef } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import { MapPin, Clock, Heart, Send, Gift, Volume2, VolumeX, ExternalLink } from 'lucide-react';
 import ScrollReveal from '../shared/ScrollReveal';
 import GiftEnvelope from '../shared/GiftEnvelope';
@@ -59,31 +59,36 @@ const EmeraldModernTemplate = ({ weddingData }) => {
       )}
 
       {/* ══ HERO ════════════════════════════════════════════ */}
-      <section className="relative min-h-screen flex flex-col md:flex-row items-center justify-center p-6 md:p-12 gap-12 max-w-7xl mx-auto">
+      <section className="relative min-h-screen flex flex-col lg:flex-row items-center justify-center p-4 sm:p-8 lg:p-12 gap-8 lg:gap-16 max-w-7xl mx-auto overflow-hidden">
         {/* Left: Text */}
-        <div className={`relative z-10 w-full md:w-1/2 flex flex-col justify-center text-center md:text-left transition-all duration-1000 ${mounted ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-12'}`}>
-          <p className="text-xs font-bold uppercase tracking-[0.4em] mb-4" style={{ color: emerald }}>Trân Trọng Kính Mời</p>
-          <h1 className="text-5xl sm:text-7xl lg:text-8xl font-light mb-6 leading-[0.9] tracking-tight" style={{ fontFamily: '"Playfair Display", "Lora", "Times New Roman", serif' }}>
+        <div className={`relative z-10 w-full lg:w-1/2 flex flex-col justify-center text-center lg:text-left transition-all duration-1000 ${mounted ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-12'}`}>
+          <p className="text-[10px] sm:text-xs font-bold uppercase tracking-[0.4em] mb-4 sm:mb-6" style={{ color: emerald }}>Trân Trọng Kính Mời</p>
+          <h1 className="text-4xl sm:text-7xl lg:text-8xl font-light mb-6 leading-tight lg:leading-[0.9] tracking-tight px-4 lg:px-0" style={{ fontFamily: '"Playfair Display", "Lora", "Times New Roman", serif' }}>
             {groom_name}
-            <span className="block text-4xl italic font-light my-2 opacity-40">&amp;</span>
+            <span className="block text-2xl sm:text-4xl italic font-light my-2 opacity-40">&amp;</span>
             {bride_name}
           </h1>
-          <div className="w-16 h-1 mb-6 mx-auto md:mx-0" style={{ backgroundColor: emerald }}></div>
-          <p className="text-lg font-medium tracking-widest uppercase mb-1">{dt.day} . {dt.month} . {dt.year}</p>
-          <p className="text-sm italic opacity-60">{lunar_date_text}</p>
+          <div className="w-16 h-1 mb-8 mx-auto lg:mx-0" style={{ backgroundColor: emerald }}></div>
+          <p className="text-base sm:text-xl font-medium tracking-[0.2em] uppercase mb-1">{dt.day} . {dt.month} . {dt.year}</p>
+          <p className="text-xs sm:text-sm italic opacity-60">{lunar_date_text}</p>
         </div>
 
         {/* Right: Cover */}
-        <div className={`relative z-10 w-full md:w-1/2 flex justify-center md:justify-end transition-all duration-1000 delay-300 ${mounted ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-12'}`}>
-          <div className="relative w-full max-w-md aspect-[4/5] rounded-[2rem] overflow-hidden shadow-2xl group">
-            <div className="absolute inset-0 bg-black/10 group-hover:bg-transparent transition-colors duration-700 z-10"></div>
+        <div className={`relative z-10 w-full lg:w-1/2 flex justify-center lg:justify-end transition-all duration-1000 delay-300 ${mounted ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-12'}`}>
+          <div className="relative w-full max-w-sm sm:max-w-md aspect-[4/5] rounded-[2rem] sm:rounded-[3rem] overflow-hidden shadow-2xl group">
+            <div className="absolute inset-0 bg-black/10 group-hover:bg-transparent transition-colors duration-1000 z-10"></div>
             <img src={cover} alt="Couple" className="w-full h-full object-cover scale-105 group-hover:scale-100 transition-transform duration-1000" />
 
             {/* Emerald badge */}
-            <div className="absolute top-6 right-6 w-16 h-16 rounded-full backdrop-blur-md bg-white/30 border border-white/50 flex flex-col items-center justify-center text-white z-20 shadow-lg">
+            <motion.div 
+              className="absolute top-6 right-6 w-16 h-16 rounded-full backdrop-blur-md bg-white/30 border border-white/50 flex flex-col items-center justify-center text-white z-20 shadow-lg"
+              initial={{ scale: 0 }}
+              animate={{ scale: 1 }}
+              transition={{ delay: 0.8, type: 'spring' }}
+            >
               <span className="text-xl font-bold leading-none">{dt.day}</span>
               <span className="text-[10px] uppercase font-bold tracking-widest">{dt.month}</span>
-            </div>
+            </motion.div>
           </div>
         </div>
       </section>

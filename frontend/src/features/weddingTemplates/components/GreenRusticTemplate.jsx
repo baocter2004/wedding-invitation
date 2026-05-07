@@ -1,4 +1,4 @@
-﻿import React, { useEffect, useState, useRef } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import { motion } from 'framer-motion';
 import { MapPin, Calendar, Clock, Heart, Send, Volume2, VolumeX, ExternalLink } from 'lucide-react';
 import ScrollReveal from '../shared/ScrollReveal';
@@ -74,41 +74,41 @@ const GreenRusticTemplate = ({ weddingData }) => {
       <main className="relative z-10 max-w-4xl mx-auto shadow-sm bg-white/40 backdrop-blur-[2px]">
 
         {/* ══ HERO ════════════════════════════════════════════ */}
-        <section className="relative min-h-screen flex flex-col items-center justify-center p-6 text-center overflow-hidden">
+        <section className="relative min-h-[90vh] flex flex-col items-center justify-center p-6 text-center overflow-hidden">
           <ScrollReveal duration={1.5} yOffset={0}>
             <div className={`relative mb-12 transition-all duration-1000 ${mounted ? 'opacity-100 scale-100' : 'opacity-0 scale-95'}`}>
-              <div className="absolute inset-0 -m-6 border rounded-full scale-105 pointer-events-none" style={{ borderColor: `${primaryColor}30` }}></div>
-              <div className="absolute inset-0 -m-3 border border-dashed rounded-full scale-105 pointer-events-none" style={{ borderColor: `${primaryColor}40` }}></div>
-              <div className="w-56 h-56 md:w-80 md:h-80 rounded-full overflow-hidden border-8 shadow-xl relative z-10" style={{ borderColor: secondaryColor }}>
-                <img src={cover} alt="Wedding" className="w-full h-full object-cover" />
+              <div className="absolute inset-0 -m-4 sm:-m-6 border rounded-full scale-105 pointer-events-none" style={{ borderColor: `${primaryColor}20` }}></div>
+              <div className="absolute inset-0 -m-2 sm:-m-3 border border-dashed rounded-full scale-105 pointer-events-none" style={{ borderColor: `${primaryColor}30` }}></div>
+              <div className="w-48 h-48 sm:w-64 sm:h-64 md:w-80 md:h-80 rounded-full overflow-hidden border-4 sm:border-8 shadow-2xl relative z-10" style={{ borderColor: secondaryColor }}>
+                <img src={cover} alt="Wedding" className="w-full h-full object-cover transition-transform duration-[5000ms] hover:scale-110" />
               </div>
             </div>
           </ScrollReveal>
 
           <ScrollReveal delay={0.3}>
-            <p className="text-[10px] sm:text-xs tracking-[0.5em] uppercase mb-6 opacity-60">Thân Mời Tham Dự Lễ Cưới</p>
-            <h1 className="text-5xl md:text-7xl font-bold mb-4" style={{ fontFamily: '"Playfair Display", "Lora", "Times New Roman", serif', color: primaryColor }}>
+            <p className="text-[10px] sm:text-xs tracking-[0.4em] uppercase mb-6 opacity-60 font-medium">Thân Mời Tham Dự Lễ Cưới</p>
+            <h1 className="text-4xl sm:text-6xl md:text-7xl font-bold mb-4 px-4 leading-tight" style={{ fontFamily: '"Playfair Display", "Lora", "Times New Roman", serif', color: primaryColor }}>
               {groom_name}
-              <span className="block text-2xl italic font-light my-2 opacity-60">&amp;</span>
+              <span className="block text-xl sm:text-2xl italic font-light my-2 opacity-50">&amp;</span>
               {bride_name}
             </h1>
-            <div className="w-12 h-px mx-auto my-8" style={{ backgroundColor: `${primaryColor}40` }}></div>
-            <p className="text-lg md:text-xl tracking-widest uppercase">
-              {dt.day} <span className="mx-2 opacity-50">•</span> {dt.month} <span className="mx-2 opacity-50">•</span> {dt.year}
+            <div className="w-12 h-px mx-auto my-8 opacity-40" style={{ backgroundColor: primaryColor }}></div>
+            <p className="text-base sm:text-xl tracking-[0.2em] uppercase font-light">
+              {dt.day} <span className="mx-2 opacity-30">•</span> {dt.month} <span className="mx-2 opacity-30">•</span> {dt.year}
             </p>
-            <p className="mt-3 text-sm italic opacity-60">{lunar_date_text}</p>
+            <p className="mt-3 text-xs sm:text-sm italic opacity-50 tracking-wide">{lunar_date_text}</p>
           </ScrollReveal>
 
-          <motion.div className="absolute bottom-8 left-1/2 -translate-x-1/2 opacity-40" initial={{ opacity: 0, y: 10 }} animate={{ opacity: 0.4, y: 0 }} transition={{ duration: 1, delay: 1 }}>
+          <motion.div className="absolute bottom-8 left-1/2 -translate-x-1/2 opacity-30 hidden sm:block" initial={{ opacity: 0, y: 10 }} animate={{ opacity: 0.3, y: 0 }} transition={{ duration: 1, delay: 1 }}>
             <div className="w-px h-12" style={{ backgroundColor: primaryColor }}></div>
           </motion.div>
         </section>
 
         {/* ══ INTRO ═══════════════════════════════════════════ */}
         <ScrollReveal>
-          <section className="py-12 sm:py-16 px-8 text-center" style={{ backgroundColor: `${primaryColor}05` }}>
-            <Heart className="mx-auto mb-8 opacity-40" size={24} style={{ color: primaryColor }} />
-            <p className="text-xl sm:text-2xl italic mb-8 leading-loose font-light max-w-2xl mx-auto">
+          <section className="py-16 sm:py-20 px-6 sm:px-8 text-center" style={{ backgroundColor: `${primaryColor}03` }}>
+            <Heart className="mx-auto mb-10 opacity-30" size={20} style={{ color: primaryColor }} />
+            <p className="text-lg sm:text-2xl italic leading-loose font-light max-w-2xl mx-auto opacity-80">
               "{intro_text}"
             </p>
           </section>

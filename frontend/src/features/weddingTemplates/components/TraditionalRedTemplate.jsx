@@ -1,4 +1,4 @@
-﻿import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { MapPin, Clock, Heart, Send, Gift, ExternalLink, Volume2, VolumeX } from 'lucide-react';
 import ScrollReveal from '../shared/ScrollReveal';
 import GiftEnvelope from '../shared/GiftEnvelope';
@@ -68,37 +68,46 @@ const TraditionalRedTemplate = ({ weddingData }) => {
       <main className="relative z-0 max-w-4xl mx-auto">
 
         {/* ══ HERO ════════════════════════════════════════════ */}
-        <section className="relative min-h-screen flex flex-col items-center justify-center text-center px-6 py-20" style={{ backgroundColor: red }}>
+        <section className="relative min-h-screen flex flex-col items-center justify-center text-center px-4 py-20 overflow-hidden" style={{ backgroundColor: red }}>
           {/* Decorative frame */}
-          <div className="absolute inset-4 border-2 pointer-events-none z-0 opacity-30" style={{ borderColor: cream }}></div>
-          <div className="absolute inset-6 border border-dashed pointer-events-none z-0 opacity-20" style={{ borderColor: cream }}></div>
+          <div className="absolute inset-4 border-2 pointer-events-none z-0 opacity-20" style={{ borderColor: cream }}></div>
+          <div className="absolute inset-6 border border-dashed pointer-events-none z-0 opacity-10" style={{ borderColor: cream }}></div>
 
-          <div className={`relative z-10 w-full max-w-sm mx-auto mb-10 transition-all duration-1000 ${mounted ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
-            <div className="aspect-[3/4] p-2 border-2 mx-auto" style={{ borderColor: cream }}>
+          <div className={`relative z-10 w-full max-w-[280px] sm:max-w-sm mx-auto mb-10 transition-all duration-1000 ${mounted ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
+            <div className="aspect-[3/4] p-2 border-2 mx-auto relative group" style={{ borderColor: cream }}>
               <div className="w-full h-full overflow-hidden relative">
-                <img src={cover} alt="Couple" className="w-full h-full object-cover" />
+                <img src={cover} alt="Couple" className="w-full h-full object-cover transition-transform duration-[4000ms] group-hover:scale-110" />
               </div>
+              {/* Corner Accents */}
+              <div className="absolute -top-3 -left-3 w-8 h-8 border-t-4 border-l-4" style={{ borderColor: cream }} />
+              <div className="absolute -bottom-3 -right-3 w-8 h-8 border-b-4 border-r-4" style={{ borderColor: cream }} />
             </div>
 
             {/* Double Happiness Badge */}
-            <div className="absolute -bottom-6 left-1/2 -translate-x-1/2 w-14 h-14 rounded-full flex items-center justify-center border-4" style={{ backgroundColor: red, borderColor: cream }}>
-              <span className="text-3xl font-bold leading-none" style={{ color: cream }}>囍</span>
-            </div>
+            <motion.div
+              className="absolute -bottom-6 left-1/2 -translate-x-1/2 w-14 h-14 sm:w-16 sm:h-16 rounded-full flex items-center justify-center border-4 z-20 shadow-xl"
+              style={{ backgroundColor: red, borderColor: cream }}
+              initial={{ scale: 0 }}
+              animate={{ scale: 1 }}
+              transition={{ delay: 1, type: 'spring' }}
+            >
+              <span className="text-3xl sm:text-4xl font-bold leading-none" style={{ color: cream }}>囍</span>
+            </motion.div>
           </div>
 
           <div className={`relative z-10 text-center transition-all duration-[1200ms] delay-300 ${mounted ? 'opacity-100' : 'opacity-0'}`}>
-            <p className="text-sm uppercase tracking-[0.4em] mb-6" style={{ color: cream }}>Trân Trọng Kính Mời</p>
-            <h1 className="text-5xl sm:text-6xl font-bold mb-6 leading-tight" style={{ color: cream, fontFamily: '"Playfair Display", "Lora", "Times New Roman", serif' }}>
+            <p className="text-xs sm:text-sm uppercase tracking-[0.4em] mb-6 font-medium" style={{ color: cream }}>Trân Trọng Kính Mời</p>
+            <h1 className="text-4xl sm:text-6xl md:text-7xl font-bold mb-6 leading-tight px-4" style={{ color: cream, fontFamily: '"Playfair Display", "Lora", "Times New Roman", serif' }}>
               {groom_name}
-              <span className="block text-2xl italic font-light my-2 opacity-70">&amp;</span>
+              <span className="block text-xl sm:text-2xl italic font-light my-2 opacity-60">&amp;</span>
               {bride_name}
             </h1>
-            <div className="flex items-center justify-center gap-4 mb-2" style={{ color: cream }}>
-              <div className="w-8 h-px bg-current opacity-40"></div>
-              <p className="text-lg tracking-widest">{dt.day} . {dt.month} . {dt.year}</p>
-              <div className="w-8 h-px bg-current opacity-40"></div>
+            <div className="flex items-center justify-center gap-4 mb-3" style={{ color: cream }}>
+              <div className="w-8 sm:w-12 h-px bg-current opacity-40"></div>
+              <p className="text-base sm:text-xl tracking-widest uppercase font-light">{dt.day} . {dt.month} . {dt.year}</p>
+              <div className="w-8 sm:w-12 h-px bg-current opacity-40"></div>
             </div>
-            <p className="text-sm italic opacity-70" style={{ color: cream }}>{lunar_date_text}</p>
+            <p className="text-xs sm:text-sm italic opacity-60 tracking-wider" style={{ color: cream }}>{lunar_date_text}</p>
           </div>
         </section>
 
