@@ -69,7 +69,7 @@ const WelcomeCover = ({ weddingData, templateId, onOpen }) => {
                 className="absolute inset-0 z-[60] origin-top"
                 style={{ backgroundColor: theme.bg }}
               >
-                <div className="absolute bottom-0 w-full h-px bg-white/10" />
+                <div className="absolute bottom-0 w-full h-[1px] bg-white/10" />
               </motion.div>
               {/* Bottom Door */}
               <motion.div
@@ -79,7 +79,7 @@ const WelcomeCover = ({ weddingData, templateId, onOpen }) => {
                 className="absolute inset-0 z-[60] origin-bottom"
                 style={{ backgroundColor: theme.bg }}
               >
-                <div className="absolute top-0 w-full h-px bg-white/10" />
+                <div className="absolute top-0 w-full h-[1px] bg-white/10" />
               </motion.div>
             </>
           )}
@@ -105,11 +105,11 @@ const WelcomeCover = ({ weddingData, templateId, onOpen }) => {
               <motion.img
                 src={coverImg}
                 alt="Cover"
-                className="w-full h-full object-cover brightness-[0.45]"
+                className="w-full h-full object-cover brightness-[0.4]"
                 animate={{ scale: [1, 1.1] }}
                 transition={{ duration: 20, repeat: Infinity, repeatType: "reverse", ease: "linear" }}
               />
-              <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-transparent to-black/90" />
+              <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-transparent to-black" />
             </div>
 
             {/* Content Overlay */}
@@ -121,11 +121,11 @@ const WelcomeCover = ({ weddingData, templateId, onOpen }) => {
                 transition={{ delay: 0.6 }}
                 className="flex flex-col items-center gap-4"
               >
-                <span className="text-[10px] uppercase tracking-[1em] font-black text-white/50">The Wedding Of</span>
+                <span className="text-[11px] uppercase tracking-[0.8em] font-black text-white/70">The Wedding Of</span>
                 <div className="flex items-center gap-4">
-                  <div className="w-8 h-px bg-white/20" />
-                  <ThemeIcon size={16} style={{ color: theme.primary }} className="opacity-60" />
-                  <div className="w-8 h-px bg-white/20" />
+                  <div className="w-8 h-[1px] bg-white/30" />
+                  <ThemeIcon size={16} style={{ color: theme.primary }} className="opacity-80" />
+                  <div className="w-8 h-[1px] bg-white/30" />
                 </div>
               </motion.div>
 
@@ -136,14 +136,14 @@ const WelcomeCover = ({ weddingData, templateId, onOpen }) => {
                   animate={{ opacity: 1, scale: 1 }}
                   transition={{ delay: 0.8, duration: 1 }}
                 >
-                  <h1 className="text-5xl sm:text-7xl font-bold tracking-tighter leading-none" style={{ fontFamily: '"Playfair Display", serif' }}>
-                    <span className="block mb-3">{groom}</span>
-                    <span className="flex items-center justify-center gap-4 my-4">
-                      <span className="w-6 h-px bg-white/20" />
-                      <span className="text-2xl italic font-light text-white/30">&</span>
-                      <span className="w-6 h-px bg-white/20" />
+                  <h1 className="text-4xl sm:text-6xl font-bold tracking-tighter leading-none" style={{ fontFamily: '"Playfair Display", serif' }}>
+                    <span className="block mb-2">{groom}</span>
+                    <span className="flex items-center justify-center gap-4 my-3">
+                      <span className="w-6 h-[1px] bg-white/30" />
+                      <span className="text-xl italic font-light text-white/40">&</span>
+                      <span className="w-6 h-[1px] bg-white/30" />
                     </span>
-                    <span className="block mt-3" style={{ color: theme.primary || '#D4AF37' }}>{bride}</span>
+                    <span className="block mt-2" style={{ color: theme.primary || '#D4AF37' }}>{bride}</span>
                   </h1>
                 </motion.div>
 
@@ -153,15 +153,15 @@ const WelcomeCover = ({ weddingData, templateId, onOpen }) => {
                   transition={{ delay: 1.2 }}
                   className="space-y-4"
                 >
-                  <div className="flex items-center justify-center gap-5 text-[12px] tracking-[0.5em] font-light text-white/70 uppercase">
+                  <div className="flex items-center justify-center gap-5 text-[12px] tracking-[0.4em] font-light text-white/80 uppercase">
                     <span>{dt.day}</span>
-                    <span className="text-white/20">|</span>
+                    <span className="text-white/30">|</span>
                     <span>{dt.month}</span>
-                    <span className="text-white/20">|</span>
+                    <span className="text-white/30">|</span>
                     <span>{dt.year}</span>
                   </div>
-                  <div className="w-12 h-px bg-white/10 mx-auto" />
-                  <p className="text-[9px] uppercase tracking-[0.4em] font-bold text-white/40">{weddingData?.lunar_date_text || 'Save the Date'}</p>
+                  <div className="w-12 h-[1px] bg-white/20 mx-auto" />
+                  <p className="text-[11px] uppercase tracking-[0.3em] font-bold text-white/50">{weddingData?.lunar_date_text || 'Save the Date'}</p>
                 </motion.div>
               </div>
 
@@ -171,15 +171,15 @@ const WelcomeCover = ({ weddingData, templateId, onOpen }) => {
                 transition={{ delay: 1.5 }}
                 className="w-full flex flex-col items-center gap-8"
               >
-                <div className="h-px w-16 bg-white/10" />
+                <div className="h-[1px] w-12 bg-white/20" />
 
                 <button
                   onClick={handleOpen}
                   disabled={phase === 'opening'}
-                  className="group relative w-full sm:w-auto min-w-[240px] py-5 px-10 rounded-full transition-all duration-700 overflow-hidden shadow-[0_30px_60px_-15px_rgba(0,0,0,0.5)] border border-white/10 hover:border-white/40 active:scale-95"
+                  className="group relative w-full sm:w-auto min-w-[220px] py-4 px-8 rounded-full transition-all duration-700 overflow-hidden shadow-[0_30px_60px_-15px_rgba(0,0,0,0.4)] border border-white/10 hover:border-white/40 active:scale-95"
                   style={{ backgroundColor: 'white' }}
                 >
-                  <span className="relative z-10 flex items-center justify-center gap-4 text-[11px] font-black uppercase tracking-[0.4em] text-slate-950">
+                  <span className="relative z-10 flex items-center justify-center gap-4 text-[11px] font-black uppercase tracking-[0.3em] text-slate-950">
                     {phase === 'opening' ? (
                       <span className="flex items-center gap-2">
                         <motion.span animate={{ rotate: 360 }} transition={{ repeat: Infinity, duration: 1, ease: "linear" }} className="inline-block w-3 h-3 border-2 border-slate-900 border-t-transparent rounded-full" />
@@ -196,32 +196,32 @@ const WelcomeCover = ({ weddingData, templateId, onOpen }) => {
                   <div className="absolute inset-0 bg-slate-900 opacity-0 group-hover:opacity-5 transition-opacity" />
                 </button>
 
-                <p className="text-[10px] uppercase tracking-[0.5em] text-white/30 font-bold italic">
+                <p className="text-[11px] uppercase tracking-[0.4em] text-white/50 font-bold italic">
                   Trân trọng kính mời
                 </p>
               </motion.div>
             </div>
 
             {/* Corner Decorative Ornaments */}
-            <div className="absolute inset-10 border border-white/5 pointer-events-none z-20">
-              <div className="absolute top-0 left-0 w-10 h-10 border-t-2 border-l-2 border-white/20 rounded-tl-3xl" />
-              <div className="absolute top-0 right-0 w-10 h-10 border-t-2 border-r-2 border-white/20 rounded-tr-3xl" />
-              <div className="absolute bottom-0 left-0 w-10 h-10 border-b-2 border-l-2 border-white/20 rounded-bl-3xl" />
-              <div className="absolute bottom-0 right-0 w-10 h-10 border-b-2 border-r-2 border-white/20 rounded-br-3xl" />
+            <div className="absolute inset-8 border border-white/5 pointer-events-none z-20">
+              <div className="absolute top-0 left-0 w-8 h-8 border-t border-l border-white/30 rounded-tl-2xl" />
+              <div className="absolute top-0 right-0 w-8 h-8 border-t border-r border-white/30 rounded-tr-2xl" />
+              <div className="absolute bottom-0 left-0 w-8 h-8 border-b border-l border-white/30 rounded-bl-2xl" />
+              <div className="absolute bottom-0 right-0 w-8 h-8 border-b border-r border-white/30 rounded-br-2xl" />
             </div>
           </motion.div>
 
           <motion.div
-            className="mt-12 flex flex-col items-center gap-3"
+            className="mt-10 flex flex-col items-center gap-2"
             initial={{ opacity: 0 }}
-            animate={{ opacity: 1, y: [0, 8, 0] }}
+            animate={{ opacity: 1, y: [0, 6, 0] }}
             transition={{
               opacity: { delay: 2, duration: 1 },
               y: { duration: 4, repeat: Infinity, ease: "easeInOut" }
             }}
           >
-            <span className="text-[9px] uppercase tracking-[0.8em] font-black text-white/60">Kéo xuống để xem</span>
-            <ChevronDown size={18} className="text-white/60" />
+            <span className="text-[11px] uppercase tracking-[0.6em] font-black text-white/70">Kéo xuống để xem</span>
+            <ChevronDown size={18} className="text-white/70" />
           </motion.div>
         </div>
 
@@ -249,11 +249,11 @@ const BackgroundDecoration = ({ theme }) => {
   return (
     <div className="absolute inset-0">
       <div
-        className="absolute top-[-20%] left-[-20%] w-[80vw] h-[80vw] rounded-full blur-[150px] opacity-[0.12]"
+        className="absolute top-[-20%] left-[-20%] w-[80vw] h-[80vw] rounded-full blur-[150px] opacity-[0.15]"
         style={{ backgroundColor: theme.primary }}
       />
       <div
-        className="absolute bottom-[-20%] right-[-20%] w-[80vw] h-[80vw] rounded-full blur-[150px] opacity-[0.08]"
+        className="absolute bottom-[-20%] right-[-20%] w-[80vw] h-[80vw] rounded-full blur-[150px] opacity-[0.1]"
         style={{ backgroundColor: theme.primary }}
       />
 
@@ -265,13 +265,13 @@ const BackgroundDecoration = ({ theme }) => {
             left: `${f.x}%`,
             top: `${f.y}%`,
             color: theme.primary,
-            opacity: 0.05
+            opacity: 0.08
           }}
           animate={{
             y: [0, -50, 0],
             rotate: [0, 360],
-            opacity: [0.05, 0.12, 0.05],
-            scale: [1, 1.15, 1]
+            opacity: [0.08, 0.15, 0.08],
+            scale: [1, 1.1, 1]
           }}
           transition={{
             duration: f.duration,
@@ -284,7 +284,7 @@ const BackgroundDecoration = ({ theme }) => {
         </motion.div>
       ))}
 
-      <div className="absolute inset-0 opacity-[0.04] pointer-events-none mix-blend-overlay" style={{ backgroundImage: `url("https://www.transparenttextures.com/patterns/natural-paper.png")` }} />
+      <div className="absolute inset-0 opacity-[0.05] pointer-events-none mix-blend-overlay" style={{ backgroundImage: `url("https://www.transparenttextures.com/patterns/natural-paper.png")` }} />
     </div>
   );
 };

@@ -142,9 +142,9 @@ const GreenRusticTemplate = ({ weddingData }) => {
           >
             <span className="block">{groom_name}</span>
             <span className="flex items-center justify-center gap-10 my-12">
-              <div className="h-px flex-1 max-w-[120px] bg-green-900/20" />
+              <div className="h-[1px] flex-1 max-w-[120px] bg-green-900/20" />
               <span className="text-4xl italic font-light text-green-900/30">&</span>
-              <div className="h-px flex-1 max-w-[120px] bg-green-900/20" />
+              <div className="h-[1px] flex-1 max-w-[120px] bg-green-900/20" />
             </span>
             <span className="block">{bride_name}</span>
           </motion.h1>
@@ -155,12 +155,12 @@ const GreenRusticTemplate = ({ weddingData }) => {
                 <span className="text-5xl sm:text-7xl font-light tracking-tighter text-green-900/80">{dt.day}</span>
                 <span className="text-[10px] uppercase tracking-widest font-black text-green-900/40 mt-3">Day</span>
               </div>
-              <div className="h-12 w-px bg-green-900/10" />
+              <div className="h-12 w-[1px] bg-green-900/10" />
               <div className="flex flex-col items-center">
                 <span className="text-5xl sm:text-7xl font-light tracking-tighter text-green-900/80">{dt.month}</span>
                 <span className="text-[10px] uppercase tracking-widest font-black text-green-900/40 mt-3">Month</span>
               </div>
-              <div className="h-12 w-px bg-green-900/10" />
+              <div className="h-12 w-[1px] bg-green-900/10" />
               <div className="flex flex-col items-center">
                 <span className="text-5xl sm:text-7xl font-light tracking-tighter text-green-900/80">{dt.year}</span>
                 <span className="text-[10px] uppercase tracking-widest font-black text-green-900/40 mt-3">Year</span>
@@ -176,7 +176,7 @@ const GreenRusticTemplate = ({ weddingData }) => {
           transition={{ duration: 4, repeat: Infinity }}
           className="absolute bottom-10 flex flex-col items-center gap-3 opacity-25"
         >
-          <div className="w-px h-20 bg-gradient-to-b from-green-900 to-transparent" />
+          <div className="w-[1px] h-20 bg-gradient-to-b from-green-900 to-transparent" />
         </motion.div>
       </section>
 
@@ -190,7 +190,7 @@ const GreenRusticTemplate = ({ weddingData }) => {
               <p className="text-3xl sm:text-5xl leading-[1.3] font-light italic text-green-950" style={{ fontFamily: '"Playfair Display", serif' }}>
                 "{intro_text}"
               </p>
-              <div className="mt-16 w-24 h-px mx-auto bg-green-900/20" />
+              <div className="mt-16 w-24 h-[1px] mx-auto bg-green-900/20" />
             </div>
           </ScrollReveal>
         </section>
@@ -200,7 +200,7 @@ const GreenRusticTemplate = ({ weddingData }) => {
           <ScrollReveal variant="fade-up">
             <div className="text-center mb-24">
               <span className="text-[10px] uppercase tracking-[1em] font-black text-green-900/40 mb-6 block">Grand Heritage</span>
-              <div className="h-px w-24 mx-auto bg-green-900/10" />
+              <div className="h-[1px] w-24 mx-auto bg-green-900/10" />
             </div>
           </ScrollReveal>
 
@@ -223,7 +223,7 @@ const GreenRusticTemplate = ({ weddingData }) => {
                   </div>
                 </div>
 
-                <div className="h-px w-12 bg-green-900/10 mb-8" />
+                <div className="h-[1px] w-12 bg-green-900/10 mb-8" />
                 <h3 className="text-5xl font-bold tracking-tighter" style={{ fontFamily: '"Playfair Display", serif', color: primaryColor }}>{groom_full_name}</h3>
                 <span className="text-[10px] uppercase tracking-[0.5em] font-black text-green-900/30 mt-4 block">The Groom</span>
               </div>
@@ -247,7 +247,7 @@ const GreenRusticTemplate = ({ weddingData }) => {
                   </div>
                 </div>
 
-                <div className="h-px w-12 bg-green-900/10 mb-8" />
+                <div className="h-[1px] w-12 bg-green-900/10 mb-8" />
                 <h3 className="text-5xl font-bold tracking-tighter" style={{ fontFamily: '"Playfair Display", serif', color: primaryColor }}>{bride_full_name}</h3>
                 <span className="text-[10px] uppercase tracking-[0.5em] font-black text-green-900/30 mt-4 block">The Bride</span>
               </div>
@@ -279,9 +279,9 @@ const GreenRusticTemplate = ({ weddingData }) => {
             <div className="text-center mb-24">
               <h2 className="text-6xl sm:text-[7rem] font-bold tracking-tighter mb-8" style={{ fontFamily: '"Playfair Display", serif', color: primaryColor }}>Timeline</h2>
               <div className="flex items-center justify-center gap-8">
-                <div className="h-px w-16 bg-green-900/10" />
+                <div className="h-[1px] w-16 bg-green-900/10" />
                 <p className="text-[10px] font-black tracking-[0.5em] uppercase text-green-900/40">{lunar_date_text}</p>
-                <div className="h-px w-16 bg-green-900/10" />
+                <div className="h-[1px] w-16 bg-green-900/10" />
               </div>
             </div>
           </ScrollReveal>
@@ -433,9 +433,9 @@ const GreenRusticTemplate = ({ weddingData }) => {
               {groom_name} <span className="text-green-900/30 italic font-light mx-6">&</span> {bride_name}
             </h2>
             <div className="flex items-center justify-center gap-10 opacity-20" style={{ color: primaryColor }}>
-              <div className="h-px w-20 bg-current" />
+              <div className="h-[1px] w-20 bg-current" />
               <Leaf size={24} />
-              <div className="h-px w-20 bg-current" />
+              <div className="h-[1px] w-20 bg-current" />
             </div>
             <p className="mt-32 text-[10px] text-green-900/40 opacity-60 uppercase tracking-[1.5em] font-black">Powered by iWedding Rustic Collection</p>
           </ScrollReveal>

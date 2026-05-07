@@ -17,7 +17,7 @@ const FloralPastelTemplate = ({ weddingData }) => {
     offset: ["start start", "end start"]
   });
 
-  const heroScale = useTransform(scrollYProgress, [0, 1], [1, 1.15]);
+  const heroScale = useTransform(scrollYProgress, [0, 1], [1, 1.1]);
   const heroOpacity = useTransform(scrollYProgress, [0, 0.8], [1, 0]);
 
   useEffect(() => {
@@ -73,7 +73,7 @@ const FloralPastelTemplate = ({ weddingData }) => {
           animate={{ scale: 1, opacity: 1 }}
           onClick={toggleMusic}
           className="fixed bottom-10 right-10 z-50 w-14 h-14 rounded-full bg-white shadow-2xl flex items-center justify-center border transition-all hover:scale-110 active:scale-95 group"
-          style={{ borderColor: `${primaryColor}20` }}
+          style={{ borderColor: `${primaryColor}40` }}
         >
           {isPlaying ? (
             <div className="relative">
@@ -85,16 +85,16 @@ const FloralPastelTemplate = ({ weddingData }) => {
               />
             </div>
           ) : (
-            <VolumeX size={20} className="text-slate-300 group-hover:text-rose-400 transition-colors" />
+            <VolumeX size={20} className="text-slate-400 group-hover:text-rose-400 transition-colors" />
           )}
         </motion.button>
       )}
 
       {/* ══ HERO SECTION ══════════════════════════════════════ */}
-      <section ref={heroRef} className="relative min-h-screen flex flex-col items-center justify-center pt-32 pb-20 px-6 overflow-hidden">
+      <section ref={heroRef} className="relative min-h-screen flex flex-col items-center justify-center pt-24 pb-20 px-6 overflow-hidden">
         {/* Soft Aesthetic Background */}
-        <div className="absolute inset-0 flex items-center justify-center pointer-events-none opacity-[0.03]">
-          <span className="text-[35vw] font-black uppercase tracking-tighter select-none text-rose-200">BLOOM</span>
+        <div className="absolute inset-0 flex items-center justify-center pointer-events-none opacity-[0.04]">
+          <span className="text-[35vw] font-black uppercase tracking-tighter select-none text-rose-300">BLOOM</span>
         </div>
 
         <motion.div
@@ -102,75 +102,75 @@ const FloralPastelTemplate = ({ weddingData }) => {
           className="relative z-10 w-full max-w-6xl mx-auto flex flex-col items-center text-center"
         >
           <motion.p
-            initial={{ opacity: 0, y: -20 }}
+            initial={{ opacity: 0, y: -15 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1.2 }}
-            className="text-[10px] uppercase tracking-[1em] font-black text-rose-400/60 mb-12"
+            className="text-[11px] uppercase tracking-[0.8em] font-black text-rose-500 mb-10"
           >
             A Floral Romance of Two Hearts
           </motion.p>
 
           <motion.div
             style={{ scale: heroScale }}
-            className="relative w-full max-w-sm sm:max-w-md aspect-[3/4] mb-20 p-5 bg-white shadow-[0_60px_120px_-20px_rgba(201,116,143,0.15)] rounded-t-full border border-rose-100"
+            className="relative w-full max-w-sm sm:max-w-md aspect-[3/4] mb-16 p-4 bg-white shadow-[0_40px_80px_-15px_rgba(201,116,143,0.12)] rounded-t-full border border-rose-100"
           >
             <div className="w-full h-full overflow-hidden relative group rounded-t-full">
               <img src={cover} alt="Wedding Couple" className="w-full h-full object-cover transition-transform duration-[4s] group-hover:scale-105" />
-              <div className="absolute inset-0 bg-gradient-to-t from-rose-900/10 via-transparent to-transparent" />
+              <div className="absolute inset-0 bg-gradient-to-t from-rose-900/5 via-transparent to-transparent" />
             </div>
 
             {/* Elegant Framing */}
-            <div className="absolute -top-6 -left-6 w-20 h-20 border-t border-l opacity-30 rounded-tl-[80px]" style={{ borderColor: primaryColor }} />
-            <div className="absolute -bottom-6 -right-6 w-20 h-20 border-b border-r opacity-30" style={{ borderColor: primaryColor }} />
+            <div className="absolute -top-4 -left-4 w-16 h-16 border-t border-l opacity-40 rounded-tl-[60px]" style={{ borderColor: primaryColor }} />
+            <div className="absolute -bottom-4 -right-4 w-16 h-16 border-b border-r opacity-40" style={{ borderColor: primaryColor }} />
           </motion.div>
 
           <motion.h1
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1.2, delay: 0.4 }}
-            className="text-6xl sm:text-[7rem] md:text-[8rem] font-bold tracking-tighter leading-[0.8] text-center"
+            className="text-5xl sm:text-7xl md:text-8xl font-bold tracking-tighter leading-[0.8] text-center"
             style={{ fontFamily: '"Playfair Display", serif', color: '#1a1a1a' }}
           >
             <span className="block">{bride_name}</span>
-            <span className="flex items-center justify-center gap-10 my-12">
-              <div className="h-px flex-1 max-w-[120px] bg-rose-200" />
-              <span className="text-4xl italic font-light text-rose-300">&</span>
-              <div className="h-px flex-1 max-w-[120px] bg-rose-200" />
+            <span className="flex items-center justify-center gap-8 my-8">
+              <div className="h-[1px] flex-1 max-w-[100px] bg-rose-200" />
+              <span className="text-2xl italic font-light text-rose-300">&</span>
+              <div className="h-[1px] flex-1 max-w-[100px] bg-rose-200" />
             </span>
             <span className="block" style={{ color: primaryColor }}>{groom_name}</span>
           </motion.h1>
 
-          <div className="mt-20 flex flex-col items-center gap-8">
-            <div className="bg-white/80 backdrop-blur-md px-10 py-5 rounded-full border border-rose-100 shadow-md">
-              <p className="text-xl sm:text-2xl tracking-[0.3em] uppercase font-light text-rose-800/80">
+          <div className="mt-16 flex flex-col items-center gap-8">
+            <div className="bg-white/90 backdrop-blur-md px-10 py-5 rounded-full border border-rose-100 shadow-sm">
+              <p className="text-xl sm:text-2xl tracking-[0.2em] uppercase font-light text-rose-800">
                 {dt.day} <span className="opacity-30 mx-3">/</span> {dt.month} <span className="opacity-30 mx-3">/</span> {dt.year}
               </p>
             </div>
-            <p className="text-xs italic font-medium tracking-[0.4em] text-rose-400 uppercase">{lunar_date_text}</p>
+            <p className="text-xs italic font-medium tracking-[0.3em] text-rose-500 uppercase">{lunar_date_text}</p>
           </div>
         </motion.div>
 
         {/* Scroll Indicator */}
         <motion.div
-          animate={{ y: [0, 10, 0] }}
+          animate={{ y: [0, 8, 0] }}
           transition={{ duration: 4, repeat: Infinity }}
-          className="absolute bottom-10 flex flex-col items-center gap-3 opacity-25"
+          className="absolute bottom-10 flex flex-col items-center gap-2 opacity-30"
         >
-          <div className="w-px h-20 bg-gradient-to-b from-rose-400 to-transparent" />
+          <div className="w-[1px] h-16 bg-gradient-to-b from-rose-400 to-transparent" />
         </motion.div>
       </section>
 
       <main className="relative z-10 w-full max-w-6xl mx-auto px-6 sm:px-12">
 
         {/* ══ INTRO QUOTE ═════════════════════════════════════ */}
-        <section className="py-32 text-center relative overflow-hidden">
+        <section className="py-24 text-center relative overflow-hidden">
           <ScrollReveal variant="blur-reveal">
             <div className="max-w-4xl mx-auto px-6">
-              <Heart size={32} className="mx-auto mb-12 opacity-30" style={{ color: primaryColor }} />
-              <p className="text-3xl sm:text-5xl leading-[1.3] font-light italic text-slate-900" style={{ fontFamily: '"Playfair Display", serif' }}>
+              <Heart size={28} className="mx-auto mb-10 opacity-30" style={{ color: primaryColor }} />
+              <p className="text-2xl sm:text-4xl leading-[1.3] font-light italic text-slate-900" style={{ fontFamily: '"Playfair Display", serif' }}>
                 "{intro_text}"
               </p>
-              <div className="mt-16 w-24 h-px mx-auto bg-rose-200" />
+              <div className="mt-12 h-[1px] w-20 mx-auto bg-rose-200" />
             </div>
           </ScrollReveal>
         </section>
@@ -178,58 +178,58 @@ const FloralPastelTemplate = ({ weddingData }) => {
         {/* ══ FAMILIES ═════════════════════════════════════════ */}
         <section className="py-24 px-6">
           <ScrollReveal variant="fade-up">
-            <div className="text-center mb-24">
-              <span className="text-[10px] uppercase tracking-[1em] font-black text-rose-400/60 mb-6 block">Grand Heritage</span>
-              <div className="h-px w-24 mx-auto bg-rose-200" />
+            <div className="text-center mb-20">
+              <span className="text-[11px] uppercase tracking-[0.8em] font-black text-rose-500 mb-4 block">Grand Heritage</span>
+              <div className="h-[1px] w-20 mx-auto bg-rose-200" />
             </div>
           </ScrollReveal>
 
-          <div className="grid md:grid-cols-2 gap-16 sm:gap-32 max-w-5xl mx-auto">
+          <div className="grid md:grid-cols-2 gap-12 sm:gap-24 max-w-5xl mx-auto">
             {/* Bride side */}
             <ScrollReveal variant="mask-reveal">
               <div className="flex flex-col items-center text-center group">
-                <div className="relative w-64 h-80 mb-12 rounded-[2.5rem] overflow-hidden shadow-xl transition-all duration-700 group-hover:scale-[1.02] border-[12px] bg-white shadow-rose-100" style={{ borderColor: `${primaryColor}10` }}>
+                <div className="relative w-64 h-80 mb-10 rounded-[2rem] overflow-hidden shadow-xl transition-all duration-700 group-hover:scale-[1.01] border-[10px] bg-white shadow-rose-50" style={{ borderColor: `${primaryColor}15` }}>
                   <img src={PORTRAITS.bride} alt="Bride" className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105" />
                 </div>
 
-                <div className="space-y-10 mb-12">
+                <div className="space-y-8 mb-10">
                   <div className="flex flex-col">
-                    <span className="text-[10px] uppercase tracking-widest text-rose-400 mb-3 font-bold">Thân phụ</span>
-                    <span className="text-3xl font-bold text-slate-900 tracking-tight">{bride_father_name}</span>
+                    <span className="text-[11px] uppercase tracking-widest text-rose-500 mb-2 font-bold">Thân phụ</span>
+                    <span className="text-2xl font-bold text-slate-900 tracking-tight">{bride_father_name}</span>
                   </div>
                   <div className="flex flex-col">
-                    <span className="text-[10px] uppercase tracking-widest text-rose-400 mb-3 font-bold">Thân mẫu</span>
-                    <span className="text-3xl font-bold text-slate-900 tracking-tight">{bride_mother_name}</span>
+                    <span className="text-[11px] uppercase tracking-widest text-rose-500 mb-2 font-bold">Thân mẫu</span>
+                    <span className="text-2xl font-bold text-slate-900 tracking-tight">{bride_mother_name}</span>
                   </div>
                 </div>
 
-                <div className="h-px w-12 bg-rose-200 mb-8" />
-                <h3 className="text-5xl font-bold tracking-tighter" style={{ fontFamily: '"Playfair Display", serif', color: primaryColor }}>{bride_full_name}</h3>
-                <span className="text-[10px] uppercase tracking-[0.5em] font-black text-rose-300 mt-4 block">The Bride</span>
+                <div className="h-[1px] w-10 bg-rose-200 mb-6" />
+                <h3 className="text-4xl font-bold tracking-tighter" style={{ fontFamily: '"Playfair Display", serif', color: primaryColor }}>{bride_full_name}</h3>
+                <span className="text-[11px] uppercase tracking-[0.4em] font-black text-rose-400 mt-3 block">The Bride</span>
               </div>
             </ScrollReveal>
 
             {/* Groom side */}
             <ScrollReveal variant="mask-reveal" delay={0.2}>
               <div className="flex flex-col items-center text-center group">
-                <div className="relative w-64 h-80 mb-12 rounded-[2.5rem] overflow-hidden shadow-xl transition-all duration-700 group-hover:scale-[1.02] border-[12px] bg-white shadow-rose-100" style={{ borderColor: `${primaryColor}10` }}>
+                <div className="relative w-64 h-80 mb-10 rounded-[2rem] overflow-hidden shadow-xl transition-all duration-700 group-hover:scale-[1.01] border-[10px] bg-white shadow-rose-50" style={{ borderColor: `${primaryColor}15` }}>
                   <img src={PORTRAITS.groom} alt="Groom" className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105" />
                 </div>
 
-                <div className="space-y-10 mb-12">
+                <div className="space-y-8 mb-10">
                   <div className="flex flex-col">
-                    <span className="text-[10px] uppercase tracking-widest text-rose-400 mb-3 font-bold">Thân phụ</span>
-                    <span className="text-3xl font-bold text-slate-900 tracking-tight">{groom_father_name}</span>
+                    <span className="text-[11px] uppercase tracking-widest text-rose-500 mb-2 font-bold">Thân phụ</span>
+                    <span className="text-2xl font-bold text-slate-900 tracking-tight">{groom_father_name}</span>
                   </div>
                   <div className="flex flex-col">
-                    <span className="text-[10px] uppercase tracking-widest text-rose-400 mb-3 font-bold">Thân mẫu</span>
-                    <span className="text-3xl font-bold text-slate-900 tracking-tight">{groom_mother_name}</span>
+                    <span className="text-[11px] uppercase tracking-widest text-rose-500 mb-2 font-bold">Thân mẫu</span>
+                    <span className="text-2xl font-bold text-slate-900 tracking-tight">{groom_mother_name}</span>
                   </div>
                 </div>
 
-                <div className="h-px w-12 bg-rose-200 mb-8" />
-                <h3 className="text-5xl font-bold tracking-tighter text-slate-900" style={{ fontFamily: '"Playfair Display", serif' }}>{groom_full_name}</h3>
-                <span className="text-[10px] uppercase tracking-[0.5em] font-black text-rose-300 mt-4 block">The Groom</span>
+                <div className="h-[1px] w-10 bg-rose-200 mb-6" />
+                <h3 className="text-4xl font-bold tracking-tighter text-slate-900" style={{ fontFamily: '"Playfair Display", serif' }}>{groom_full_name}</h3>
+                <span className="text-[11px] uppercase tracking-[0.4em] font-black text-rose-400 mt-3 block">The Groom</span>
               </div>
             </ScrollReveal>
           </div>
@@ -237,16 +237,16 @@ const FloralPastelTemplate = ({ weddingData }) => {
 
         {/* ══ LOVE STORY ══════════════════════════════════════ */}
         {love_story && (
-          <section className="py-32 px-8 bg-rose-50 rounded-[3rem] my-32 border border-rose-100">
+          <section className="py-24 px-8 bg-rose-50/50 rounded-[2.5rem] my-24 border border-rose-100">
             <ScrollReveal variant="blur-reveal">
               <div className="max-w-4xl mx-auto text-center">
-                <span className="text-[10px] uppercase tracking-[1em] font-black text-rose-400/60 mb-10 block">A Soft Legend</span>
-                <h2 className="text-6xl sm:text-[7rem] font-bold tracking-tighter mb-16" style={{ fontFamily: '"Playfair Display", serif', color: primaryColor }}>Chuyện Tình Yêu</h2>
-                <p className="text-xl sm:text-4xl leading-[1.6] font-light italic text-slate-700">
+                <span className="text-[11px] uppercase tracking-[0.8em] font-black text-rose-500 mb-8 block">A Soft Legend</span>
+                <h2 className="text-5xl sm:text-6xl font-bold tracking-tighter mb-12" style={{ fontFamily: '"Playfair Display", serif', color: primaryColor }}>Chuyện Tình Yêu</h2>
+                <p className="text-xl sm:text-2xl font-light italic text-slate-700 leading-relaxed">
                   "{love_story}"
                 </p>
-                <div className="mt-20 flex justify-center opacity-20">
-                  <Heart size={64} fill="currentColor" style={{ color: primaryColor }} />
+                <div className="mt-16 flex justify-center opacity-30">
+                  <Heart size={48} fill="currentColor" style={{ color: primaryColor }} />
                 </div>
               </div>
             </ScrollReveal>
@@ -256,39 +256,39 @@ const FloralPastelTemplate = ({ weddingData }) => {
         {/* ══ EVENTS TIMELINE ═══════════════════════════════════ */}
         <section className="py-24 px-6">
           <ScrollReveal variant="fade-up">
-            <div className="text-center mb-24">
-              <h2 className="text-6xl sm:text-[7rem] font-bold tracking-tighter mb-8 text-slate-950" style={{ fontFamily: '"Playfair Display", serif' }}>Timeline</h2>
-              <div className="flex items-center justify-center gap-8">
-                <div className="h-px w-16 bg-rose-200" />
-                <p className="text-[10px] font-black tracking-[0.5em] uppercase text-rose-400/60">{lunar_date_text}</p>
-                <div className="h-px w-16 bg-rose-200" />
+            <div className="text-center mb-20">
+              <h2 className="text-5xl sm:text-7xl font-bold tracking-tighter mb-6 text-slate-950" style={{ fontFamily: '"Playfair Display", serif' }}>Timeline</h2>
+              <div className="flex items-center justify-center gap-6">
+                <div className="h-[1px] w-12 bg-rose-200" />
+                <p className="text-[11px] font-black tracking-[0.5em] uppercase text-rose-500">{lunar_date_text}</p>
+                <div className="h-[1px] w-12 bg-rose-200" />
               </div>
             </div>
           </ScrollReveal>
 
-          <div className="grid lg:grid-cols-2 gap-10 sm:gap-16 max-w-5xl mx-auto">
+          <div className="grid lg:grid-cols-2 gap-8 sm:gap-12 max-w-5xl mx-auto">
             {events.map((event, idx) => (
               <ScrollReveal key={event.id} delay={idx * 0.2} variant="mask-reveal">
-                <div className="group relative p-10 sm:p-16 rounded-[4rem] border border-rose-100 bg-white hover:shadow-[0_60px_120px_-20px_rgba(201,116,143,0.12)] transition-all duration-700 overflow-hidden text-center flex flex-col items-center">
-                  <div className="w-20 h-20 rounded-full bg-rose-50 flex items-center justify-center mb-10 group-hover:scale-110 transition-transform shadow-inner">
-                    {event.event_type === 'ceremony' ? <Calendar size={32} className="text-rose-900 opacity-40" /> : <Sparkles size={32} className="text-rose-900 opacity-40" />}
+                <div className="group relative p-8 sm:p-14 rounded-[3rem] border border-rose-100 bg-white hover:shadow-[0_40px_80px_-15px_rgba(201,116,143,0.1)] transition-all duration-700 overflow-hidden text-center flex flex-col items-center shadow-sm">
+                  <div className="w-20 h-20 rounded-full bg-rose-50 flex items-center justify-center mb-8 group-hover:scale-110 transition-transform shadow-inner">
+                    {event.event_type === 'ceremony' ? <Calendar size={28} className="text-rose-900 opacity-40" /> : <Sparkles size={28} className="text-rose-900 opacity-40" />}
                   </div>
 
-                  <h3 className="text-4xl font-bold tracking-tight mb-12 text-slate-950" style={{ fontFamily: '"Playfair Display", serif' }}>{event.title}</h3>
+                  <h3 className="text-3xl font-bold tracking-tight mb-10 text-slate-950" style={{ fontFamily: '"Playfair Display", serif' }}>{event.title}</h3>
 
-                  <div className="space-y-12 mb-16 w-full">
+                  <div className="space-y-10 mb-12 w-full">
                     <div className="flex flex-col items-center">
-                      <Clock size={20} className="mb-5 text-rose-400" />
-                      <span className="text-3xl font-bold text-slate-900">{new Date(event.event_time).toLocaleTimeString('vi-VN', { hour: '2-digit', minute: '2-digit' })}</span>
-                      <span className="text-[10px] uppercase tracking-widest font-black mt-3 text-rose-500/80">{new Date(event.event_time).toLocaleDateString('vi-VN', { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' })}</span>
+                      <Clock size={20} className="mb-4 text-rose-400" />
+                      <span className="text-2xl font-bold text-slate-900">{new Date(event.event_time).toLocaleTimeString('vi-VN', { hour: '2-digit', minute: '2-digit' })}</span>
+                      <span className="text-[11px] uppercase tracking-widest font-black mt-2 text-rose-500">{new Date(event.event_time).toLocaleDateString('vi-VN', { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' })}</span>
                     </div>
 
                     <div className="flex flex-col items-center">
-                      <MapPin size={20} className="mb-5 text-rose-400" />
-                      <p className="text-2xl font-bold text-slate-950 mb-2">{event.venue_name}</p>
-                      <p className="text-base leading-relaxed max-w-sm mx-auto text-slate-700">{event.address}</p>
+                      <MapPin size={20} className="mb-4 text-rose-400" />
+                      <p className="text-xl font-bold text-slate-900 mb-1">{event.venue_name}</p>
+                      <p className="text-sm leading-relaxed max-w-sm mx-auto text-slate-700">{event.address}</p>
                       {event.note && (
-                        <div className="mt-8 p-6 rounded-[2rem] bg-rose-50 border border-rose-100 italic text-sm text-rose-800/60">
+                        <div className="mt-6 p-5 rounded-[1.5rem] bg-rose-50 border border-rose-100 italic text-xs text-rose-800/70">
                           {event.note}
                         </div>
                       )}
@@ -301,7 +301,7 @@ const FloralPastelTemplate = ({ weddingData }) => {
                     href={event.map_url}
                     target="_blank"
                     rel="noreferrer"
-                    className="w-full sm:w-auto min-w-[200px] py-6 px-12 rounded-full font-black uppercase tracking-[0.3em] text-[10px] text-white transition-all shadow-xl hover:opacity-95 active:scale-95"
+                    className="w-full sm:w-auto min-w-[180px] py-5 px-10 rounded-full font-black uppercase tracking-[0.3em] text-[10px] text-white transition-all shadow-lg hover:opacity-95 active:scale-95"
                     style={{ backgroundColor: primaryColor }}>
                     XEM BẢN ĐỒ <ExternalLink size={14} className="inline ml-2 -mt-1" />
                   </motion.a>
@@ -312,21 +312,21 @@ const FloralPastelTemplate = ({ weddingData }) => {
         </section>
 
         {/* ══ GALLERY ═════════════════════════════════════════ */}
-        <section className="py-32">
+        <section className="py-24">
           <ScrollReveal variant="fade-up">
-            <div className="text-center mb-24 px-6">
-              <span className="text-[10px] uppercase tracking-[1em] font-black text-rose-400/60 mb-6 block">Pastel Anthology</span>
-              <h2 className="text-6xl sm:text-[7rem] font-bold tracking-tighter mb-8 text-slate-950" style={{ fontFamily: '"Playfair Display", serif' }}>Gallery</h2>
+            <div className="text-center mb-20 px-6">
+              <span className="text-[11px] uppercase tracking-[0.8em] font-black text-rose-500 mb-4 block">Pastel Anthology</span>
+              <h2 className="text-5xl sm:text-6xl font-bold tracking-tighter text-slate-950" style={{ fontFamily: '"Playfair Display", serif' }}>Gallery</h2>
             </div>
           </ScrollReveal>
 
-          <div className="columns-1 sm:columns-2 lg:columns-4 gap-8 space-y-8 max-w-[1400px] mx-auto px-4">
+          <div className="columns-1 sm:columns-2 lg:columns-4 gap-6 space-y-6 max-w-[1400px] mx-auto px-4">
             {gallery.map((photo, i) => (
               <ScrollReveal key={photo.id} delay={(i % 4) * 0.1} variant="scale-up">
-                <div className="break-inside-avoid rounded-[2.5rem] overflow-hidden shadow-lg group relative border border-rose-100 bg-white p-2">
-                  <img src={photo.image_path} alt={photo.caption || ''} className="w-full object-cover rounded-[2rem] transition-transform duration-[4s] group-hover:scale-105" />
-                  <div className="absolute inset-0 bg-rose-900/80 opacity-0 group-hover:opacity-100 transition-opacity duration-700 flex items-center justify-center p-10 text-center backdrop-blur-[4px]">
-                    <p className="text-[10px] uppercase tracking-[0.5em] font-black text-white border-b border-white/30 pb-6">{photo.caption || 'Beautiful Moment'}</p>
+                <div className="break-inside-avoid rounded-[2rem] overflow-hidden shadow-lg group relative border border-rose-50 bg-white p-2">
+                  <img src={photo.image_path} alt={photo.caption || ''} className="w-full object-cover rounded-[1.5rem] transition-transform duration-[4s] group-hover:scale-105" />
+                  <div className="absolute inset-0 bg-rose-900/80 opacity-0 group-hover:opacity-100 transition-opacity duration-700 flex items-center justify-center p-8 text-center backdrop-blur-[2px]">
+                    <p className="text-[10px] uppercase tracking-[0.4em] font-black text-white border-b border-white/30 pb-4">{photo.caption || 'Beautiful Moment'}</p>
                   </div>
                 </div>
               </ScrollReveal>
@@ -336,17 +336,17 @@ const FloralPastelTemplate = ({ weddingData }) => {
 
         {/* ══ GIFTS ═══════════════════════════════════════════ */}
         {bankAccounts.length > 0 && (
-          <section className="py-32 px-8 text-center bg-white rounded-[4rem] my-32 shadow-xl border border-rose-100 relative overflow-hidden">
+          <section className="py-24 px-8 text-center bg-white rounded-[3rem] my-24 shadow-xl border border-rose-100 relative overflow-hidden">
             <ScrollReveal variant="blur-reveal">
-              <h2 className="text-[10px] font-black uppercase tracking-[1em] text-rose-400/60 mb-12">Registry</h2>
-              <h3 className="text-5xl sm:text-[6rem] font-bold mb-16 tracking-tighter" style={{ fontFamily: '"Playfair Display", serif', color: primaryColor }}>Hộp Mừng Cưới</h3>
-              <p className="max-w-3xl mx-auto text-xl sm:text-2xl font-light italic text-slate-500 mb-20 leading-relaxed">
+              <h2 className="text-[11px] font-black uppercase tracking-[1em] text-rose-500 mb-10">Registry</h2>
+              <h3 className="text-4xl sm:text-6xl font-bold mb-12 tracking-tighter" style={{ fontFamily: '"Playfair Display", serif', color: primaryColor }}>Hộp Mừng Cưới</h3>
+              <p className="max-w-2xl mx-auto text-lg sm:text-xl font-light italic text-slate-500 mb-16 leading-relaxed">
                 "Sự hiện diện của quý khách là món quà trân quý nhất. <br className="hidden sm:block" />
                 Gia đình xin chân thành cảm ơn mọi tấm lòng và lời chúc mừng."
               </p>
-              <div className="flex flex-wrap justify-center gap-12 sm:gap-20">
+              <div className="flex flex-wrap justify-center gap-10 sm:gap-16">
                 {bankAccounts.map(b => (
-                  <div key={b.id} className="p-6 bg-rose-50/80 rounded-[3rem] border border-rose-100/50 transition-transform hover:scale-105 backdrop-blur-xl">
+                  <div key={b.id} className="transition-transform hover:scale-[1.02]">
                     <GiftEnvelope bank={b} primaryColor={primaryColor} />
                   </div>
                 ))}
@@ -356,32 +356,32 @@ const FloralPastelTemplate = ({ weddingData }) => {
         )}
 
         {/* ══ RSVP FORM ════════════════════════════════════════ */}
-        <section className="py-32 px-8">
+        <section className="py-24 px-8">
           <ScrollReveal variant="mask-reveal">
-            <div className="max-w-6xl mx-auto flex flex-col lg:flex-row items-center gap-20 lg:gap-32">
+            <div className="max-w-6xl mx-auto flex flex-col lg:flex-row items-center gap-16 lg:gap-24">
               <div className="w-full lg:w-1/2 text-center lg:text-left">
-                <span className="text-[10px] uppercase tracking-[1em] font-black text-rose-400/60 mb-8 block">R.S.V.P</span>
-                <h2 className="text-7xl sm:text-[8rem] font-black tracking-tighter mb-10 leading-[0.9] text-slate-950" style={{ fontFamily: '"Playfair Display", serif' }}>Bạn Sẽ <br /> Đến Chứ?</h2>
-                <p className="text-xl opacity-40 font-light leading-relaxed mb-16 max-w-md italic text-slate-600">
+                <span className="text-[11px] uppercase tracking-[0.8em] font-black text-rose-500 mb-6 block">R.S.V.P</span>
+                <h2 className="text-6xl sm:text-7xl font-black tracking-tighter mb-10 leading-[0.85]" style={{ fontFamily: '"Playfair Display", serif' }}>Bạn Sẽ <br /> Đến Chứ?</h2>
+                <p className="text-lg opacity-60 font-light leading-relaxed mb-12 max-w-md italic text-slate-700">
                   Kính mong quý khách xác nhận thông tin tham dự để chúng tôi có thể chuẩn bị đón tiếp một cách chu đáo nhất.
                 </p>
-                <div className="flex items-center justify-center lg:justify-start gap-10 opacity-30">
+                <div className="flex items-center justify-center lg:justify-start gap-8 opacity-40">
                   <div className="w-16 h-16 rounded-full border border-rose-300 flex items-center justify-center">
-                    <Heart size={24} style={{ color: primaryColor }} />
+                    <Heart size={20} style={{ color: primaryColor }} />
                   </div>
-                  <span className="text-[10px] uppercase tracking-[0.6em] font-black text-slate-900">Awaiting your response</span>
+                  <span className="text-[11px] uppercase tracking-[0.5em] font-black text-slate-900">Awaiting your response</span>
                 </div>
               </div>
 
-              <div className="w-full lg:w-1/2 bg-white p-10 sm:p-20 border border-rose-100 rounded-[4rem] shadow-[0_60px_120px_-20px_rgba(201,116,143,0.1)]">
-                <form className="space-y-12">
+              <div className="w-full lg:w-1/2 bg-white p-8 sm:p-14 border border-rose-100 rounded-[3rem] shadow-[0_40px_80px_-15px_rgba(201,116,143,0.08)]">
+                <form className="space-y-10">
                   <div className="group relative">
-                    <label className="block text-[10px] uppercase tracking-[0.4em] mb-4 text-rose-400 group-focus-within:text-rose-700 transition-all font-bold">Họ và Tên</label>
+                    <label className="block text-[11px] uppercase tracking-[0.4em] mb-4 text-rose-500 group-focus-within:text-rose-700 transition-all font-bold">Họ và Tên</label>
                     <input type="text" placeholder="Họ và tên của quý khách..." className="w-full bg-transparent border-b-2 border-rose-100 py-4 text-2xl font-bold text-slate-950 outline-none transition-all duration-500 focus:border-rose-400 placeholder:text-rose-200" />
                   </div>
 
                   <div className="group relative">
-                    <label className="block text-[10px] uppercase tracking-[0.4em] mb-4 text-rose-400 group-focus-within:text-rose-700 transition-all font-bold">Sẽ Tham Dự?</label>
+                    <label className="block text-[11px] uppercase tracking-[0.4em] mb-4 text-rose-500 group-focus-within:text-rose-700 transition-all font-bold">Sẽ Tham Dự?</label>
                     <div className="relative">
                       <select className="w-full bg-transparent border-b-2 border-rose-100 py-4 text-2xl font-bold text-slate-950 outline-none transition-all duration-500 focus:border-rose-400 appearance-none cursor-pointer">
                         <option>Chắc chắn sẽ tham dự</option>
@@ -395,7 +395,7 @@ const FloralPastelTemplate = ({ weddingData }) => {
                     whileHover={{ scale: 1.02 }}
                     whileTap={{ scale: 0.98 }}
                     type="button"
-                    className="w-full py-8 text-white font-black transition-all shadow-xl flex items-center justify-center gap-5 uppercase tracking-[0.6em] text-[10px] rounded-full group/btn"
+                    className="w-full py-7 text-white font-black transition-all shadow-xl flex items-center justify-center gap-5 uppercase tracking-[0.6em] text-[10px] rounded-full group/btn"
                     style={{ backgroundColor: primaryColor }}>
                     XÁC NHẬN <Send size={18} className="group-hover/btn:translate-x-2 transition-transform" />
                   </motion.button>
@@ -406,18 +406,18 @@ const FloralPastelTemplate = ({ weddingData }) => {
         </section>
 
         {/* ══ FOOTER ═══════════════════════════════════════════ */}
-        <footer className="py-32 text-center relative overflow-hidden border-t border-rose-100">
+        <footer className="py-24 text-center relative overflow-hidden border-t border-rose-100">
           <ScrollReveal variant="blur-reveal">
-            <p className="text-[10px] uppercase tracking-[1.5em] font-black mb-12 text-rose-300">Eternal Bloom</p>
-            <h2 className="text-6xl sm:text-[8rem] font-black tracking-tighter text-slate-950 mb-16" style={{ fontFamily: '"Playfair Display", serif' }}>
-              {bride_name} <span className="text-rose-200 italic font-light mx-6">&</span> {groom_name}
+            <p className="text-[11px] uppercase tracking-[1.2em] font-black mb-10 text-rose-400">Eternal Bloom</p>
+            <h2 className="text-5xl sm:text-7xl font-black tracking-tighter text-slate-950 mb-16" style={{ fontFamily: '"Playfair Display", serif' }}>
+              {bride_name} <span className="text-rose-200 italic font-light mx-4">&</span> {groom_name}
             </h2>
-            <div className="flex items-center justify-center gap-10 opacity-20">
-              <div className="h-px w-20 bg-rose-300" />
+            <div className="flex items-center justify-center gap-8 opacity-20">
+              <div className="h-[1px] w-16 bg-rose-300" />
               <Heart size={20} fill="currentColor" style={{ color: primaryColor }} />
-              <div className="h-px w-20 bg-rose-300" />
+              <div className="h-[1px] w-16 bg-rose-300" />
             </div>
-            <p className="mt-32 text-[10px] text-rose-400 opacity-60 uppercase tracking-[1.5em] font-black">Powered by iWedding Pastel Collection</p>
+            <p className="mt-24 text-[10px] text-rose-500 opacity-60 uppercase tracking-[1.2em] font-black">Powered by iWedding Pastel Collection</p>
           </ScrollReveal>
         </footer>
       </main>
