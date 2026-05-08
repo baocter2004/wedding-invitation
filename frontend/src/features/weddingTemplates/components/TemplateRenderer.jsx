@@ -51,7 +51,9 @@ const TemplateRenderer = ({ componentName, weddingData }) => {
       )}
 
       {/* Actual invitation template — always rendered below the cover */}
-      <TemplateComponent weddingData={weddingData} />
+      <div className="w-full">
+        <TemplateComponent weddingData={weddingData} />
+      </div>
     </>
   );
 };

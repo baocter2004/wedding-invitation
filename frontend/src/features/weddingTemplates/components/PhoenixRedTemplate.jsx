@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useRef } from 'react';
-import { motion, useScroll, useTransform, AnimatePresence } from 'framer-motion';
+import { motion, useScroll, useTransform } from 'framer-motion';
 import { MapPin, Clock, Heart, Send, Gift, Volume2, VolumeX, ExternalLink, Sparkles, Calendar, ChevronDown } from 'lucide-react';
 import ScrollReveal from '../shared/ScrollReveal';
 import GiftEnvelope from '../shared/GiftEnvelope';
@@ -53,7 +53,7 @@ const PhoenixRedTemplate = ({ weddingData }) => {
 
   const primaryColor = theme_config_json?.primary_color || '#881337';
   const accentColor = theme_config_json?.secondary_color || '#FBBF24';
-  const bgColor = '#050505';
+  const bgColor = '#2a0808';
 
   const gallery = resolveGallery(photos);
   const cover = resolveCover(cover_image_path);
@@ -64,7 +64,7 @@ const PhoenixRedTemplate = ({ weddingData }) => {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 1.5 }}
-      className="min-h-screen font-serif antialiased selection:bg-red-900 selection:text-white overflow-x-hidden"
+      className="min-min-h-[85vh] font-serif antialiased selection:bg-amber-500 selection:text-red-900 overflow-x-hidden"
       style={{ backgroundColor: bgColor, color: '#FDFCF8' }}
     >
       <FloatingDecorativeElements count={12} type="circle" color={accentColor} />
@@ -75,7 +75,7 @@ const PhoenixRedTemplate = ({ weddingData }) => {
           initial={{ opacity: 0, scale: 0.8 }}
           animate={{ opacity: 1, scale: 1 }}
           onClick={toggleMusic}
-          className="fixed bottom-10 right-10 z-50 w-14 h-14 rounded-2xl bg-black/80 backdrop-blur-md shadow-2xl flex items-center justify-center border transition-all hover:scale-110 active:scale-95 group"
+          className="fixed bottom-10 right-10 z-50 w-14 h-14 rounded-2xl bg-[#1a0505]/80 backdrop-blur-md shadow-2xl flex items-center justify-center border transition-all hover:scale-110 active:scale-95 group"
           style={{ borderColor: `${accentColor}40` }}
         >
           {isPlaying ? (
@@ -94,19 +94,19 @@ const PhoenixRedTemplate = ({ weddingData }) => {
       )}
 
       {/* ══ HERO SECTION ══════════════════════════════════════ */}
-      <section ref={heroRef} className="relative h-screen flex flex-col items-center justify-center overflow-hidden bg-black">
+      <section ref={heroRef} className="relative min-h-[85vh] flex flex-col items-center justify-center overflow-hidden bg-[#1a0505]">
         {/* Cinematic Parallax Background */}
         <motion.div
-          style={{ scale: heroScale, opacity: 0.5 }}
+          style={{ scale: heroScale, opacity: 0.6 }}
           className="absolute inset-0 z-0 pointer-events-none"
         >
-          <img src={cover} alt="" className="w-full h-full object-cover brightness-[0.4]" />
-          <div className="absolute inset-0 bg-gradient-to-b from-transparent via-black/80 to-black" />
+          <img src={cover} alt="" className="w-full h-full object-cover brightness-[0.5]" />
+          <div className="absolute inset-0 bg-gradient-to-b from-transparent via-[#1a0505]/80 to-[#1a0505]" />
         </motion.div>
 
         {/* Abstract Light Streaks */}
-        <div className="absolute top-[-10%] right-[-5%] w-[60vw] h-[60vw] bg-red-900/10 rounded-full blur-[150px] pointer-events-none z-10" />
-        <div className="absolute bottom-[-10%] left-[-5%] w-[50vw] h-[50vw] bg-amber-900/10 rounded-full blur-[120px] pointer-events-none z-10" />
+        <div className="absolute top-[-10%] right-[-5%] w-[60vw] h-[60vw] bg-red-600/10 rounded-full blur-[150px] pointer-events-none z-10" />
+        <div className="absolute bottom-[-10%] left-[-5%] w-[50vw] h-[50vw] bg-amber-600/10 rounded-full blur-[120px] pointer-events-none z-10" />
 
         <motion.div
           style={{ opacity: heroOpacity, y: heroY }}
@@ -127,7 +127,7 @@ const PhoenixRedTemplate = ({ weddingData }) => {
 
             <p className="text-xs text-white/70 uppercase tracking-[0.8em] font-black mb-10">Eternal Phoenix Union</p>
 
-            <h1 className="text-5xl sm:text-7xl md:text-8xl font-bold tracking-tighter leading-[0.8] mb-10" style={{ fontFamily: '"Playfair Display", serif', color: accentColor }}>
+            <h1 className="text-5xl sm:text-5xl md:text-6xl font-bold tracking-tighter leading-[0.8] mb-10" style={{ fontFamily: '"Playfair Display", serif', color: accentColor }}>
               {groom_name}
               <span className="flex items-center justify-center gap-6 my-8">
                 <div className="h-[2px] flex-1 max-w-[80px] bg-white/20" />
@@ -139,17 +139,17 @@ const PhoenixRedTemplate = ({ weddingData }) => {
 
             <div className="flex flex-wrap justify-center items-center gap-8 sm:gap-12">
               <div className="flex flex-col items-center">
-                <span className="text-5xl sm:text-7xl font-light tracking-tighter text-white">{dt.day}</span>
+                <span className="text-5xl sm:text-5xl font-light tracking-tighter text-white">{dt.day}</span>
                 <span className="text-[11px] uppercase tracking-widest font-black text-white/50 mt-2">Day</span>
               </div>
               <div className="h-12 w-[1px] bg-white/20 hidden sm:block" />
               <div className="flex flex-col items-center">
-                <span className="text-5xl sm:text-7xl font-light tracking-tighter text-white">{dt.month}</span>
+                <span className="text-5xl sm:text-5xl font-light tracking-tighter text-white">{dt.month}</span>
                 <span className="text-[11px] uppercase tracking-widest font-black text-white/50 mt-2">Month</span>
               </div>
               <div className="h-12 w-[1px] bg-white/20 hidden sm:block" />
               <div className="flex flex-col items-center">
-                <span className="text-5xl sm:text-7xl font-light tracking-tighter text-white">{dt.year}</span>
+                <span className="text-5xl sm:text-5xl font-light tracking-tighter text-white">{dt.year}</span>
                 <span className="text-[11px] uppercase tracking-widest font-black text-white/50 mt-2">Year</span>
               </div>
             </div>
@@ -174,7 +174,7 @@ const PhoenixRedTemplate = ({ weddingData }) => {
       <main className="relative z-30 w-full max-w-6xl mx-auto px-6 sm:px-12">
 
         {/* ══ INTRO QUOTE ═════════════════════════════════════ */}
-        <section className="py-24 text-center">
+        <section className="py-12 text-center">
           <ScrollReveal variant="blur-reveal">
             <div className="max-w-4xl mx-auto px-6">
               <Sparkles size={32} className="mx-auto mb-10 opacity-30" style={{ color: accentColor }} />
@@ -187,15 +187,15 @@ const PhoenixRedTemplate = ({ weddingData }) => {
         </section>
 
         {/* ══ FAMILIES ═════════════════════════════════════════ */}
-        <section className="py-24">
+        <section className="py-12">
           <ScrollReveal variant="fade-up">
-            <div className="text-center mb-20">
+            <div className="text-center mb-10">
               <span className="text-[11px] uppercase tracking-[0.8em] font-black text-white/40 mb-4 block">Ancestral Heritage</span>
               <div className="h-[1px] w-16 bg-white/20 mx-auto" />
             </div>
           </ScrollReveal>
 
-          <div className="grid md:grid-cols-2 gap-16 sm:gap-24 max-w-5xl mx-auto">
+          <div className="grid md:grid-cols-2 gap-8 sm:gap-12 max-w-5xl mx-auto">
             {/* Groom side */}
             <ScrollReveal variant="mask-reveal">
               <div className="flex flex-col items-center text-center group">
@@ -250,10 +250,10 @@ const PhoenixRedTemplate = ({ weddingData }) => {
 
         {/* ══ LOVE STORY ══════════════════════════════════════ */}
         {love_story && (
-          <section className="py-32 text-center">
+          <section className="py-16 text-center">
             <ScrollReveal variant="blur-reveal">
               <span className="text-[11px] uppercase tracking-[0.8em] font-black text-white/40 mb-6 block">The Eternal Legend</span>
-              <h2 className="text-5xl sm:text-7xl font-bold tracking-tighter mb-16 text-white" style={{ fontFamily: '"Playfair Display", serif' }}>Hành Trình Yêu</h2>
+              <h2 className="text-5xl sm:text-5xl font-bold tracking-tighter mb-8 text-white" style={{ fontFamily: '"Playfair Display", serif' }}>Hành Trình Yêu</h2>
               <div className="max-w-4xl mx-auto px-6">
                 <p className="text-xl sm:text-3xl font-light leading-[1.5] italic text-white/70">
                   "{love_story}"
@@ -267,10 +267,10 @@ const PhoenixRedTemplate = ({ weddingData }) => {
         )}
 
         {/* ══ EVENTS TIMELINE ═══════════════════════════════════ */}
-        <section className="py-24 px-6">
+        <section className="py-12 px-6">
           <ScrollReveal variant="fade-up">
-            <div className="text-center mb-20">
-              <h2 className="text-6xl sm:text-8xl font-bold tracking-tighter text-white mb-6" style={{ fontFamily: '"Playfair Display", serif' }}>Timeline</h2>
+            <div className="text-center mb-10">
+              <h2 className="text-6xl sm:text-6xl font-bold tracking-tighter text-white mb-6" style={{ fontFamily: '"Playfair Display", serif' }}>Timeline</h2>
               <div className="flex items-center justify-center gap-6">
                 <div className="h-[1px] w-12 bg-white/20" />
                 <p className="text-[11px] font-black tracking-[0.4em] uppercase text-white/40">{lunar_date_text}</p>
@@ -328,18 +328,18 @@ const PhoenixRedTemplate = ({ weddingData }) => {
         </section>
 
         {/* ══ GALLERY ═════════════════════════════════════════ */}
-        <section className="py-32">
+        <section className="py-16">
           <ScrollReveal variant="fade-up">
-            <div className="text-center mb-24 px-6">
+            <div className="text-center mb-12 px-6">
               <span className="text-[11px] uppercase tracking-[0.8em] font-black text-white/40 mb-6 block">Cinematic Journey</span>
-              <h2 className="text-6xl sm:text-8xl font-bold tracking-tighter text-white" style={{ fontFamily: '"Playfair Display", serif' }}>Gallery</h2>
+              <h2 className="text-6xl sm:text-6xl font-bold tracking-tighter text-white" style={{ fontFamily: '"Playfair Display", serif' }}>Gallery</h2>
             </div>
           </ScrollReveal>
 
           <div className="columns-1 sm:columns-2 lg:columns-4 gap-6 space-y-6 max-w-[1400px] mx-auto px-4">
             {gallery.map((photo, i) => (
               <ScrollReveal key={photo.id} delay={(i % 4) * 0.1} variant="scale-up">
-                <div className="break-inside-avoid rounded-[2rem] overflow-hidden shadow-2xl group relative border border-white/10 bg-slate-900">
+                <div className="break-inside-avoid rounded-[2rem] overflow-hidden shadow-2xl group relative border border-white/10 bg-[#1a0505]">
                   <img src={photo.image_path} alt="" className="w-full object-cover transition-transform duration-[4s] group-hover:scale-105" />
                   <div className="absolute inset-0 bg-black/70 opacity-0 group-hover:opacity-100 transition-opacity duration-700 flex items-center justify-center p-8 text-center backdrop-blur-[2px]">
                     <p className="text-[10px] uppercase tracking-[0.5em] font-black text-white border-b border-white/30 pb-4">{photo.caption || 'Special Moment'}</p>
@@ -352,15 +352,15 @@ const PhoenixRedTemplate = ({ weddingData }) => {
 
         {/* ══ GIFTS ═══════════════════════════════════════════ */}
         {bankAccounts.length > 0 && (
-          <section className="py-32 text-center bg-white/5 rounded-[3rem] my-24 border border-white/5 relative overflow-hidden">
+          <section className="py-16 text-center bg-white/5 rounded-[3rem] my-12 border border-white/5 relative overflow-hidden">
             <ScrollReveal variant="blur-reveal">
               <h2 className="text-[11px] font-black uppercase tracking-[1em] text-white/30 mb-10">Registry</h2>
-              <h3 className="text-5xl sm:text-7xl font-bold mb-16 tracking-tighter text-white" style={{ fontFamily: '"Playfair Display", serif' }}>Hộp Mừng Cưới</h3>
-              <p className="max-w-3xl mx-auto text-xl sm:text-2xl font-light italic text-white/50 mb-16 leading-relaxed px-6">
+              <h3 className="text-5xl sm:text-5xl font-bold mb-8 tracking-tighter text-white" style={{ fontFamily: '"Playfair Display", serif' }}>Hộp Mừng Cưới</h3>
+              <p className="max-w-3xl mx-auto text-xl sm:text-2xl font-light italic text-white/50 mb-8 leading-relaxed px-6">
                 "Sự hiện diện của quý khách là món quà trân quý nhất. <br className="hidden sm:block" />
                 Gia đình xin chân thành cảm ơn mọi tấm lòng và lời chúc mừng."
               </p>
-              <div className="flex flex-wrap justify-center gap-10 sm:gap-16 px-4">
+              <div className="flex flex-wrap justify-center gap-10 sm:gap-8 px-4">
                 {bankAccounts.map(b => (
                   <div key={b.id} className="transition-transform hover:scale-[1.02]">
                     <GiftEnvelope bank={b} primaryColor={accentColor} />
@@ -372,12 +372,12 @@ const PhoenixRedTemplate = ({ weddingData }) => {
         )}
 
         {/* ══ RSVP FORM ════════════════════════════════════════ */}
-        <section className="py-32 px-8">
+        <section className="py-16 px-8">
           <ScrollReveal variant="mask-reveal">
-            <div className="flex flex-col lg:flex-row items-center gap-16 lg:gap-24 max-w-6xl mx-auto">
+            <div className="flex flex-col lg:flex-row items-center gap-8 lg:gap-12 max-w-6xl mx-auto">
               <div className="w-full lg:w-1/2 text-center lg:text-left">
                 <span className="text-[11px] uppercase tracking-[1em] font-black text-white/30 mb-6 block">R.S.V.P</span>
-                <h2 className="text-6xl sm:text-8xl font-black tracking-tighter text-white mb-10 leading-[0.9]" style={{ fontFamily: '"Playfair Display", serif' }}>Bạn Sẽ <br /> Tham Dự <br /> <span style={{ color: accentColor }}>Chứ?</span></h2>
+                <h2 className="text-6xl sm:text-6xl font-black tracking-tighter text-white mb-10 leading-[0.9]" style={{ fontFamily: '"Playfair Display", serif' }}>Bạn Sẽ <br /> Tham Dự <br /> <span style={{ color: accentColor }}>Chứ?</span></h2>
                 <p className="text-xl text-white/50 font-light leading-relaxed mb-12 max-w-md italic">
                   Kính mong quý khách xác nhận thông tin tham dự để chúng tôi có thể đón tiếp quý vị một cách chu đáo nhất.
                 </p>
@@ -400,8 +400,8 @@ const PhoenixRedTemplate = ({ weddingData }) => {
                     <label className="block text-[11px] uppercase tracking-[0.4em] mb-4 text-white/40 group-focus-within:text-white transition-all font-bold">Xác Nhận</label>
                     <div className="relative">
                       <select className="w-full bg-transparent border-b-2 border-white/10 py-4 text-2xl font-bold text-white outline-none transition-all duration-500 focus:border-white appearance-none cursor-pointer">
-                        <option className="bg-[#050505]">Sẽ tham dự</option>
-                        <option className="bg-[#050505]">Tiếc là không thể</option>
+                        <option className="bg-[#2a0808]">Sẽ tham dự</option>
+                        <option className="bg-[#2a0808]">Tiếc là không thể</option>
                       </select>
                       <ChevronDown size={20} className="absolute right-0 top-1/2 -translate-y-1/2 pointer-events-none text-white/30" />
                     </div>
@@ -422,10 +422,10 @@ const PhoenixRedTemplate = ({ weddingData }) => {
         </section>
 
         {/* ══ FOOTER ═══════════════════════════════════════════ */}
-        <footer className="py-32 text-center border-t border-white/10">
+        <footer className="py-16 text-center border-t border-white/10">
           <ScrollReveal variant="blur-reveal">
             <p className="text-[11px] uppercase tracking-[1.5em] font-black mb-10 text-white/20">Eternal Phoenix</p>
-            <h2 className="text-6xl sm:text-8xl font-black tracking-tighter text-white mb-16" style={{ fontFamily: '"Playfair Display", serif' }}>
+            <h2 className="text-6xl sm:text-6xl font-black tracking-tighter text-white mb-8" style={{ fontFamily: '"Playfair Display", serif' }}>
               {groom_name} <span className="opacity-20 italic font-light mx-4" style={{ color: accentColor }}>&</span> {bride_name}
             </h2>
             <div className="flex items-center justify-center gap-10 opacity-30">
@@ -433,7 +433,7 @@ const PhoenixRedTemplate = ({ weddingData }) => {
               <Sparkles size={24} style={{ color: accentColor }} />
               <div className="h-[1px] w-16 bg-white/20" />
             </div>
-            <p className="mt-32 text-[10px] text-white/20 uppercase tracking-[1.5em] font-black">Powered by iWedding Phoenix Collection</p>
+            <p className="mt-16 text-[10px] text-white/20 uppercase tracking-[1.5em] font-black">Powered by iWedding Phoenix Collection</p>
           </ScrollReveal>
         </footer>
       </main>

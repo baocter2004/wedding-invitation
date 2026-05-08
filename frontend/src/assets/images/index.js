@@ -44,6 +44,15 @@ export const DECORATIVE = {
   emeraldDivider: '/assets/images/emerald_divider.png',
   floralBanner: '/assets/images/floral_banner.png',
   goldOrnament: '/assets/images/gold_ornament.png',
+  emeraldWatercolor: '/assets/images/emerald_watercolor.png',
+  luxuryGoldBg: '/assets/images/luxury_gold.png',
+  minimalMarbleBg: '/assets/images/minimal_marble_bg.png',
+  decorEmeraldLeaves: '/assets/images/decor_emerald_leaves.png',
+  decorRusticBoho: '/assets/images/decor_rustic_boho.png',
+  decorLuxuryGold: '/assets/images/decor_luxury_gold.png',
+  modernAbstract: 'https://images.unsplash.com/photo-1550684848-fac1c5b4e853?q=80&w=2070&auto=format&fit=crop', // modern film/abstract bg
+  minimalTexture: 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=1964&auto=format&fit=crop', // subtle clean texture
+  luxuryPattern: 'https://images.unsplash.com/photo-150226243170a-4c441c55e862?q=80&w=2070&auto=format&fit=crop', // elegant gold silk/pattern
 };
 
 // ─── Helpers ─────────────────────────────────────────────────

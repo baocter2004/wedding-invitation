@@ -5,7 +5,7 @@ import TemplateRenderer from '../../weddingTemplates/components/TemplateRenderer
 
 const PublicWeddingPage = () => {
   const { slug } = useParams();
-  
+
   // Find wedding by slug
   const wedding = mockData.weddings.find(w => w.slug === slug);
 
@@ -35,8 +35,10 @@ const PublicWeddingPage = () => {
   };
 
   return (
-    <div className="w-full bg-white">
-      <TemplateRenderer componentName={template.component_name} weddingData={fullWeddingData} />
+    <div className="w-full min-h-screen bg-[#f2f2f2] flex justify-center">
+      <div className="w-full max-w-7xl bg-white relative shadow-2xl min-h-screen overflow-x-hidden flex flex-col">
+        <TemplateRenderer componentName={template.component_name} weddingData={fullWeddingData} />
+      </div>
     </div>
   );
 };

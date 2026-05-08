@@ -59,7 +59,7 @@ const MinimalWhiteTemplate = ({ weddingData }) => {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 1.5 }}
-      className="min-h-screen bg-[#FDFDFD] text-[#1a1a1a] font-serif antialiased overflow-x-hidden selection:bg-black selection:text-white"
+      className="min-min-h-[85vh] bg-[#FDFDFD] text-[#1a1a1a] font-serif antialiased overflow-x-hidden selection:bg-black selection:text-white"
     >
       <FloatingDecorativeElements count={8} type="circle" color="#E2E8F0" />
 
@@ -87,7 +87,7 @@ const MinimalWhiteTemplate = ({ weddingData }) => {
       )}
 
       {/* ══ HERO SECTION ══════════════════════════════════════ */}
-      <section ref={heroRef} className="relative min-h-screen flex flex-col items-center justify-center pt-24 pb-20 px-6 overflow-hidden">
+      <section ref={heroRef} className="relative min-min-h-[85vh] flex flex-col items-center justify-center pt-24 pb-20 px-6 overflow-hidden">
         {/* Subtle Decorative Background */}
         <div className="absolute inset-0 flex items-center justify-center pointer-events-none opacity-[0.04]">
           <span className="text-[35vw] font-black uppercase tracking-tighter select-none text-slate-300">UNION</span>
@@ -108,7 +108,7 @@ const MinimalWhiteTemplate = ({ weddingData }) => {
 
           <motion.div
             style={{ scale: heroImageScale }}
-            className="relative w-full max-w-sm sm:max-w-md aspect-[3/4] mb-16 p-4 bg-white shadow-[0_40px_80px_-15px_rgba(0,0,0,0.1)] rounded-sm border border-slate-100"
+            className="relative w-full max-w-sm sm:max-w-md aspect-[3/4] mb-8 p-4 bg-white shadow-[0_40px_80px_-15px_rgba(0,0,0,0.1)] rounded-sm border border-slate-100"
           >
             <div className="w-full h-full overflow-hidden relative group">
               <img src={cover} alt="Wedding Couple" className="w-full h-full object-cover transition-transform duration-[4s] group-hover:scale-105" />
@@ -123,7 +123,7 @@ const MinimalWhiteTemplate = ({ weddingData }) => {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1.2, delay: 0.4 }}
-            className="text-5xl sm:text-7xl md:text-8xl font-bold tracking-tighter leading-[0.8] text-center text-slate-900"
+            className="text-5xl sm:text-5xl md:text-6xl font-bold tracking-tighter leading-[0.8] text-center text-slate-900"
             style={{ fontFamily: '"Playfair Display", serif' }}
           >
             <span className="block">{groom_name}</span>
@@ -172,7 +172,7 @@ const MinimalWhiteTemplate = ({ weddingData }) => {
       <main className="relative z-10 w-full max-w-6xl mx-auto px-6 sm:px-12">
 
         {/* ══ INTRO QUOTE ═════════════════════════════════════ */}
-        <section className="py-24 text-center relative overflow-hidden">
+        <section className="py-12 text-center relative overflow-hidden">
           <ScrollReveal variant="blur-reveal">
             <div className="max-w-4xl mx-auto px-6">
               <Sparkles size={28} className="mx-auto mb-10 text-slate-400" />
@@ -185,15 +185,15 @@ const MinimalWhiteTemplate = ({ weddingData }) => {
         </section>
 
         {/* ══ FAMILIES ═════════════════════════════════════════ */}
-        <section className="py-24 px-6">
+        <section className="py-12 px-6">
           <ScrollReveal variant="fade-up">
-            <div className="text-center mb-20">
+            <div className="text-center mb-10">
               <span className="text-[11px] uppercase tracking-[0.8em] font-black text-slate-500 mb-6 block">Grand Heritage</span>
               <div className="h-[1px] w-20 mx-auto bg-slate-200" />
             </div>
           </ScrollReveal>
 
-          <div className="grid md:grid-cols-2 gap-12 sm:gap-24 max-w-5xl mx-auto">
+          <div className="grid md:grid-cols-2 gap-12 sm:gap-12 max-w-5xl mx-auto">
             {/* Groom side */}
             <ScrollReveal variant="mask-reveal">
               <div className="flex flex-col items-center text-center group">
@@ -246,7 +246,7 @@ const MinimalWhiteTemplate = ({ weddingData }) => {
 
         {/* ══ LOVE STORY ══════════════════════════════════════ */}
         {love_story && (
-          <section className="py-24 px-8 bg-slate-50 rounded-[2rem] my-24 border border-slate-100">
+          <section className="py-12 px-8 bg-slate-50 rounded-[2rem] my-12 border border-slate-100">
             <ScrollReveal variant="blur-reveal">
               <div className="max-w-4xl mx-auto text-center">
                 <span className="text-[11px] uppercase tracking-[0.8em] font-black text-slate-500 mb-8 block">Our Sacred Story</span>
@@ -263,10 +263,10 @@ const MinimalWhiteTemplate = ({ weddingData }) => {
         )}
 
         {/* ══ EVENTS TIMELINE ═══════════════════════════════════ */}
-        <section className="py-24 px-6">
+        <section className="py-12 px-6">
           <ScrollReveal variant="fade-up">
-            <div className="text-center mb-20">
-              <h2 className="text-5xl sm:text-7xl font-bold tracking-tighter mb-6 text-slate-950" style={{ fontFamily: '"Playfair Display", serif' }}>Timeline</h2>
+            <div className="text-center mb-10">
+              <h2 className="text-5xl sm:text-5xl font-bold tracking-tighter mb-6 text-slate-950" style={{ fontFamily: '"Playfair Display", serif' }}>Timeline</h2>
               <div className="flex items-center justify-center gap-6">
                 <div className="h-[1px] w-12 bg-slate-200" />
                 <p className="text-[11px] font-black tracking-[0.5em] uppercase text-slate-500">{lunar_date_text}</p>
@@ -321,9 +321,9 @@ const MinimalWhiteTemplate = ({ weddingData }) => {
         </section>
 
         {/* ══ GALLERY ═════════════════════════════════════════ */}
-        <section className="py-24">
+        <section className="py-12">
           <ScrollReveal variant="fade-up">
-            <div className="text-center mb-20 px-6">
+            <div className="text-center mb-10 px-6">
               <span className="text-[11px] uppercase tracking-[0.8em] font-black text-slate-500 mb-6 block">Treasured Anthology</span>
               <h2 className="text-5xl sm:text-6xl font-bold tracking-tighter text-slate-950" style={{ fontFamily: '"Playfair Display", serif' }}>Gallery</h2>
             </div>
@@ -345,17 +345,17 @@ const MinimalWhiteTemplate = ({ weddingData }) => {
 
         {/* ══ GIFTS ═══════════════════════════════════════════ */}
         {bankAccounts.length > 0 && (
-          <section className="py-24 px-8 text-center bg-slate-950 text-white rounded-[3rem] my-24 shadow-2xl relative overflow-hidden">
+          <section className="py-12 px-8 text-center bg-slate-950 text-white rounded-[3rem] my-12 shadow-2xl relative overflow-hidden">
             <div className="absolute inset-0 opacity-[0.05] pointer-events-none" style={{ backgroundImage: `url("https://www.transparenttextures.com/patterns/natural-paper.png")` }} />
 
             <ScrollReveal variant="blur-reveal">
               <h2 className="text-[11px] font-black uppercase tracking-[1em] text-slate-600 mb-10">Registry</h2>
               <h3 className="text-4xl sm:text-6xl font-bold mb-12 tracking-tighter" style={{ fontFamily: '"Playfair Display", serif' }}>Hộp Mừng Cưới</h3>
-              <p className="max-w-2xl mx-auto text-lg sm:text-xl font-light italic text-slate-400 mb-16 leading-relaxed">
+              <p className="max-w-2xl mx-auto text-lg sm:text-xl font-light italic text-slate-400 mb-8 leading-relaxed">
                 "Sự hiện diện của quý khách là món quà trân quý nhất. <br className="hidden sm:block" />
                 Gia đình xin chân thành cảm ơn mọi tấm lòng và lời chúc mừng."
               </p>
-              <div className="flex flex-wrap justify-center gap-10 sm:gap-16">
+              <div className="flex flex-wrap justify-center gap-10 sm:gap-8">
                 {bankAccounts.map(b => (
                   <div key={b.id} className="transition-transform hover:scale-[1.02]">
                     <GiftEnvelope bank={b} primaryColor="#FFFFFF" />
@@ -367,12 +367,12 @@ const MinimalWhiteTemplate = ({ weddingData }) => {
         )}
 
         {/* ══ RSVP FORM ════════════════════════════════════════ */}
-        <section className="py-24 px-8">
+        <section className="py-12 px-8">
           <ScrollReveal variant="mask-reveal">
-            <div className="max-w-6xl mx-auto flex flex-col lg:flex-row items-center gap-16 lg:gap-24">
+            <div className="max-w-6xl mx-auto flex flex-col lg:flex-row items-center gap-8 lg:gap-12">
               <div className="w-full lg:w-1/2 text-center lg:text-left">
                 <span className="text-[11px] uppercase tracking-[0.8em] font-black text-slate-500 mb-8 block">R.S.V.P</span>
-                <h2 className="text-6xl sm:text-7xl font-bold tracking-tighter mb-10 leading-[0.85]" style={{ fontFamily: '"Playfair Display", serif' }}>Bạn Sẽ <br /> Đến Chứ?</h2>
+                <h2 className="text-6xl sm:text-5xl font-bold tracking-tighter mb-10 leading-[0.85]" style={{ fontFamily: '"Playfair Display", serif' }}>Bạn Sẽ <br /> Đến Chứ?</h2>
                 <p className="text-lg opacity-60 font-light leading-relaxed mb-12 max-w-md italic text-slate-700">
                   Kính mong quý khách xác nhận thông tin tham dự để chúng tôi có thể chuẩn bị đón tiếp một cách chu đáo nhất.
                 </p>
@@ -417,10 +417,10 @@ const MinimalWhiteTemplate = ({ weddingData }) => {
         </section>
 
         {/* ══ FOOTER ═══════════════════════════════════════════ */}
-        <footer className="py-24 text-center relative overflow-hidden border-t border-slate-100">
+        <footer className="py-12 text-center relative overflow-hidden border-t border-slate-100">
           <ScrollReveal variant="blur-reveal">
             <p className="text-[11px] uppercase tracking-[1.2em] font-black mb-10 text-slate-500">Endless Love</p>
-            <h2 className="text-5xl sm:text-7xl font-bold tracking-tighter text-slate-950 mb-16" style={{ fontFamily: '"Playfair Display", serif' }}>
+            <h2 className="text-5xl sm:text-5xl font-bold tracking-tighter text-slate-950 mb-8" style={{ fontFamily: '"Playfair Display", serif' }}>
               {groom_name} <span className="text-slate-200 italic font-light mx-4">&</span> {bride_name}
             </h2>
             <div className="flex items-center justify-center gap-8 opacity-20">
@@ -428,7 +428,7 @@ const MinimalWhiteTemplate = ({ weddingData }) => {
               <Heart size={20} fill="currentColor" className="text-slate-900" />
               <div className="h-[1px] w-16 bg-slate-950" />
             </div>
-            <p className="mt-24 text-[10px] text-slate-500 opacity-60 uppercase tracking-[1em] font-black">Powered by iWedding Minimal Collection</p>
+            <p className="mt-12 text-[10px] text-slate-500 opacity-60 uppercase tracking-[1em] font-black">Powered by iWedding Minimal Collection</p>
           </ScrollReveal>
         </footer>
       </main>

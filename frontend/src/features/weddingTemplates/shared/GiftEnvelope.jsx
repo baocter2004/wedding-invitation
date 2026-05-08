@@ -12,7 +12,7 @@ const GiftEnvelope = ({ bank, primaryColor = '#D98BA5' }) => {
   }, [bank?.account_number]);
 
   return (
-    <div className="relative w-full max-w-[320px] h-[480px] sm:h-[500px] flex items-end justify-center pb-6 sm:pb-8 mx-auto">
+    <div className="relative w-[280px] sm:w-[320px] h-[480px] sm:h-[500px] flex items-end justify-center pb-6 sm:pb-8 mx-auto shrink-0">
       <div
         className="relative w-full h-full cursor-pointer group"
         onClick={() => setIsOpen((prev) => !prev)}
@@ -136,7 +136,7 @@ const GiftEnvelope = ({ bank, primaryColor = '#D98BA5' }) => {
         </motion.div>
       </div>
 
-      <p className="absolute bottom-0 text-[10px] text-slate-400 italic font-bold uppercase tracking-widest">
+      <p className="absolute bottom-0 left-0 right-0 text-center text-[10px] text-slate-400 italic font-bold uppercase tracking-widest pointer-events-none">
         {isOpen ? 'Chạm để đóng' : 'Chạm để xem QR'}
       </p>
     </div>

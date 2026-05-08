@@ -62,7 +62,7 @@ const GreenRusticTemplate = ({ weddingData }) => {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 1.5 }}
-      className="min-h-screen font-serif selection:bg-[#2D4F1E] selection:text-white antialiased overflow-x-hidden"
+      className="min-min-h-[85vh] font-serif selection:bg-[#2D4F1E] selection:text-white antialiased overflow-x-hidden"
       style={{ backgroundColor: secondaryColor, color: primaryColor }}
     >
       <FloatingDecorativeElements count={12} type="leaf" color={primaryColor} />
@@ -92,7 +92,7 @@ const GreenRusticTemplate = ({ weddingData }) => {
       )}
 
       {/* ══ HERO SECTION ══════════════════════════════════════ */}
-      <section ref={heroRef} className="relative min-h-screen flex flex-col items-center justify-center pt-32 pb-20 px-6 overflow-hidden">
+      <section ref={heroRef} className="relative min-min-h-[85vh] flex flex-col items-center justify-center pt-32 pb-20 px-6 overflow-hidden">
         {/* Subtle Organic Background */}
         <div className="absolute inset-0 flex items-center justify-center pointer-events-none opacity-[0.03]">
           <span className="text-[35vw] font-black uppercase tracking-tighter select-none text-green-900/10">EARTH</span>
@@ -113,7 +113,7 @@ const GreenRusticTemplate = ({ weddingData }) => {
 
           <motion.div
             style={{ scale: heroImageScale }}
-            className="relative w-full max-w-sm sm:max-w-md aspect-[3/4] mb-20 p-5 bg-white shadow-[0_60px_120px_-20px_rgba(45,79,30,0.15)] rounded-sm border border-green-900/10"
+            className="relative w-full max-w-sm sm:max-w-md aspect-[3/4] mb-10 p-5 bg-white shadow-[0_60px_120px_-20px_rgba(45,79,30,0.15)] rounded-sm border border-green-900/10"
           >
             <div className="w-full h-full overflow-hidden relative group">
               <img src={cover} alt="Wedding Couple" className="w-full h-full object-cover transition-transform duration-[4s] group-hover:scale-105" />
@@ -152,17 +152,17 @@ const GreenRusticTemplate = ({ weddingData }) => {
           <div className="mt-20 flex flex-col items-center gap-8">
             <div className="flex items-center gap-10">
               <div className="flex flex-col items-center">
-                <span className="text-5xl sm:text-7xl font-light tracking-tighter text-green-900/80">{dt.day}</span>
+                <span className="text-5xl sm:text-5xl font-light tracking-tighter text-green-900/80">{dt.day}</span>
                 <span className="text-[10px] uppercase tracking-widest font-black text-green-900/40 mt-3">Day</span>
               </div>
               <div className="h-12 w-[1px] bg-green-900/10" />
               <div className="flex flex-col items-center">
-                <span className="text-5xl sm:text-7xl font-light tracking-tighter text-green-900/80">{dt.month}</span>
+                <span className="text-5xl sm:text-5xl font-light tracking-tighter text-green-900/80">{dt.month}</span>
                 <span className="text-[10px] uppercase tracking-widest font-black text-green-900/40 mt-3">Month</span>
               </div>
               <div className="h-12 w-[1px] bg-green-900/10" />
               <div className="flex flex-col items-center">
-                <span className="text-5xl sm:text-7xl font-light tracking-tighter text-green-900/80">{dt.year}</span>
+                <span className="text-5xl sm:text-5xl font-light tracking-tighter text-green-900/80">{dt.year}</span>
                 <span className="text-[10px] uppercase tracking-widest font-black text-green-900/40 mt-3">Year</span>
               </div>
             </div>
@@ -183,7 +183,7 @@ const GreenRusticTemplate = ({ weddingData }) => {
       <main className="relative z-10 w-full max-w-6xl mx-auto px-6 sm:px-12">
 
         {/* ══ INTRO QUOTE ═════════════════════════════════════ */}
-        <section className="py-32 text-center relative overflow-hidden">
+        <section className="py-16 text-center relative overflow-hidden">
           <ScrollReveal variant="blur-reveal">
             <div className="max-w-4xl mx-auto px-6">
               <Leaf size={32} className="mx-auto mb-12 opacity-30" style={{ color: primaryColor }} />
@@ -196,15 +196,15 @@ const GreenRusticTemplate = ({ weddingData }) => {
         </section>
 
         {/* ══ FAMILIES ═════════════════════════════════════════ */}
-        <section className="py-24 px-6">
+        <section className="py-12 px-6">
           <ScrollReveal variant="fade-up">
-            <div className="text-center mb-24">
+            <div className="text-center mb-12">
               <span className="text-[10px] uppercase tracking-[1em] font-black text-green-900/40 mb-6 block">Grand Heritage</span>
               <div className="h-[1px] w-24 mx-auto bg-green-900/10" />
             </div>
           </ScrollReveal>
 
-          <div className="grid md:grid-cols-2 gap-16 sm:gap-32 max-w-5xl mx-auto">
+          <div className="grid md:grid-cols-2 gap-8 sm:gap-32 max-w-5xl mx-auto">
             {/* Groom side */}
             <ScrollReveal variant="mask-reveal">
               <div className="flex flex-col items-center text-center group">
@@ -257,11 +257,11 @@ const GreenRusticTemplate = ({ weddingData }) => {
 
         {/* ══ LOVE STORY ══════════════════════════════════════ */}
         {love_story && (
-          <section className="py-32 px-8 bg-green-900/[0.03] rounded-[3rem] my-32 border border-green-900/5">
+          <section className="py-16 px-8 bg-green-900/[0.03] rounded-[3rem] my-32 border border-green-900/5">
             <ScrollReveal variant="blur-reveal">
               <div className="max-w-4xl mx-auto text-center">
                 <span className="text-[10px] uppercase tracking-[1em] font-black text-green-900/40 mb-10 block">A Natural Legend</span>
-                <h2 className="text-6xl sm:text-[7rem] font-bold tracking-tighter mb-16" style={{ fontFamily: '"Playfair Display", serif', color: primaryColor }}>Hành Trình Xanh</h2>
+                <h2 className="text-6xl sm:text-[7rem] font-bold tracking-tighter mb-8" style={{ fontFamily: '"Playfair Display", serif', color: primaryColor }}>Hành Trình Xanh</h2>
                 <p className="text-xl sm:text-4xl leading-[1.6] font-light italic text-green-900/70">
                   "{love_story}"
                 </p>
@@ -274,9 +274,9 @@ const GreenRusticTemplate = ({ weddingData }) => {
         )}
 
         {/* ══ EVENTS TIMELINE ═══════════════════════════════════ */}
-        <section className="py-24 px-6">
+        <section className="py-12 px-6">
           <ScrollReveal variant="fade-up">
-            <div className="text-center mb-24">
+            <div className="text-center mb-12">
               <h2 className="text-6xl sm:text-[7rem] font-bold tracking-tighter mb-8" style={{ fontFamily: '"Playfair Display", serif', color: primaryColor }}>Timeline</h2>
               <div className="flex items-center justify-center gap-8">
                 <div className="h-[1px] w-16 bg-green-900/10" />
@@ -286,7 +286,7 @@ const GreenRusticTemplate = ({ weddingData }) => {
             </div>
           </ScrollReveal>
 
-          <div className="grid lg:grid-cols-2 gap-10 sm:gap-16 max-w-5xl mx-auto">
+          <div className="grid lg:grid-cols-2 gap-10 sm:gap-8 max-w-5xl mx-auto">
             {events.map((event, idx) => (
               <ScrollReveal key={event.id} delay={idx * 0.2} variant="mask-reveal">
                 <div className="group relative p-10 sm:p-16 rounded-[4rem] border border-green-900/5 bg-white hover:shadow-[0_60px_120px_-20px_rgba(45,79,30,0.12)] transition-all duration-700 overflow-hidden text-center flex flex-col items-center">
@@ -296,7 +296,7 @@ const GreenRusticTemplate = ({ weddingData }) => {
 
                   <h3 className="text-4xl font-bold tracking-tight mb-12 text-slate-950" style={{ fontFamily: '"Playfair Display", serif' }}>{event.title}</h3>
 
-                  <div className="space-y-12 mb-16 w-full">
+                  <div className="space-y-12 mb-8 w-full">
                     <div className="flex flex-col items-center">
                       <Clock size={20} className="mb-5 text-green-700/60" />
                       <span className="text-3xl font-bold text-slate-900">{new Date(event.event_time).toLocaleTimeString('vi-VN', { hour: '2-digit', minute: '2-digit' })}</span>
@@ -332,9 +332,9 @@ const GreenRusticTemplate = ({ weddingData }) => {
         </section>
 
         {/* ══ GALLERY ═════════════════════════════════════════ */}
-        <section className="py-32">
+        <section className="py-16">
           <ScrollReveal variant="fade-up">
-            <div className="text-center mb-24 px-6">
+            <div className="text-center mb-12 px-6">
               <span className="text-[10px] uppercase tracking-[1em] font-black text-green-900/40 mb-6 block">Nature's Anthology</span>
               <h2 className="text-6xl sm:text-[7rem] font-bold tracking-tighter mb-8 text-slate-950" style={{ fontFamily: '"Playfair Display", serif' }}>Gallery</h2>
             </div>
@@ -356,11 +356,11 @@ const GreenRusticTemplate = ({ weddingData }) => {
 
         {/* ══ GIFTS ═══════════════════════════════════════════ */}
         {bankAccounts.length > 0 && (
-          <section className="py-32 px-8 text-center bg-white rounded-[4rem] my-32 shadow-xl border border-green-900/5 relative overflow-hidden">
+          <section className="py-16 px-8 text-center bg-white rounded-[4rem] my-32 shadow-xl border border-green-900/5 relative overflow-hidden">
             <ScrollReveal variant="blur-reveal">
               <h2 className="text-[10px] font-black uppercase tracking-[1em] text-green-900/40 mb-12">Registry</h2>
-              <h3 className="text-5xl sm:text-[6rem] font-bold mb-16 tracking-tighter" style={{ fontFamily: '"Playfair Display", serif', color: primaryColor }}>Hộp Mừng Cưới</h3>
-              <p className="max-w-3xl mx-auto text-xl sm:text-2xl font-light italic text-slate-500 mb-20 leading-relaxed">
+              <h3 className="text-5xl sm:text-[6rem] font-bold mb-8 tracking-tighter" style={{ fontFamily: '"Playfair Display", serif', color: primaryColor }}>Hộp Mừng Cưới</h3>
+              <p className="max-w-3xl mx-auto text-xl sm:text-2xl font-light italic text-slate-500 mb-10 leading-relaxed">
                 "Sự hiện diện của quý khách là món quà trân quý nhất. <br className="hidden sm:block" />
                 Gia đình xin chân thành cảm ơn mọi tấm lòng và lời chúc mừng."
               </p>
@@ -376,13 +376,13 @@ const GreenRusticTemplate = ({ weddingData }) => {
         )}
 
         {/* ══ RSVP FORM ════════════════════════════════════════ */}
-        <section className="py-32 px-8">
+        <section className="py-16 px-8">
           <ScrollReveal variant="mask-reveal">
             <div className="max-w-6xl mx-auto flex flex-col lg:flex-row items-center gap-20 lg:gap-32">
               <div className="w-full lg:w-1/2 text-center lg:text-left">
                 <span className="text-[10px] uppercase tracking-[1em] font-black text-green-900/40 mb-8 block">R.S.V.P</span>
-                <h2 className="text-7xl sm:text-[8rem] font-black tracking-tighter mb-10 leading-[0.9] text-slate-950" style={{ fontFamily: '"Playfair Display", serif' }}>Bạn Sẽ <br /> Đến Chứ?</h2>
-                <p className="text-xl opacity-40 font-light leading-relaxed mb-16 max-w-md italic text-slate-700">
+                <h2 className="text-5xl sm:text-[8rem] font-black tracking-tighter mb-10 leading-[0.9] text-slate-950" style={{ fontFamily: '"Playfair Display", serif' }}>Bạn Sẽ <br /> Đến Chứ?</h2>
+                <p className="text-xl opacity-40 font-light leading-relaxed mb-8 max-w-md italic text-slate-700">
                   Kính mong quý khách xác nhận thông tin tham dự để chúng tôi có thể chuẩn bị đón tiếp một cách chu đáo nhất.
                 </p>
                 <div className="flex items-center justify-center lg:justify-start gap-10 opacity-30">
@@ -426,10 +426,10 @@ const GreenRusticTemplate = ({ weddingData }) => {
         </section>
 
         {/* ══ FOOTER ═══════════════════════════════════════════ */}
-        <footer className="py-32 text-center relative overflow-hidden border-t border-green-900/10">
+        <footer className="py-16 text-center relative overflow-hidden border-t border-green-900/10">
           <ScrollReveal variant="blur-reveal">
             <p className="text-[10px] uppercase tracking-[1.5em] font-black mb-12 text-green-900/30">Eternal Nature</p>
-            <h2 className="text-6xl sm:text-[8rem] font-black tracking-tighter text-slate-950 mb-20" style={{ fontFamily: '"Playfair Display", serif' }}>
+            <h2 className="text-6xl sm:text-[8rem] font-black tracking-tighter text-slate-950 mb-10" style={{ fontFamily: '"Playfair Display", serif' }}>
               {groom_name} <span className="text-green-900/30 italic font-light mx-6">&</span> {bride_name}
             </h2>
             <div className="flex items-center justify-center gap-10 opacity-20" style={{ color: primaryColor }}>
@@ -437,7 +437,7 @@ const GreenRusticTemplate = ({ weddingData }) => {
               <Leaf size={24} />
               <div className="h-[1px] w-20 bg-current" />
             </div>
-            <p className="mt-32 text-[10px] text-green-900/40 opacity-60 uppercase tracking-[1.5em] font-black">Powered by iWedding Rustic Collection</p>
+            <p className="mt-16 text-[10px] text-green-900/40 opacity-60 uppercase tracking-[1.5em] font-black">Powered by iWedding Rustic Collection</p>
           </ScrollReveal>
         </footer>
       </main>

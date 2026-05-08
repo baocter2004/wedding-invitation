@@ -1,22 +1,98 @@
 import { useState, useEffect, useMemo } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { MailOpen, ChevronDown, Sparkles, Heart } from 'lucide-react';
-import { resolveCover, formatDate } from '../../../assets/images';
+import { Heart, Flower2, Sparkles, Leaf } from 'lucide-react';
+import { formatDate, DECORATIVE } from '../../../assets/images';
 import { getThemeByTemplateId } from '../constants/templateThemes';
-import FloatingDecorativeElements from './FloatingDecorativeElements';
+
+const getCoverConfig = (theme) => {
+  const t = theme.type || 'MINIMAL';
+
+  if (t === 'TRADITIONAL') {
+    return {
+      backdrop: '#2f0c0c', cardBg: '#a82c23', textColor: '#e8c991',
+      sealBg: '#e8c991', sealIconColor: '#a82c23', buttonBg: '#e8c991', buttonText: '#471612', guestBoxBg: 'rgba(0,0,0,0.2)',
+      bgImage: DECORATIVE.redFrame, layout: 'traditional', bgOpacity: 0.25, bgBlendMode: 'normal', pt: 'pt-24 sm:pt-32'
+    };
+  }
+
+  if (t === 'PHOENIX') {
+    return {
+      backdrop: '#1a0505', cardBg: '#8a1f18', textColor: '#e8c991',
+      sealBg: '#e8c991', sealIconColor: '#8a1f18', buttonBg: '#e8c991', buttonText: '#471612', guestBoxBg: 'rgba(0,0,0,0.2)',
+      bgImage: DECORATIVE.phoenix, layout: 'traditional', bgOpacity: 0.25, bgBlendMode: 'normal', pt: 'pt-24 sm:pt-32'
+    };
+  }
+
+  if (t === 'LUXURY_RED') {
+    return {
+      backdrop: '#110000', cardBg: '#600000', textColor: '#f0d080',
+      sealBg: '#f0d080', sealIconColor: '#600000', buttonBg: '#f0d080', buttonText: '#300000', guestBoxBg: 'rgba(0,0,0,0.2)',
+      bgImage: DECORATIVE.luxuryPattern, layout: 'fullCard', bgOpacity: 0.4, bgBlendMode: 'normal', pt: 'pt-12'
+    };
+  }
+
+  if (t === 'FLORAL') {
+    return {
+      backdrop: '#1b2a1a', cardBg: '#fcfaf5', textColor: '#2D4F1E',
+      sealBg: '#2D4F1E', sealIconColor: '#fcfaf5', buttonBg: '#2D4F1E', buttonText: '#fcfaf5', guestBoxBg: 'rgba(0,0,0,0.05)',
+      bgImage: DECORATIVE.floralBanner, layout: 'fullCard', bgOpacity: 0.8, bgBlendMode: 'normal'
+    };
+  }
+
+  if (t === 'RUSTIC') {
+    return {
+      backdrop: '#253018', cardBg: '#f8f5ee', textColor: '#3a4f29',
+      sealBg: '#3a4f29', sealIconColor: '#f8f5ee', buttonBg: '#3a4f29', buttonText: '#f8f5ee', guestBoxBg: 'rgba(0,0,0,0.05)',
+      bgImage: DECORATIVE.decorRusticBoho, layout: 'cornerDecor', bgOpacity: 0.9
+    };
+  }
+
+  if (t === 'EMERALD') {
+    return {
+      backdrop: '#042b1f', cardBg: '#ECFDF5', textColor: '#064E3B',
+      sealBg: '#064E3B', sealIconColor: '#ECFDF5', buttonBg: '#064E3B', buttonText: '#ECFDF5', guestBoxBg: 'rgba(0,0,0,0.05)',
+      bgImage: DECORATIVE.decorEmeraldLeaves, layout: 'cornerDecor', bgOpacity: 0.8
+    };
+  }
+
+  if (t === 'LUXURY') {
+    return {
+      backdrop: '#050505', cardBg: '#111111', textColor: '#D4AF37',
+      sealBg: '#D4AF37', sealIconColor: '#111111', buttonBg: '#D4AF37', buttonText: '#111111', guestBoxBg: 'rgba(255,255,255,0.08)',
+      bgImage: DECORATIVE.luxuryGoldBg, layout: 'fullCard', bgOpacity: 0.7, bgBlendMode: 'normal'
+    };
+  }
+
+  if (t === 'MODERN') {
+    return {
+      backdrop: '#d1d5db', cardBg: '#f9fafb', textColor: '#1f2937',
+      sealBg: '#1f2937', sealIconColor: '#f9fafb', buttonBg: '#1f2937', buttonText: '#f9fafb', guestBoxBg: 'rgba(0,0,0,0.04)',
+      bgImage: DECORATIVE.modernAbstract, layout: 'fullCard', bgOpacity: 0.5, bgBlendMode: 'normal'
+    };
+  }
+
+  // MINIMAL
+  return {
+    backdrop: '#e5e5e5', cardBg: '#ffffff', textColor: '#111111',
+    sealBg: '#111111', sealIconColor: '#ffffff', buttonBg: '#111111', buttonText: '#ffffff', guestBoxBg: 'rgba(0,0,0,0.04)',
+    bgImage: DECORATIVE.minimalTexture, layout: 'fullCard', bgOpacity: 0.5, bgBlendMode: 'normal'
+  };
+};
 
 const WelcomeCover = ({ weddingData, templateId, onOpen }) => {
-  const [phase, setPhase] = useState('idle'); // idle | opening | done
+  const [isOpen, setIsOpen] = useState(false);
 
   // ── Extract data ───────────────────────────────────────────
   const groom = weddingData?.groom_short_name || weddingData?.groom_name || 'Chú Rể';
   const bride = weddingData?.bride_short_name || weddingData?.bride_name || 'Cô Dâu';
   const eventDate = weddingData?.wedding_date || weddingData?.events?.[0]?.event_time;
   const dt = useMemo(() => formatDate(eventDate), [eventDate]);
-  const coverImg = resolveCover(weddingData?.cover_image_path);
+  const guestName = weddingData?.guest_name || weddingData?.invitation?.guest_name;
 
   // ── Theme Configuration ─────────────────────────────────────
   const theme = useMemo(() => getThemeByTemplateId(templateId), [templateId]);
+  const config = useMemo(() => getCoverConfig(theme), [theme]);
+  const ThemeIcon = theme.icon || Heart;
 
   // ── Lock scroll while cover visible ──────────────────────
   useEffect(() => {
@@ -27,265 +103,158 @@ const WelcomeCover = ({ weddingData, templateId, onOpen }) => {
   }, []);
 
   const handleOpen = () => {
-    if (phase !== 'idle') return;
-    setPhase('opening');
+    setIsOpen(true);
     setTimeout(() => {
       document.body.style.overflow = '';
       if (onOpen) onOpen();
-      setPhase('done');
-    }, 1500);
+    }, 800);
   };
 
-  if (phase === 'done') return null;
-
-  const ThemeIcon = theme.icon;
+  if (isOpen && !onOpen) return null;
 
   return (
     <AnimatePresence>
-      <motion.div
-        className="fixed inset-0 z-[9999] flex flex-col items-center justify-center overflow-hidden"
-        style={{ backgroundColor: theme.bg }}
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        exit={{
-          opacity: 0,
-          transition: { duration: 1, ease: "easeInOut" }
-        }}
-      >
-        {/* Advanced Background Decoration */}
-        <div className="absolute inset-0 overflow-hidden pointer-events-none">
-          <BackgroundDecoration theme={theme} />
-        </div>
-
-        {/* Cinematic Split Doors Reveal */}
-        <AnimatePresence>
-          {phase === 'opening' && (
-            <>
-              {/* Top Door */}
-              <motion.div
-                initial={{ y: 0 }}
-                animate={{ y: '-100%' }}
-                transition={{ duration: 1.2, ease: [0.76, 0, 0.24, 1] }}
-                className="absolute inset-0 z-[60] origin-top"
-                style={{ backgroundColor: theme.bg }}
-              >
-                <div className="absolute bottom-0 w-full h-[1px] bg-white/10" />
-              </motion.div>
-              {/* Bottom Door */}
-              <motion.div
-                initial={{ y: 0 }}
-                animate={{ y: '100%' }}
-                transition={{ duration: 1.2, ease: [0.76, 0, 0.24, 1] }}
-                className="absolute inset-0 z-[60] origin-bottom"
-                style={{ backgroundColor: theme.bg }}
-              >
-                <div className="absolute top-0 w-full h-[1px] bg-white/10" />
-              </motion.div>
-            </>
+      {!isOpen && (
+        <motion.div
+          className="fixed inset-0 z-[9999] flex flex-col items-center justify-center p-4 sm:p-8 overflow-hidden"
+          style={{ backgroundColor: config.backdrop }}
+          initial={false}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0, scale: 1.05 }}
+          transition={{ duration: 0.8, ease: "easeInOut" }}
+        >
+          {/* Subtle Background Elements */}
+          {config.layout === 'floral' && (
+             <div className="absolute inset-0 pointer-events-none opacity-20 flex justify-between">
+                <Leaf size={40} className="absolute top-[10%] left-[20%] text-white opacity-20 -rotate-45" />
+                <Leaf size={24} className="absolute top-[30%] right-[15%] text-white opacity-20 rotate-12" />
+                <Leaf size={32} className="absolute bottom-[20%] left-[10%] text-white opacity-20 rotate-90" />
+             </div>
           )}
-        </AnimatePresence>
 
-        {/* Centered Card Container */}
-        <div className="relative w-full max-w-xl px-8 flex flex-col items-center z-50">
-          <motion.div
-            initial={{ scale: 0.9, opacity: 0, y: 30 }}
-            animate={{
-              scale: phase === 'opening' ? 1.1 : 1,
-              opacity: phase === 'opening' ? 0 : 1,
-              y: phase === 'opening' ? -50 : 0
+          {/* Modal Card Container */}
+          <motion.div 
+            className={`relative w-full max-w-xl shadow-lg rounded-lg flex flex-col items-center text-center px-6 ${config.pt || 'py-12 sm:py-16'} z-10`}
+            style={{ 
+              backgroundColor: config.cardBg,
+              minHeight: '400px'
             }}
-            transition={{
-              duration: phase === 'opening' ? 0.8 : 1.2,
-              ease: [0.16, 1, 0.3, 1]
-            }}
-            className="relative w-full aspect-[4/5.5] sm:aspect-[4/5.8] bg-white shadow-[0_60px_120px_-20px_rgba(0,0,0,0.3)] rounded-[2.5rem] overflow-hidden group border border-white/20"
+            initial={{ y: 50, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
           >
-            {/* Background Image with Ken Burns Effect */}
-            <div className="absolute inset-0 z-0">
-              <motion.img
-                src={coverImg}
-                alt="Cover"
-                className="w-full h-full object-cover brightness-[0.4]"
-                animate={{ scale: [1, 1.1] }}
-                transition={{ duration: 20, repeat: Infinity, repeatType: "reverse", ease: "linear" }}
+            {/* Template Specific Decorations */}
+            {config.bgImage && ['floral', 'traditional', 'fullCard'].includes(config.layout) && (
+              <div
+                className="absolute inset-0 pointer-events-none rounded-lg overflow-hidden"
+                style={{
+                  backgroundImage: `url(${config.bgImage})`,
+                  backgroundSize: 'cover',
+                  backgroundPosition: 'center',
+                  opacity: config.bgOpacity || 0.3,
+                  mixBlendMode: config.bgBlendMode || 'normal'
+                }}
               />
-              <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-transparent to-black" />
+            )}
+
+            {config.bgImage && config.layout === 'cornerDecor' && (
+              <div className="absolute inset-0 pointer-events-none rounded-lg overflow-hidden">
+                <img 
+                  src={config.bgImage} 
+                  alt="" 
+                  className="absolute top-0 left-0 w-[55%] max-w-[280px] object-contain" 
+                  style={{ opacity: config.bgOpacity }}
+                />
+                <img 
+                  src={config.bgImage} 
+                  alt="" 
+                  className="absolute bottom-0 right-0 w-[55%] max-w-[280px] object-contain transform rotate-180" 
+                  style={{ opacity: config.bgOpacity }}
+                />
+              </div>
+            )}
+
+            {config.bgImage && config.layout === 'fullCard_luxury' && (
+              <div
+                className="absolute inset-0 pointer-events-none rounded-lg overflow-hidden"
+                style={{
+                  backgroundImage: `url(${config.bgImage})`,
+                  backgroundSize: 'cover',
+                  backgroundPosition: 'center',
+                  opacity: config.bgOpacity || 0.4,
+                  mixBlendMode: 'screen'
+                }}
+              />
+            )}
+
+            {(config.layout === 'luxury' || config.layout === 'fullCard_luxury') && (
+               <div className="absolute inset-4 border border-solid pointer-events-none opacity-30 rounded-md" style={{ borderColor: config.textColor }} />
+            )}
+
+            {/* Seal / Emblem */}
+            <div
+              className="absolute left-1/2 -translate-x-1/2 -top-[25px] sm:-top-[30px] w-[50px] h-[50px] sm:w-[60px] sm:h-[60px] rounded-full flex items-center justify-center shadow-lg z-20"
+              style={{ backgroundColor: config.sealBg }}
+            >
+              <ThemeIcon size={24} style={{ color: config.sealIconColor }} />
             </div>
 
-            {/* Content Overlay */}
-            <div className="absolute inset-0 z-10 flex flex-col items-center justify-between py-12 px-8 sm:py-16 sm:px-12 text-white text-center">
-
-              <motion.div
-                initial={{ opacity: 0, y: -20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.6 }}
-                className="flex flex-col items-center gap-4"
-              >
-                <span className="text-[11px] uppercase tracking-[0.8em] font-black text-white/70">The Wedding Of</span>
-                <div className="flex items-center gap-4">
-                  <div className="w-8 h-[1px] bg-white/30" />
-                  <ThemeIcon size={16} style={{ color: theme.primary }} className="opacity-80" />
-                  <div className="w-8 h-[1px] bg-white/30" />
-                </div>
-              </motion.div>
-
-              <div className="space-y-10 w-full">
-                <motion.div
-                  className="flex flex-col items-center"
-                  initial={{ opacity: 0, scale: 0.9 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  transition={{ delay: 0.8, duration: 1 }}
+            {/* Content */}
+            <div className="relative z-10 flex flex-col items-center justify-center w-full mt-4">
+              <div className="mb-2 p-10 rounded-full" style={{ background: `radial-gradient(circle, ${config.cardBg} 40%, transparent 100%)`, opacity: 0.9 }}>
+                <h2
+                  className="text-4xl sm:text-5xl font-bold leading-tight"
+                  style={{ color: config.textColor, fontFamily: theme.font }}
                 >
-                  <h1 className="text-4xl sm:text-6xl font-bold tracking-tighter leading-none" style={{ fontFamily: '"Playfair Display", serif' }}>
-                    <span className="block mb-2">{groom}</span>
-                    <span className="flex items-center justify-center gap-4 my-3">
-                      <span className="w-6 h-[1px] bg-white/30" />
-                      <span className="text-xl italic font-light text-white/40">&</span>
-                      <span className="w-6 h-[1px] bg-white/30" />
-                    </span>
-                    <span className="block mt-2" style={{ color: theme.primary || '#D4AF37' }}>{bride}</span>
-                  </h1>
-                </motion.div>
-
-                <motion.div
-                  initial={{ opacity: 0, y: 10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 1.2 }}
-                  className="space-y-4"
-                >
-                  <div className="flex items-center justify-center gap-5 text-[12px] tracking-[0.4em] font-light text-white/80 uppercase">
-                    <span>{dt.day}</span>
-                    <span className="text-white/30">|</span>
-                    <span>{dt.month}</span>
-                    <span className="text-white/30">|</span>
-                    <span>{dt.year}</span>
-                  </div>
-                  <div className="w-12 h-[1px] bg-white/20 mx-auto" />
-                  <p className="text-[11px] uppercase tracking-[0.3em] font-bold text-white/50">{weddingData?.lunar_date_text || 'Save the Date'}</p>
-                </motion.div>
+                  {groom} <br />
+                  <span className="text-xl sm:text-2xl italic font-light my-2 block opacity-80">&</span>
+                  {bride}
+                </h2>
               </div>
 
-              <motion.div
-                initial={{ opacity: 0, y: 30 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 1.5 }}
-                className="w-full flex flex-col items-center gap-8"
-              >
-                <div className="h-[1px] w-12 bg-white/20" />
+              <div className="flex items-center justify-center gap-3 my-4 w-full">
+                <div className="w-16 h-[1px] opacity-40" style={{ backgroundColor: config.textColor }} />
+                <Heart size={12} style={{ color: config.textColor }} className="opacity-60" />
+                <div className="w-16 h-[1px] opacity-40" style={{ backgroundColor: config.textColor }} />
+              </div>
 
-                <button
-                  onClick={handleOpen}
-                  disabled={phase === 'opening'}
-                  className="group relative w-full sm:w-auto min-w-[220px] py-4 px-8 rounded-full transition-all duration-700 overflow-hidden shadow-[0_30px_60px_-15px_rgba(0,0,0,0.4)] border border-white/10 hover:border-white/40 active:scale-95"
-                  style={{ backgroundColor: 'white' }}
-                >
-                  <span className="relative z-10 flex items-center justify-center gap-4 text-[11px] font-black uppercase tracking-[0.3em] text-slate-950">
-                    {phase === 'opening' ? (
-                      <span className="flex items-center gap-2">
-                        <motion.span animate={{ rotate: 360 }} transition={{ repeat: Infinity, duration: 1, ease: "linear" }} className="inline-block w-3 h-3 border-2 border-slate-900 border-t-transparent rounded-full" />
-                        ĐANG MỞ...
-                      </span>
-                    ) : (
-                      <>
-                        MỞ THIỆP CƯỚI
-                        <MailOpen size={16} className="group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
-                      </>
-                    )}
-                  </span>
-                  {/* Glassmorphism Hover Effect */}
-                  <div className="absolute inset-0 bg-slate-900 opacity-0 group-hover:opacity-5 transition-opacity" />
-                </button>
+              <p className="text-sm sm:text-base font-medium tracking-wide mb-6" style={{ color: config.textColor }}>
+                {dt.day} tháng {dt.month}, {dt.year}
+              </p>
 
-                <p className="text-[11px] uppercase tracking-[0.4em] text-white/50 font-bold italic">
-                  Trân trọng kính mời
+              <div className="flex flex-col items-center mb-8">
+                <p className="text-xs sm:text-sm tracking-[0.1em] mb-4 opacity-90 font-medium" style={{ color: config.textColor }}>
+                  {config.layout === 'traditional' ? 'Kính mời' : 'Thân Mời'}
                 </p>
-              </motion.div>
-            </div>
 
-            {/* Corner Decorative Ornaments */}
-            <div className="absolute inset-8 border border-white/5 pointer-events-none z-20">
-              <div className="absolute top-0 left-0 w-8 h-8 border-t border-l border-white/30 rounded-tl-2xl" />
-              <div className="absolute top-0 right-0 w-8 h-8 border-t border-r border-white/30 rounded-tr-2xl" />
-              <div className="absolute bottom-0 left-0 w-8 h-8 border-b border-l border-white/30 rounded-bl-2xl" />
-              <div className="absolute bottom-0 right-0 w-8 h-8 border-b border-r border-white/30 rounded-br-2xl" />
+                {guestName && (
+                  <div
+                    className="px-6 py-2 rounded mb-3 font-semibold text-sm sm:text-base"
+                    style={{ backgroundColor: config.guestBoxBg, color: config.textColor }}
+                  >
+                    {guestName}
+                  </div>
+                )}
+
+                {guestName && (
+                  <p className="text-xs opacity-80" style={{ color: config.textColor }}>
+                    đến dự buổi tiệc chung vui cùng gia đình
+                  </p>
+                )}
+              </div>
+
+              <button
+                onClick={handleOpen}
+                className="px-8 py-2.5 rounded-full font-bold text-[13px] transition-transform hover:scale-105 active:scale-95 shadow-md"
+                style={{ backgroundColor: config.buttonBg, color: config.buttonText }}
+              >
+                Mở thiệp
+              </button>
             </div>
           </motion.div>
-
-          <motion.div
-            className="mt-10 flex flex-col items-center gap-2"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1, y: [0, 6, 0] }}
-            transition={{
-              opacity: { delay: 2, duration: 1 },
-              y: { duration: 4, repeat: Infinity, ease: "easeInOut" }
-            }}
-          >
-            <span className="text-[11px] uppercase tracking-[0.6em] font-black text-white/70">Kéo xuống để xem</span>
-            <ChevronDown size={18} className="text-white/70" />
-          </motion.div>
-        </div>
-
-        {/* Cinematic Sparkles Overlay */}
-        <div className="absolute inset-0 pointer-events-none z-40 opacity-20">
-          <FloatingDecorativeElements count={10} type="sparkle" color="#FFFFFF" />
-        </div>
-      </motion.div>
-    </AnimatePresence>
-  );
-};
-
-const BackgroundDecoration = ({ theme }) => {
-  const Icon = theme.icon;
-
-  const floaters = useMemo(() => Array.from({ length: 12 }, (_, i) => ({
-    id: i,
-    x: Math.random() * 100,
-    y: Math.random() * 100,
-    size: Math.random() * 25 + 15,
-    duration: Math.random() * 25 + 15,
-    delay: Math.random() * 10
-  })), []);
-
-  return (
-    <div className="absolute inset-0">
-      <div
-        className="absolute top-[-20%] left-[-20%] w-[80vw] h-[80vw] rounded-full blur-[150px] opacity-[0.15]"
-        style={{ backgroundColor: theme.primary }}
-      />
-      <div
-        className="absolute bottom-[-20%] right-[-20%] w-[80vw] h-[80vw] rounded-full blur-[150px] opacity-[0.1]"
-        style={{ backgroundColor: theme.primary }}
-      />
-
-      {floaters.map(f => (
-        <motion.div
-          key={f.id}
-          className="absolute"
-          style={{
-            left: `${f.x}%`,
-            top: `${f.y}%`,
-            color: theme.primary,
-            opacity: 0.08
-          }}
-          animate={{
-            y: [0, -50, 0],
-            rotate: [0, 360],
-            opacity: [0.08, 0.15, 0.08],
-            scale: [1, 1.1, 1]
-          }}
-          transition={{
-            duration: f.duration,
-            repeat: Infinity,
-            delay: f.delay,
-            ease: "easeInOut"
-          }}
-        >
-          <Icon size={f.size} />
         </motion.div>
-      ))}
-
-      <div className="absolute inset-0 opacity-[0.05] pointer-events-none mix-blend-overlay" style={{ backgroundImage: `url("https://www.transparenttextures.com/patterns/natural-paper.png")` }} />
-    </div>
+      )}
+    </AnimatePresence>
   );
 };
 

@@ -63,7 +63,7 @@ const ModernPhotoStoryTemplate = ({ weddingData }) => {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 1.5 }}
-      className="min-h-screen font-serif selection:bg-black selection:text-white antialiased overflow-x-hidden"
+      className="min-min-h-[85vh] font-serif selection:bg-black selection:text-white antialiased overflow-x-hidden"
       style={{ backgroundColor: secondaryColor, color: primaryColor }}
     >
       <FloatingDecorativeElements count={8} type="circle" color="#000000" />
@@ -92,7 +92,7 @@ const ModernPhotoStoryTemplate = ({ weddingData }) => {
       )}
 
       {/* ══ HERO SECTION ══════════════════════════════════════ */}
-      <section ref={heroRef} className="relative h-screen overflow-hidden bg-black flex items-center justify-center">
+      <section ref={heroRef} className="relative min-h-[85vh] overflow-hidden bg-black flex items-center justify-center">
         <motion.div
           style={{ y: heroImageY, scale: heroScale }}
           className="absolute inset-0 z-0"
@@ -111,7 +111,7 @@ const ModernPhotoStoryTemplate = ({ weddingData }) => {
             transition={{ duration: 1.5, ease: "easeOut" }}
           >
             <p className="text-[11px] font-black uppercase tracking-[1em] mb-10 text-white/60">A Cinematic Masterpiece</p>
-            <h1 className="text-5xl sm:text-7xl md:text-8xl font-bold tracking-tighter leading-[0.8] mb-10" style={{ fontFamily: '"Playfair Display", serif' }}>
+            <h1 className="text-5xl sm:text-5xl md:text-6xl font-bold tracking-tighter leading-[0.8] mb-10" style={{ fontFamily: '"Playfair Display", serif' }}>
               {groom_name}
               <span className="flex items-center justify-center gap-8 my-10">
                 <div className="h-[1px] flex-1 max-w-[100px] bg-white/20" />
@@ -145,7 +145,7 @@ const ModernPhotoStoryTemplate = ({ weddingData }) => {
       <main className="relative z-20 w-full max-w-6xl mx-auto px-6 sm:px-12">
 
         {/* ══ INTRO QUOTE ═════════════════════════════════════ */}
-        <section className="py-24 text-center relative overflow-hidden">
+        <section className="py-12 text-center relative overflow-hidden">
           <ScrollReveal variant="blur-reveal">
             <div className="max-w-4xl mx-auto px-6">
               <Quote size={28} className="mx-auto mb-10 opacity-30 text-black" />
@@ -158,15 +158,15 @@ const ModernPhotoStoryTemplate = ({ weddingData }) => {
         </section>
 
         {/* ══ FAMILIES ═════════════════════════════════════════ */}
-        <section className="py-24 px-6">
+        <section className="py-12 px-6">
           <ScrollReveal variant="fade-up">
-            <div className="text-center mb-20">
+            <div className="text-center mb-10">
               <span className="text-[11px] uppercase tracking-[0.8em] font-black text-black/40 mb-6 block">Legacy of Love</span>
               <div className="h-[1px] w-20 mx-auto bg-black/10" />
             </div>
           </ScrollReveal>
 
-          <div className="grid md:grid-cols-2 gap-12 sm:gap-24 max-w-5xl mx-auto">
+          <div className="grid md:grid-cols-2 gap-12 sm:gap-12 max-w-5xl mx-auto">
             {/* Groom side */}
             <ScrollReveal variant="mask-reveal">
               <div className="flex flex-col items-center text-center group">
@@ -219,7 +219,7 @@ const ModernPhotoStoryTemplate = ({ weddingData }) => {
 
         {/* ══ LOVE STORY ══════════════════════════════════════ */}
         {love_story && (
-          <section className="py-24 px-8 bg-slate-50/80 rounded-[2.5rem] my-24 border border-slate-100">
+          <section className="py-12 px-8 bg-slate-50/80 rounded-[2.5rem] my-12 border border-slate-100">
             <ScrollReveal variant="blur-reveal">
               <div className="max-w-4xl mx-auto text-center">
                 <span className="text-[11px] uppercase tracking-[0.8em] font-black text-black/30 mb-8 block">A Modern Narrative</span>
@@ -236,9 +236,9 @@ const ModernPhotoStoryTemplate = ({ weddingData }) => {
         )}
 
         {/* ══ EVENTS TIMELINE ═══════════════════════════════════ */}
-        <section className="py-24 px-6">
+        <section className="py-12 px-6">
           <ScrollReveal variant="fade-up">
-            <div className="text-center mb-20">
+            <div className="text-center mb-10">
               <h2 className="text-5xl sm:text-[6rem] font-bold tracking-tighter mb-6 text-slate-950" style={{ fontFamily: '"Playfair Display", serif' }}>Timeline</h2>
               <div className="flex items-center justify-center gap-6">
                 <div className="h-[1px] w-12 bg-black/10" />
@@ -251,7 +251,7 @@ const ModernPhotoStoryTemplate = ({ weddingData }) => {
           <div className="grid gap-8 max-w-5xl mx-auto">
             {events.map((event, idx) => (
               <ScrollReveal key={event.id} delay={idx * 0.2} variant="mask-reveal">
-                <div className="group relative p-8 sm:p-14 rounded-[2.5rem] border border-slate-100 bg-white hover:shadow-[0_60px_120px_-20px_rgba(0,0,0,0.06)] transition-all duration-700 flex flex-col md:flex-row items-center gap-10 md:gap-16 shadow-sm overflow-hidden">
+                <div className="group relative p-8 sm:p-14 rounded-[2.5rem] border border-slate-100 bg-white hover:shadow-[0_60px_120px_-20px_rgba(0,0,0,0.06)] transition-all duration-700 flex flex-col md:flex-row items-center gap-10 md:gap-8 shadow-sm overflow-hidden">
                   {/* Subtle Number Background */}
                   <div className="absolute -left-8 top-1/2 -translate-y-1/2 text-[10rem] font-black text-black/[0.02] pointer-events-none select-none italic" style={{ fontFamily: '"Playfair Display", serif' }}>
                     0{idx + 1}
@@ -305,9 +305,9 @@ const ModernPhotoStoryTemplate = ({ weddingData }) => {
         </section>
 
         {/* ══ GALLERY ═════════════════════════════════════════ */}
-        <section className="py-24">
+        <section className="py-12">
           <ScrollReveal variant="fade-up">
-            <div className="text-center mb-20 px-6">
+            <div className="text-center mb-10 px-6">
               <span className="text-[11px] uppercase tracking-[0.8em] font-black text-black/30 mb-4 block">Photo Lookbook</span>
               <h2 className="text-5xl sm:text-[6rem] font-bold tracking-tighter mb-8 text-slate-950" style={{ fontFamily: '"Playfair Display", serif' }}>Gallery</h2>
             </div>
@@ -329,15 +329,15 @@ const ModernPhotoStoryTemplate = ({ weddingData }) => {
 
         {/* ══ GIFTS ═══════════════════════════════════════════ */}
         {bankAccounts.length > 0 && (
-          <section className="py-24 px-8 text-center bg-white rounded-[3rem] my-24 shadow-xl border border-slate-50 relative overflow-hidden">
+          <section className="py-12 px-8 text-center bg-white rounded-[3rem] my-12 shadow-xl border border-slate-50 relative overflow-hidden">
             <ScrollReveal variant="blur-reveal">
               <h2 className="text-[11px] font-black uppercase tracking-[1em] text-black/30 mb-10">Registry</h2>
               <h3 className="text-4xl sm:text-[6rem] font-bold mb-12 tracking-tighter text-slate-950" style={{ fontFamily: '"Playfair Display", serif' }}>Hộp Mừng Cưới</h3>
-              <p className="max-w-2xl mx-auto text-lg sm:text-xl font-light italic text-slate-600 mb-16 leading-relaxed">
+              <p className="max-w-2xl mx-auto text-lg sm:text-xl font-light italic text-slate-600 mb-8 leading-relaxed">
                 "Sự hiện diện của quý khách là món quà trân quý nhất. <br className="hidden sm:block" />
                 Gia đình xin chân thành cảm ơn mọi tấm lòng và lời chúc mừng."
               </p>
-              <div className="flex flex-wrap justify-center gap-10 sm:gap-16">
+              <div className="flex flex-wrap justify-center gap-10 sm:gap-8">
                 {bankAccounts.map(b => (
                   <div key={b.id} className="transition-transform hover:scale-[1.02]">
                     <GiftEnvelope bank={b} primaryColor={primaryColor} />
@@ -349,12 +349,12 @@ const ModernPhotoStoryTemplate = ({ weddingData }) => {
         )}
 
         {/* ══ RSVP FORM ════════════════════════════════════════ */}
-        <section className="py-24 px-8">
+        <section className="py-12 px-8">
           <ScrollReveal variant="mask-reveal">
-            <div className="max-w-6xl mx-auto flex flex-col lg:flex-row items-center gap-16 lg:gap-24">
+            <div className="max-w-6xl mx-auto flex flex-col lg:flex-row items-center gap-8 lg:gap-12">
               <div className="w-full lg:w-1/2 text-center lg:text-left">
                 <span className="text-[11px] uppercase tracking-[0.8em] font-black text-black/30 mb-6 block">R.S.V.P</span>
-                <h2 className="text-6xl sm:text-7xl font-black tracking-tighter mb-10 leading-[0.85]" style={{ fontFamily: '"Playfair Display", serif' }}>Bạn Sẽ <br /> Đến Chứ?</h2>
+                <h2 className="text-6xl sm:text-5xl font-black tracking-tighter mb-10 leading-[0.85]" style={{ fontFamily: '"Playfair Display", serif' }}>Bạn Sẽ <br /> Đến Chứ?</h2>
                 <p className="text-lg text-slate-600 font-light leading-relaxed mb-12 max-w-md italic">
                   Xác nhận sự hiện diện của bạn để chúng tôi có thể đón tiếp quý vị một cách chu đáo và trang trọng nhất.
                 </p>
@@ -398,10 +398,10 @@ const ModernPhotoStoryTemplate = ({ weddingData }) => {
         </section>
 
         {/* ══ FOOTER ═══════════════════════════════════════════ */}
-        <footer className="py-24 text-center relative overflow-hidden border-t border-slate-100">
+        <footer className="py-12 text-center relative overflow-hidden border-t border-slate-100">
           <ScrollReveal variant="blur-reveal">
             <p className="text-[11px] uppercase tracking-[1.2em] font-black mb-10 text-black/20">The Eternal Union</p>
-            <h2 className="text-5xl sm:text-7xl font-black tracking-tighter text-slate-950 mb-16 opacity-30" style={{ fontFamily: '"Playfair Display", serif' }}>
+            <h2 className="text-5xl sm:text-5xl font-black tracking-tighter text-slate-950 mb-8 opacity-30" style={{ fontFamily: '"Playfair Display", serif' }}>
               {groom_name} <span className="text-black/10 italic font-light mx-4">&</span> {bride_name}
             </h2>
             <div className="flex items-center justify-center gap-8 opacity-20">
@@ -409,7 +409,7 @@ const ModernPhotoStoryTemplate = ({ weddingData }) => {
               <Heart size={20} />
               <div className="h-[1px] w-16 bg-black" />
             </div>
-            <p className="mt-24 text-[10px] text-black/10 uppercase tracking-[1.2em] font-black">Powered by iWedding Story Collection</p>
+            <p className="mt-12 text-[10px] text-black/10 uppercase tracking-[1.2em] font-black">Powered by iWedding Story Collection</p>
           </ScrollReveal>
         </footer>
       </main>
