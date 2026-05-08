@@ -24,6 +24,7 @@ const TemplatePreviewPage = () => {
     events: previewEvents,
     photos: previewPhotos,
     bankAccounts: previewBankAccounts,
+    wishes: mockData.wedding_wishes.filter(w => w.wedding_id === previewData.id),
     theme_config_json: template.default_config_json // Use template's default colors/fonts
   };
 

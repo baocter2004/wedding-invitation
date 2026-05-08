@@ -6,30 +6,29 @@ export const mockData = {
   templates: [
     {
       id: 1,
-      code: 'lang-man-hoa',
-      name: 'Lãng Mạn Hoa',
-      category: 'floral',
-      component_name: 'lang-man-hoa',
+      code: 'traditional',
+      name: 'Truyền Thống Đỏ',
+      category: 'traditional',
+      component_name: 'traditional',
       default_config_json: {
-        primary_color: '#D98BA5',
-        secondary_color: '#FFF7F9',
+        primary_color: '#B91C1C',
+        secondary_color: '#FFF1D6',
         font_heading: 'Playfair Display',
-        font_body: 'Inter',
-        music_url: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3'
+        font_body: 'Inter'
       },
-      supported_sections_json: ['hero', 'intro', 'couple', 'story', 'events', 'gallery', 'bank', 'rsvp'],
-      thumbnail_path: 'https://images.unsplash.com/photo-1511285560929-80b456fea0bc?q=80&w=2069&auto=format&fit=crop',
-      preview_image_path: 'https://images.unsplash.com/photo-1511285560929-80b456fea0bc?q=80&w=2069&auto=format&fit=crop',
+      supported_sections_json: ['hero', 'intro', 'couple', 'events', 'gallery', 'bank', 'rsvp'],
+      thumbnail_path: 'https://images.unsplash.com/photo-1583939003579-730e3918a45a?q=80&w=1974&auto=format&fit=crop',
+      preview_image_path: 'https://images.unsplash.com/photo-1583939003579-730e3918a45a?q=80&w=1974&auto=format&fit=crop',
       is_premium: false,
       price: 0,
       status: 'active',
     },
     {
       id: 2,
-      code: 'toi-gian-trang',
+      code: 'modern',
       name: 'Tối Giản Trắng',
       category: 'minimalist',
-      component_name: 'toi-gian-trang',
+      component_name: 'modern',
       default_config_json: {
         primary_color: '#111827',
         secondary_color: '#FFFFFF',
@@ -45,129 +44,14 @@ export const mockData = {
     },
     {
       id: 3,
-      code: 'truyen-thong-do',
-      name: 'Truyền Thống Đỏ',
-      category: 'traditional',
-      component_name: 'truyen-thong-do',
-      default_config_json: {
-        primary_color: '#B91C1C',
-        secondary_color: '#FFF1D6',
-        font_heading: 'Playfair Display',
-        font_body: 'Inter'
-      },
-      supported_sections_json: ['hero', 'intro', 'couple', 'events', 'gallery', 'bank', 'rsvp'],
-      thumbnail_path: 'https://images.unsplash.com/photo-1583939003579-730e3918a45a?q=80&w=1974&auto=format&fit=crop',
-      preview_image_path: 'https://images.unsplash.com/photo-1583939003579-730e3918a45a?q=80&w=1974&auto=format&fit=crop',
-      is_premium: false,
-      price: 0,
-      status: 'active',
-    },
-    {
-      id: 4,
-      code: 'hoang-gia-vang',
-      name: 'Hoàng Gia Vàng',
-      category: 'luxury',
-      component_name: 'hoang-gia-vang',
-      default_config_json: {
-        primary_color: '#C8A951',
-        secondary_color: '#111111',
-        font_heading: 'Cormorant Garamond',
-        font_body: 'Inter'
-      },
-      supported_sections_json: ['hero', 'intro', 'events', 'bank'],
-      thumbnail_path: 'https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=2070&auto=format&fit=crop',
-      preview_image_path: 'https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=2070&auto=format&fit=crop',
-      is_premium: true,
-      price: 199000,
-      status: 'active',
-    },
-    {
-      id: 5,
-      code: 'phim-anh-hien-dai',
-      name: 'Phim Ảnh Hiện Đại',
-      category: 'modern',
-      component_name: 'phim-anh-hien-dai',
-      default_config_json: {
-        primary_color: '#111827',
-        secondary_color: '#F8FAFC',
-        font_heading: 'Inter',
-        font_body: 'Inter'
-      },
-      supported_sections_json: ['hero', 'story', 'gallery', 'events', 'bank'],
-      thumbnail_path: 'https://images.unsplash.com/photo-1520854221256-17451cc331bf?q=80&w=2070&auto=format&fit=crop',
-      preview_image_path: 'https://images.unsplash.com/photo-1520854221256-17451cc331bf?q=80&w=2070&auto=format&fit=crop',
-      is_premium: true,
-      price: 150000,
-      status: 'active',
-    },
-    {
-      id: 6,
-      code: 'moc-mac-xanh',
-      name: 'Mộc Mạc Xanh',
-      category: 'floral',
-      component_name: 'moc-mac-xanh',
-      default_config_json: {
-        primary_color: '#2D4F1E',
-        secondary_color: '#FDFCF8',
-        accent_color: '#A3B18A',
-        font_heading: 'Playfair Display',
-        font_body: 'Inter'
-      },
-      supported_sections_json: ['hero', 'intro', 'couple', 'story', 'events', 'gallery', 'bank', 'rsvp', 'wishes'],
-      thumbnail_path: 'https://images.unsplash.com/photo-1544833058-e70f9ca2bdc5?q=80&w=1974&auto=format&fit=crop',
-      preview_image_path: 'https://images.unsplash.com/photo-1544833058-e70f9ca2bdc5?q=80&w=1974&auto=format&fit=crop',
-      is_premium: true,
-      price: 250000,
-      status: 'active',
-    },
-    {
-      id: 7,
-      code: 'sang-trong-truyen-thong',
-      name: 'Sang Trọng Truyền Thống',
-      category: 'traditional',
-      component_name: 'sang-trong-truyen-thong',
-      default_config_json: {
-        primary_color: '#8B0000',
-        secondary_color: '#C8A951',
-        font_heading: 'Playfair Display',
-        font_body: 'Be Vietnam Pro'
-      },
-      supported_sections_json: ['hero', 'intro', 'couple', 'events', 'bank'],
-      thumbnail_path: 'https://images.unsplash.com/photo-1583939003579-730e3918a45a?q=80&w=1974&auto=format&fit=crop',
-      preview_image_path: 'https://images.unsplash.com/photo-1583939003579-730e3918a45a?q=80&w=1974&auto=format&fit=crop',
-      is_premium: true,
-      price: 300000,
-      status: 'active',
-    },
-    {
-      id: 8,
-      code: 'phuong-hoang-lua',
-      name: 'Phượng Hoàng Lửa',
-      category: 'traditional',
-      component_name: 'phuong-hoang-lua',
-      default_config_json: {
-        primary_color: '#B00000',
-        secondary_color: '#F8E2AF',
-        font_heading: 'Playfair Display',
-        font_body: 'Be Vietnam Pro'
-      },
-      supported_sections_json: ['hero', 'intro', 'couple', 'events', 'bank'],
-      thumbnail_path: 'https://images.unsplash.com/photo-1583939003579-730e3918a45a?q=80&w=1974&auto=format&fit=crop',
-      preview_image_path: 'https://images.unsplash.com/photo-1583939003579-730e3918a45a?q=80&w=1974&auto=format&fit=crop',
-      is_premium: true,
-      price: 280000,
-      status: 'active',
-    },
-    {
-      id: 9,
-      code: 'hien-dai-luc-bao',
+      code: 'emerald',
       name: 'Hiện Đại Lục Bảo',
       category: 'modern',
-      component_name: 'hien-dai-luc-bao',
+      component_name: 'emerald',
       default_config_json: {
-        primary_color: '#00B14F',
+        primary_color: '#064E3B',
         secondary_color: '#F4F7F6',
-        font_heading: 'Inter',
+        font_heading: 'Playfair Display',
         font_body: 'Be Vietnam Pro'
       },
       supported_sections_json: ['hero', 'intro', 'events', 'gallery', 'bank', 'rsvp'],
@@ -182,7 +66,7 @@ export const mockData = {
     {
       id: 1,
       user_id: 2,
-      template_id: 6,
+      template_id: 3,
       slug: 'minh-anh-hoang-nam',
       title: 'Minh Anh & Hoàng Nam',
       bride_name: 'Minh Anh',
@@ -282,6 +166,8 @@ export const mockData = {
     { id: 1, wedding_id: 1, guest_name: 'Nguyễn Tuấn', attendance_status: 'attending', guest_count: 2, message: 'Chúc hai bạn trăm năm hạnh phúc!' }
   ],
   wedding_wishes: [
-    { id: 1, wedding_id: 1, guest_name: 'Hoàng Tuấn Anh', message: 'Chúc hai bạn mãi mãi hạnh phúc!', is_approved: true }
+    { id: 1, wedding_id: 1, guest_name: 'Hoàng Tuấn Anh', message: 'Chúc hai bạn mãi mãi hạnh phúc! Một khởi đầu mới tràn đầy niềm vui và sự sẻ chia.', created_at: '2026-05-01T10:00:00Z' },
+    { id: 2, wedding_id: 1, guest_name: 'Minh Thư', message: 'Sớm có quý tử nhé hai bạn! Buổi lễ thật sự rất xúc động.', created_at: '2026-05-02T14:30:00Z' },
+    { id: 3, wedding_id: 1, guest_name: 'Gia đình Bác Ba', message: 'Chúc mừng hạnh phúc hai cháu. Chúc hai cháu trăm năm tình viên mãn, bạc đầu nghĩa phu thê.', created_at: '2026-05-03T09:15:00Z' }
   ]
 };

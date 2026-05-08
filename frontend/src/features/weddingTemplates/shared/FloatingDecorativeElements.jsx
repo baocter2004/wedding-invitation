@@ -1,11 +1,12 @@
 import React, { useMemo } from 'react';
 import { motion } from 'framer-motion';
+import { Heart, Leaf } from 'lucide-react';
 
 const FloatingDecorativeElements = ({ count = 12, type = 'heart', color = '#7F1D1D' }) => {
   const elements = useMemo(() => {
     return Array.from({ length: count }).map((_, i) => ({
       id: i,
-      size: Math.random() * 20 + 10,
+      size: Math.random() * 24 + 12,
       left: `${Math.random() * 100}%`,
       top: `${Math.random() * 100}%`,
       duration: Math.random() * 20 + 20,
@@ -19,7 +20,7 @@ const FloatingDecorativeElements = ({ count = 12, type = 'heart', color = '#7F1D
       {elements.map((el) => (
         <motion.div
           key={el.id}
-          className="absolute"
+          className="absolute flex items-center justify-center"
           initial={{
             x: el.left,
             y: '110%',
@@ -37,21 +38,20 @@ const FloatingDecorativeElements = ({ count = 12, type = 'heart', color = '#7F1D
             delay: el.delay,
             ease: "linear"
           }}
-          style={{ width: el.size, height: el.size }}
+          style={{ 
+            width: el.size, 
+            height: el.size,
+            color: color
+          }}
         >
           {type === 'heart' ? (
-            <svg viewBox="0 0 24 24" fill={color}>
-              <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" />
-            </svg>
+            <Heart size={el.size} fill="currentColor" />
+          ) : type === 'leaf' ? (
+            <Leaf size={el.size} fill="currentColor" />
           ) : (
             <div
-              style={{
-                width: '100%',
-                height: '100%',
-                backgroundColor: color,
-                borderRadius: '50%',
-                filter: 'blur(2px)'
-              }}
+              className="w-full h-full rounded-full blur-[2px]"
+              style={{ backgroundColor: 'currentColor' }}
             />
           )}
         </motion.div>
@@ -61,3 +61,4 @@ const FloatingDecorativeElements = ({ count = 12, type = 'heart', color = '#7F1D
 };
 
 export default FloatingDecorativeElements;
+

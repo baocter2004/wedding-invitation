@@ -8,7 +8,6 @@ const RegisterPage = () => {
   const navigate = useNavigate();
 
   const onSubmit = (data) => {
-    console.log(data);
     // Mock register redirect
     navigate('/customer/dashboard');
   };

@@ -5,6 +5,7 @@ import ScrollReveal from '../shared/ScrollReveal';
 import GiftEnvelope from '../shared/GiftEnvelope';
 import Countdown from '../shared/Countdown';
 import FloatingDecorativeElements from '../shared/FloatingDecorativeElements';
+import Guestbook from '../shared/Guestbook';
 import { resolveGallery, resolveCover, formatDate, PORTRAITS } from '../../../assets/images';
 
 const MinimalWhiteTemplate = ({ weddingData }) => {
@@ -101,14 +102,14 @@ const MinimalWhiteTemplate = ({ weddingData }) => {
             initial={{ opacity: 0, y: -15 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1.2 }}
-            className="text-[11px] uppercase tracking-[1em] font-black text-slate-500 mb-10"
+            className="text-xs uppercase tracking-[0.8em] font-black text-slate-500 mb-10"
           >
             A Pure Journey of Love
           </motion.p>
 
           <motion.div
             style={{ scale: heroImageScale }}
-            className="relative w-full max-w-sm sm:max-w-md aspect-[3/4] mb-8 p-4 bg-white shadow-[0_40px_80px_-15px_rgba(0,0,0,0.1)] rounded-sm border border-slate-100"
+            className="relative w-full max-w-sm sm:max-w-md aspect-[3/4] mb-8 p-4 bg-white shadow-2xl rounded-sm border border-slate-100"
           >
             <div className="w-full h-full overflow-hidden relative group">
               <img src={cover} alt="Wedding Couple" className="w-full h-full object-cover transition-transform duration-[4s] group-hover:scale-105" />
@@ -123,14 +124,14 @@ const MinimalWhiteTemplate = ({ weddingData }) => {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1.2, delay: 0.4 }}
-            className="text-5xl sm:text-5xl md:text-6xl font-bold tracking-tighter leading-[0.8] text-center text-slate-900"
+            className="text-5xl sm:text-6xl font-bold tracking-tighter leading-none text-center text-slate-900"
             style={{ fontFamily: '"Playfair Display", serif' }}
           >
             <span className="block">{groom_name}</span>
             <span className="flex items-center justify-center gap-8 my-8">
-              <div className="h-[1px] flex-1 max-w-[100px] bg-slate-200" />
+              <div className="h-px flex-1 max-w-[100px] bg-slate-200" />
               <span className="text-2xl italic font-light text-slate-300">&</span>
-              <div className="h-[1px] flex-1 max-w-[100px] bg-slate-200" />
+              <div className="h-px flex-1 max-w-[100px] bg-slate-200" />
             </span>
             <span className="block">{bride_name}</span>
           </motion.h1>
@@ -139,20 +140,20 @@ const MinimalWhiteTemplate = ({ weddingData }) => {
             <div className="flex items-center gap-10">
               <div className="flex flex-col items-center">
                 <span className="text-5xl sm:text-6xl font-light tracking-tighter text-slate-800">{dt.day}</span>
-                <span className="text-[11px] uppercase tracking-widest font-black text-slate-500 mt-2">Day</span>
+                <span className="text-xs uppercase tracking-widest font-black text-slate-500 mt-2">Day</span>
               </div>
-              <div className="h-10 w-[1px] bg-slate-200" />
+              <div className="h-10 w-px bg-slate-200" />
               <div className="flex flex-col items-center">
                 <span className="text-5xl sm:text-6xl font-light tracking-tighter text-slate-800">{dt.month}</span>
-                <span className="text-[11px] uppercase tracking-widest font-black text-slate-500 mt-2">Month</span>
+                <span className="text-xs uppercase tracking-widest font-black text-slate-500 mt-2">Month</span>
               </div>
-              <div className="h-10 w-[1px] bg-slate-200" />
+              <div className="h-10 w-px bg-slate-200" />
               <div className="flex flex-col items-center">
                 <span className="text-5xl sm:text-6xl font-light tracking-tighter text-slate-800">{dt.year}</span>
-                <span className="text-[11px] uppercase tracking-widest font-black text-slate-500 mt-2">Year</span>
+                <span className="text-xs uppercase tracking-widest font-black text-slate-500 mt-2">Year</span>
               </div>
             </div>
-            <p className="text-xs italic font-medium tracking-[0.3em] text-slate-500 uppercase">{lunar_date_text}</p>
+            <p className="text-xs italic font-medium tracking-widest text-slate-500 uppercase">{lunar_date_text}</p>
             <div className="pt-10">
               <Countdown targetDate={wedding_date} primaryColor="#111111" />
             </div>
@@ -165,7 +166,7 @@ const MinimalWhiteTemplate = ({ weddingData }) => {
           transition={{ duration: 4, repeat: Infinity }}
           className="absolute bottom-10 flex flex-col items-center gap-2 opacity-30"
         >
-          <div className="w-[1px] h-16 bg-gradient-to-b from-slate-950 to-transparent" />
+          <div className="w-px h-16 bg-gradient-to-b from-slate-950 to-transparent" />
         </motion.div>
       </section>
 
@@ -176,10 +177,10 @@ const MinimalWhiteTemplate = ({ weddingData }) => {
           <ScrollReveal variant="blur-reveal">
             <div className="max-w-4xl mx-auto px-6">
               <Sparkles size={28} className="mx-auto mb-10 text-slate-400" />
-              <p className="text-2xl sm:text-4xl leading-[1.3] font-light italic text-slate-800" style={{ fontFamily: '"Playfair Display", serif' }}>
+              <p className="text-2xl sm:text-4xl leading-tight font-light italic text-slate-800" style={{ fontFamily: '"Playfair Display", serif' }}>
                 "{intro_text}"
               </p>
-              <div className="mt-12 w-20 h-[1px] mx-auto bg-slate-900/10" />
+              <div className="mt-12 w-20 h-px mx-auto bg-slate-900/10" />
             </div>
           </ScrollReveal>
         </section>
@@ -188,57 +189,57 @@ const MinimalWhiteTemplate = ({ weddingData }) => {
         <section className="py-12 px-6">
           <ScrollReveal variant="fade-up">
             <div className="text-center mb-10">
-              <span className="text-[11px] uppercase tracking-[0.8em] font-black text-slate-500 mb-6 block">Grand Heritage</span>
-              <div className="h-[1px] w-20 mx-auto bg-slate-200" />
+              <span className="text-xs uppercase tracking-[0.8em] font-black text-slate-500 mb-6 block">Grand Heritage</span>
+              <div className="h-px w-20 mx-auto bg-slate-200" />
             </div>
           </ScrollReveal>
 
-          <div className="grid md:grid-cols-2 gap-12 sm:gap-12 max-w-5xl mx-auto">
+          <div className="grid md:grid-cols-2 gap-12 max-w-5xl mx-auto">
             {/* Groom side */}
             <ScrollReveal variant="mask-reveal">
               <div className="flex flex-col items-center text-center group">
-                <div className="relative w-64 h-80 mb-10 rounded-[2rem] overflow-hidden shadow-xl transition-all duration-700 group-hover:scale-[1.01] border border-slate-50 bg-white p-3 shadow-slate-100/50">
+                <div className="relative w-64 h-80 mb-10 rounded-3xl overflow-hidden shadow-xl transition-all duration-700 group-hover:scale-[1.01] border border-slate-50 bg-white p-3">
                   <img src={PORTRAITS.groom} alt="Groom" className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105" />
                 </div>
 
                 <div className="space-y-8 mb-10">
                   <div className="flex flex-col">
-                    <span className="text-[11px] uppercase tracking-widest text-slate-500 mb-2 font-bold">Thân phụ</span>
+                    <span className="text-xs uppercase tracking-widest text-slate-500 mb-2 font-bold">Thân phụ</span>
                     <span className="text-2xl font-bold text-slate-900 tracking-tight">{groom_father_name}</span>
                   </div>
                   <div className="flex flex-col">
-                    <span className="text-[11px] uppercase tracking-widest text-slate-500 mb-2 font-bold">Thân mẫu</span>
+                    <span className="text-xs uppercase tracking-widest text-slate-500 mb-2 font-bold">Thân mẫu</span>
                     <span className="text-2xl font-bold text-slate-900 tracking-tight">{groom_mother_name}</span>
                   </div>
                 </div>
 
-                <div className="h-[1px] w-10 bg-slate-200 mb-6" />
+                <div className="h-px w-10 bg-slate-200 mb-6" />
                 <h3 className="text-4xl font-bold tracking-tighter text-slate-900" style={{ fontFamily: '"Playfair Display", serif' }}>{groom_full_name}</h3>
-                <span className="text-[11px] uppercase tracking-[0.4em] font-black text-slate-500 mt-3 block">The Groom</span>
+                <span className="text-xs uppercase tracking-widest font-black text-slate-500 mt-3 block">The Groom</span>
               </div>
             </ScrollReveal>
 
             {/* Bride side */}
             <ScrollReveal variant="mask-reveal" delay={0.2}>
               <div className="flex flex-col items-center text-center group">
-                <div className="relative w-64 h-80 mb-10 rounded-[2rem] overflow-hidden shadow-xl transition-all duration-700 group-hover:scale-[1.01] border border-slate-50 bg-white p-3 shadow-slate-100/50">
+                <div className="relative w-64 h-80 mb-10 rounded-3xl overflow-hidden shadow-xl transition-all duration-700 group-hover:scale-[1.01] border border-slate-50 bg-white p-3">
                   <img src={PORTRAITS.bride} alt="Bride" className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105" />
                 </div>
 
                 <div className="space-y-8 mb-10">
                   <div className="flex flex-col">
-                    <span className="text-[11px] uppercase tracking-widest text-slate-500 mb-2 font-bold">Thân phụ</span>
+                    <span className="text-xs uppercase tracking-widest text-slate-500 mb-2 font-bold">Thân phụ</span>
                     <span className="text-2xl font-bold text-slate-900 tracking-tight">{bride_father_name}</span>
                   </div>
                   <div className="flex flex-col">
-                    <span className="text-[11px] uppercase tracking-widest text-slate-500 mb-2 font-bold">Thân mẫu</span>
+                    <span className="text-xs uppercase tracking-widest text-slate-500 mb-2 font-bold">Thân mẫu</span>
                     <span className="text-2xl font-bold text-slate-900 tracking-tight">{bride_mother_name}</span>
                   </div>
                 </div>
 
-                <div className="h-[1px] w-10 bg-slate-200 mb-6" />
+                <div className="h-px w-10 bg-slate-200 mb-6" />
                 <h3 className="text-4xl font-bold tracking-tighter text-slate-900" style={{ fontFamily: '"Playfair Display", serif' }}>{bride_full_name}</h3>
-                <span className="text-[11px] uppercase tracking-[0.4em] font-black text-slate-500 mt-3 block">The Bride</span>
+                <span className="text-xs uppercase tracking-widest font-black text-slate-500 mt-3 block">The Bride</span>
               </div>
             </ScrollReveal>
           </div>
@@ -246,10 +247,10 @@ const MinimalWhiteTemplate = ({ weddingData }) => {
 
         {/* ══ LOVE STORY ══════════════════════════════════════ */}
         {love_story && (
-          <section className="py-12 px-8 bg-slate-50 rounded-[2rem] my-12 border border-slate-100">
+          <section className="py-12 px-8 bg-slate-50 rounded-3xl my-12 border border-slate-100">
             <ScrollReveal variant="blur-reveal">
               <div className="max-w-4xl mx-auto text-center">
-                <span className="text-[11px] uppercase tracking-[0.8em] font-black text-slate-500 mb-8 block">Our Sacred Story</span>
+                <span className="text-xs uppercase tracking-[0.8em] font-black text-slate-500 mb-8 block">Our Sacred Story</span>
                 <h2 className="text-5xl sm:text-6xl font-bold tracking-tighter mb-12 text-slate-950" style={{ fontFamily: '"Playfair Display", serif' }}>Hành Trình Hạnh Phúc</h2>
                 <p className="text-xl sm:text-2xl font-light italic text-slate-700 leading-relaxed">
                   "{love_story}"
@@ -266,20 +267,20 @@ const MinimalWhiteTemplate = ({ weddingData }) => {
         <section className="py-12 px-6">
           <ScrollReveal variant="fade-up">
             <div className="text-center mb-10">
-              <h2 className="text-5xl sm:text-5xl font-bold tracking-tighter mb-6 text-slate-950" style={{ fontFamily: '"Playfair Display", serif' }}>Timeline</h2>
+              <h2 className="text-4xl sm:text-5xl font-bold tracking-tighter mb-6 text-slate-950" style={{ fontFamily: '"Playfair Display", serif' }}>Timeline</h2>
               <div className="flex items-center justify-center gap-6">
-                <div className="h-[1px] w-12 bg-slate-200" />
-                <p className="text-[11px] font-black tracking-[0.5em] uppercase text-slate-500">{lunar_date_text}</p>
-                <div className="h-[1px] w-12 bg-slate-200" />
+                <div className="h-px w-12 bg-slate-200" />
+                <p className="text-xs font-black tracking-widest uppercase text-slate-500">{lunar_date_text}</p>
+                <div className="h-px w-12 bg-slate-200" />
               </div>
             </div>
           </ScrollReveal>
 
-          <div className="grid lg:grid-cols-2 gap-8 sm:gap-12 max-w-5xl mx-auto">
+          <div className="grid lg:grid-cols-2 gap-8 max-w-5xl mx-auto">
             {events.map((event, idx) => (
               <ScrollReveal key={event.id} delay={idx * 0.2} variant="mask-reveal">
-                <div className="group relative p-8 sm:p-14 rounded-[3rem] border border-slate-100 bg-white hover:shadow-[0_40px_80px_-15px_rgba(0,0,0,0.06)] transition-all duration-700 overflow-hidden text-center flex flex-col items-center shadow-sm">
-                  <div className="w-20 h-20 rounded-full bg-slate-50 flex items-center justify-center mb-8 group-hover:scale-110 transition-transform shadow-inner">
+                <div className="group relative p-8 sm:p-14 rounded-3xl border border-slate-100 bg-white hover:shadow-2xl transition-all duration-700 overflow-hidden text-center flex flex-col items-center shadow-sm">
+                  <div className="w-20 h-20 rounded-full bg-slate-50 flex items-center justify-center mb-8 group-hover:scale-110 transition-transform">
                     {event.event_type === 'ceremony' ? <Heart size={28} className="text-slate-950 opacity-40" /> : <Sparkles size={28} className="text-slate-950 opacity-40" />}
                   </div>
 
@@ -289,7 +290,7 @@ const MinimalWhiteTemplate = ({ weddingData }) => {
                     <div className="flex flex-col items-center">
                       <Clock size={20} className="text-slate-400 mb-4" />
                       <span className="text-2xl font-bold text-slate-900">{new Date(event.event_time).toLocaleTimeString('vi-VN', { hour: '2-digit', minute: '2-digit' })}</span>
-                      <span className="text-[11px] uppercase tracking-widest font-black mt-2 text-slate-500">{new Date(event.event_time).toLocaleDateString('vi-VN', { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' })}</span>
+                      <span className="text-xs uppercase tracking-widest font-black mt-2 text-slate-500">{new Date(event.event_time).toLocaleDateString('vi-VN', { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' })}</span>
                     </div>
 
                     <div className="flex flex-col items-center">
@@ -297,7 +298,7 @@ const MinimalWhiteTemplate = ({ weddingData }) => {
                       <p className="text-xl font-bold text-slate-900 mb-1">{event.venue_name}</p>
                       <p className="text-sm leading-relaxed max-w-sm mx-auto text-slate-600">{event.address}</p>
                       {event.note && (
-                        <div className="mt-6 p-5 rounded-[1.5rem] bg-slate-50 italic text-xs text-slate-600 border border-slate-100">
+                        <div className="mt-6 p-5 rounded-2xl bg-slate-50 italic text-xs text-slate-600 border border-slate-100">
                           {event.note}
                         </div>
                       )}
@@ -310,9 +311,9 @@ const MinimalWhiteTemplate = ({ weddingData }) => {
                     href={event.map_url}
                     target="_blank"
                     rel="noreferrer"
-                    className="w-full sm:w-auto min-w-[180px] py-5 px-10 rounded-full bg-slate-950 text-white font-black uppercase tracking-[0.3em] text-[10px] transition-all shadow-lg hover:bg-black active:scale-95"
+                    className="w-full sm:w-auto min-w-[180px] py-4 px-10 rounded-full bg-slate-950 text-white font-black uppercase tracking-widest text-xs transition-all shadow-lg hover:bg-black"
                   >
-                    XEM BẢN ĐỒ <ExternalLink size={14} className="inline ml-2 -mt-1" />
+                    XEM BẢN ĐỒ <ExternalLink size={14} className="inline ml-2" />
                   </motion.a>
                 </div>
               </ScrollReveal>
@@ -324,18 +325,18 @@ const MinimalWhiteTemplate = ({ weddingData }) => {
         <section className="py-12">
           <ScrollReveal variant="fade-up">
             <div className="text-center mb-10 px-6">
-              <span className="text-[11px] uppercase tracking-[0.8em] font-black text-slate-500 mb-6 block">Treasured Anthology</span>
-              <h2 className="text-5xl sm:text-6xl font-bold tracking-tighter text-slate-950" style={{ fontFamily: '"Playfair Display", serif' }}>Gallery</h2>
+              <span className="text-xs uppercase tracking-[0.8em] font-black text-slate-500 mb-6 block">Treasured Anthology</span>
+              <h2 className="text-4xl sm:text-5xl font-bold tracking-tighter text-slate-950" style={{ fontFamily: '"Playfair Display", serif' }}>Gallery</h2>
             </div>
           </ScrollReveal>
 
           <div className="columns-1 sm:columns-2 lg:columns-4 gap-6 space-y-6 max-w-[1400px] mx-auto px-4">
             {gallery.map((photo, i) => (
               <ScrollReveal key={photo.id} delay={(i % 4) * 0.1} variant="scale-up">
-                <div className="break-inside-avoid rounded-[2rem] overflow-hidden shadow-lg group relative border border-slate-50 bg-white p-2">
-                  <img src={photo.image_path} alt={photo.caption || ''} className="w-full object-cover rounded-[1.5rem] transition-transform duration-[4s] group-hover:scale-105" />
-                  <div className="absolute inset-0 bg-white/90 opacity-0 group-hover:opacity-100 transition-opacity duration-700 flex items-center justify-center p-8 text-center backdrop-blur-[2px]">
-                    <p className="text-[10px] uppercase tracking-[0.4em] font-black text-slate-900 border-b border-slate-200 pb-4">{photo.caption || 'Pure Moment'}</p>
+                <div className="break-inside-avoid rounded-3xl overflow-hidden shadow-lg group relative border border-slate-50 bg-white p-2">
+                  <img src={photo.image_path} alt={photo.caption || ''} className="w-full object-cover rounded-2xl transition-transform duration-[4s] group-hover:scale-105" />
+                  <div className="absolute inset-0 bg-white/90 opacity-0 group-hover:opacity-100 transition-opacity duration-700 flex items-center justify-center p-8 text-center backdrop-blur-sm">
+                    <p className="text-xs uppercase tracking-widest font-black text-slate-900 border-b border-slate-200 pb-4">{photo.caption || 'Pure Moment'}</p>
                   </div>
                 </div>
               </ScrollReveal>
@@ -345,11 +346,9 @@ const MinimalWhiteTemplate = ({ weddingData }) => {
 
         {/* ══ GIFTS ═══════════════════════════════════════════ */}
         {bankAccounts.length > 0 && (
-          <section className="py-12 px-8 text-center bg-slate-950 text-white rounded-[3rem] my-12 shadow-2xl relative overflow-hidden">
-            <div className="absolute inset-0 opacity-[0.05] pointer-events-none" style={{ backgroundImage: `url("https://www.transparenttextures.com/patterns/natural-paper.png")` }} />
-
+          <section className="py-12 px-8 text-center bg-slate-950 text-white rounded-3xl my-12 shadow-2xl relative overflow-hidden">
             <ScrollReveal variant="blur-reveal">
-              <h2 className="text-[11px] font-black uppercase tracking-[1em] text-slate-600 mb-10">Registry</h2>
+              <h2 className="text-xs font-black uppercase tracking-[1em] text-slate-600 mb-10">Registry</h2>
               <h3 className="text-4xl sm:text-6xl font-bold mb-12 tracking-tighter" style={{ fontFamily: '"Playfair Display", serif' }}>Hộp Mừng Cưới</h3>
               <p className="max-w-2xl mx-auto text-lg sm:text-xl font-light italic text-slate-400 mb-8 leading-relaxed">
                 "Sự hiện diện của quý khách là món quà trân quý nhất. <br className="hidden sm:block" />
@@ -357,7 +356,7 @@ const MinimalWhiteTemplate = ({ weddingData }) => {
               </p>
               <div className="flex flex-wrap justify-center gap-10 sm:gap-8">
                 {bankAccounts.map(b => (
-                  <div key={b.id} className="transition-transform hover:scale-[1.02]">
+                  <div key={b.id} className="transition-transform hover:scale-105">
                     <GiftEnvelope bank={b} primaryColor="#FFFFFF" />
                   </div>
                 ))}
@@ -366,13 +365,21 @@ const MinimalWhiteTemplate = ({ weddingData }) => {
           </section>
         )}
 
+        {/* ══ GUESTBOOK ═════════════════════════════════════════ */}
+        <Guestbook 
+          wishes={weddingData.wishes} 
+          primaryColor="#1a1a1a" 
+          secondaryColor="#FFFFFF"
+          fontHeading='"Playfair Display", serif'
+        />
+
         {/* ══ RSVP FORM ════════════════════════════════════════ */}
         <section className="py-12 px-8">
           <ScrollReveal variant="mask-reveal">
-            <div className="max-w-6xl mx-auto flex flex-col lg:flex-row items-center gap-8 lg:gap-12">
+            <div className="max-w-6xl mx-auto flex flex-col lg:flex-row items-center gap-12">
               <div className="w-full lg:w-1/2 text-center lg:text-left">
-                <span className="text-[11px] uppercase tracking-[0.8em] font-black text-slate-500 mb-8 block">R.S.V.P</span>
-                <h2 className="text-6xl sm:text-5xl font-bold tracking-tighter mb-10 leading-[0.85]" style={{ fontFamily: '"Playfair Display", serif' }}>Bạn Sẽ <br /> Đến Chứ?</h2>
+                <span className="text-xs uppercase tracking-[0.8em] font-black text-slate-500 mb-8 block">R.S.V.P</span>
+                <h2 className="text-5xl sm:text-6xl font-bold tracking-tighter mb-10 leading-none" style={{ fontFamily: '"Playfair Display", serif' }}>Bạn Sẽ <br /> Đến Chứ?</h2>
                 <p className="text-lg opacity-60 font-light leading-relaxed mb-12 max-w-md italic text-slate-700">
                   Kính mong quý khách xác nhận thông tin tham dự để chúng tôi có thể chuẩn bị đón tiếp một cách chu đáo nhất.
                 </p>
@@ -380,19 +387,19 @@ const MinimalWhiteTemplate = ({ weddingData }) => {
                   <div className="w-16 h-16 rounded-full border border-slate-900 flex items-center justify-center">
                     <Heart size={20} className="text-slate-950" />
                   </div>
-                  <span className="text-[11px] uppercase tracking-[0.5em] font-black text-slate-950">Awaiting your response</span>
+                  <span className="text-xs uppercase tracking-widest font-black text-slate-950">Awaiting your response</span>
                 </div>
               </div>
 
-              <div className="w-full lg:w-1/2 bg-white p-8 sm:p-14 border border-slate-100 rounded-[3rem] shadow-[0_40px_80px_-15px_rgba(0,0,0,0.08)]">
+              <div className="w-full lg:w-1/2 bg-white p-8 sm:p-14 border border-slate-100 rounded-3xl shadow-2xl">
                 <form className="space-y-10">
                   <div className="group relative">
-                    <label className="block text-[11px] uppercase tracking-[0.4em] mb-4 text-slate-500 group-focus-within:text-slate-950 transition-all font-bold">Họ và Tên</label>
+                    <label className="block text-xs uppercase tracking-widest mb-4 text-slate-500 group-focus-within:text-slate-950 transition-all font-bold">Họ và Tên</label>
                     <input type="text" placeholder="Họ và tên của quý khách..." className="w-full bg-transparent border-b-2 border-slate-100 py-4 text-2xl font-bold text-slate-950 outline-none transition-all duration-500 focus:border-slate-950 placeholder:text-slate-200" />
                   </div>
 
                   <div className="group relative">
-                    <label className="block text-[11px] uppercase tracking-[0.4em] mb-4 text-slate-500 group-focus-within:text-slate-950 transition-all font-bold">Sẽ Tham Dự?</label>
+                    <label className="block text-xs uppercase tracking-widest mb-4 text-slate-500 group-focus-within:text-slate-950 transition-all font-bold">Sẽ Tham Dự?</label>
                     <div className="relative">
                       <select className="w-full bg-transparent border-b-2 border-slate-100 py-4 text-2xl font-bold text-slate-950 outline-none transition-all duration-500 focus:border-slate-950 appearance-none cursor-pointer">
                         <option>Chắc chắn sẽ tham dự</option>
@@ -406,7 +413,7 @@ const MinimalWhiteTemplate = ({ weddingData }) => {
                     whileHover={{ scale: 1.02 }}
                     whileTap={{ scale: 0.98 }}
                     type="button"
-                    className="w-full py-7 bg-slate-950 text-white font-black transition-all shadow-xl flex items-center justify-center gap-5 uppercase tracking-[0.5em] text-[10px] rounded-full"
+                    className="w-full py-6 bg-slate-950 text-white font-black transition-all shadow-xl flex items-center justify-center gap-5 uppercase tracking-widest text-xs rounded-full"
                   >
                     GỬI PHẢN HỒI <Send size={18} />
                   </motion.button>
@@ -419,16 +426,16 @@ const MinimalWhiteTemplate = ({ weddingData }) => {
         {/* ══ FOOTER ═══════════════════════════════════════════ */}
         <footer className="py-12 text-center relative overflow-hidden border-t border-slate-100">
           <ScrollReveal variant="blur-reveal">
-            <p className="text-[11px] uppercase tracking-[1.2em] font-black mb-10 text-slate-500">Endless Love</p>
-            <h2 className="text-5xl sm:text-5xl font-bold tracking-tighter text-slate-950 mb-8" style={{ fontFamily: '"Playfair Display", serif' }}>
+            <p className="text-xs uppercase tracking-[1.2em] font-black mb-10 text-slate-500">Endless Love</p>
+            <h2 className="text-4xl sm:text-5xl font-bold tracking-tighter text-slate-950 mb-8" style={{ fontFamily: '"Playfair Display", serif' }}>
               {groom_name} <span className="text-slate-200 italic font-light mx-4">&</span> {bride_name}
             </h2>
             <div className="flex items-center justify-center gap-8 opacity-20">
-              <div className="h-[1px] w-16 bg-slate-950" />
+              <div className="h-px w-16 bg-slate-950" />
               <Heart size={20} fill="currentColor" className="text-slate-900" />
-              <div className="h-[1px] w-16 bg-slate-950" />
+              <div className="h-px w-16 bg-slate-950" />
             </div>
-            <p className="mt-12 text-[10px] text-slate-500 opacity-60 uppercase tracking-[1em] font-black">Powered by iWedding Minimal Collection</p>
+            <p className="mt-12 text-xs text-slate-500 opacity-60 uppercase tracking-widest font-black">Powered by iWedding Minimal Collection</p>
           </ScrollReveal>
         </footer>
       </main>

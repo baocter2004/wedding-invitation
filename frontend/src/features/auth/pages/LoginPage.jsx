@@ -8,7 +8,6 @@ const LoginPage = () => {
   const navigate = useNavigate();
 
   const onSubmit = (data) => {
-    console.log(data);
     // Mock login redirect
     if (data.email === 'admin@example.com') {
       navigate('/admin/dashboard');

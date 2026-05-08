@@ -30,6 +30,7 @@ const PublicWeddingPage = () => {
     events,
     photos,
     bankAccounts,
+    wishes: mockData.wedding_wishes.filter(w => w.wedding_id === wedding.id),
     // Use wedding's theme config if available, otherwise fallback to template default
     theme_config_json: wedding.theme_config_json || template.default_config_json
   };
