@@ -25,7 +25,7 @@ const Guestbook = ({ wishes = [], primaryColor = '#B91C1C', secondaryColor = '#F
   };
 
   return (
-    <section className="py-16 px-6">
+    <section className="py-12 sm:py-16 px-4 sm:px-6">
       <ScrollReveal variant="fade-up">
         <div className="text-center mb-12">
           <MessageSquare size={32} className="mx-auto mb-4 opacity-20" style={{ color: primaryColor }} />
@@ -39,7 +39,7 @@ const Guestbook = ({ wishes = [], primaryColor = '#B91C1C', secondaryColor = '#F
       <div className="max-w-6xl mx-auto grid lg:grid-cols-2 gap-12 items-start">
         {/* Form Side */}
         <ScrollReveal variant="mask-reveal">
-          <div className="bg-white p-8 sm:p-10 rounded-[2.5rem] shadow-xl border border-slate-100">
+          <div className="bg-white p-6 sm:p-10 rounded-3xl sm:rounded-[2.5rem] shadow-xl border border-slate-100">
             <h3 className="text-xl font-bold mb-8 text-slate-800">Gửi lời chúc của bạn</h3>
             <form onSubmit={handleSubmit} className="space-y-6">
               <div className="group">
@@ -73,7 +73,7 @@ const Guestbook = ({ wishes = [], primaryColor = '#B91C1C', secondaryColor = '#F
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
                 type="submit"
-                className="w-full py-5 rounded-2xl flex items-center justify-center gap-3 text-white font-black uppercase tracking-widest text-xs shadow-lg"
+                className="w-full py-5 rounded-full flex items-center justify-center gap-3 text-white font-black uppercase tracking-widest text-xs shadow-lg"
                 style={{ backgroundColor: primaryColor }}
               >
                 GỬI LỜI CHÚC <Send size={16} />

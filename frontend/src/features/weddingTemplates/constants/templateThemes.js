@@ -1,4 +1,4 @@
-import { Sparkles, Leaf, Heart } from 'lucide-react';
+import { Sparkles, Flower, Heart } from 'lucide-react';
 
 export const TEMPLATE_THEMES = {
   'traditional': {
@@ -25,7 +25,7 @@ export const TEMPLATE_THEMES = {
     primary: '#064E3B',
     bg: '#F0FDF4',
     font: '"Playfair Display", serif',
-    icon: Leaf,
+    icon: Flower,
     accentOpacity: 0.1
   }
 };

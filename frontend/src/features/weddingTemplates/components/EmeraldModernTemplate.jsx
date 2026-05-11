@@ -99,7 +99,7 @@ const EmeraldModernTemplate = ({ weddingData }) => {
 
         <motion.div
           style={{ opacity: heroOpacity }}
-          className="relative z-20 text-center px-6"
+          className="relative z-20 text-center px-4 sm:px-6"
         >
           <div className="mb-10 flex items-center justify-center gap-6">
             <div className="h-px w-10 bg-emerald-500/30" />
@@ -107,14 +107,14 @@ const EmeraldModernTemplate = ({ weddingData }) => {
             <div className="h-px w-10 bg-emerald-500/30" />
           </div>
 
-          <h1 className="text-5xl sm:text-6xl md:text-7xl font-bold tracking-tighter leading-none mb-10 text-white" style={{ fontFamily: '"Playfair Display", serif' }}>
-            <span className="block">{groom_name}</span>
-            <span className="flex items-center justify-center gap-8 my-8 text-emerald-400/50">
-              <div className="h-px flex-1 max-w-[80px] bg-current opacity-30" />
+          <h1 className="text-5xl sm:text-6xl md:text-7xl font-bold tracking-tighter leading-none mb-10 text-white flex flex-col sm:flex-row items-center justify-center" style={{ fontFamily: '"Playfair Display", serif' }}>
+            <span className="max-w-full truncate px-2">{groom_name}</span>
+            <span className="flex items-center justify-center gap-4 sm:gap-8 my-6 sm:my-0 sm:mx-6 text-emerald-400/50 w-full sm:w-auto">
+              <div className="h-px flex-1 max-w-[60px] sm:max-w-[80px] bg-current opacity-30" />
               <span className="text-2xl italic font-light">&</span>
-              <div className="h-px flex-1 max-w-[80px] bg-current opacity-30" />
+              <div className="h-px flex-1 max-w-[60px] sm:max-w-[80px] bg-current opacity-30" />
             </span>
-            <span className="block text-emerald-400">{bride_name}</span>
+            <span className="text-emerald-400 max-w-full truncate px-2">{bride_name}</span>
           </h1>
 
           <div className="mt-16 flex flex-wrap justify-center items-center gap-10 sm:gap-8">
@@ -164,7 +164,7 @@ const EmeraldModernTemplate = ({ weddingData }) => {
         </section>
 
         {/* ══ FAMILIES ═════════════════════════════════════════ */}
-        <section className="py-16 px-8 bg-emerald-900/30 rounded-[3rem] mx-4 sm:mx-8 my-12 border border-emerald-800/30 shadow-2xl">
+        <section className="py-16 px-8 bg-emerald-900/30 rounded-[3rem] mx-4 sm:mx-8 my-12 border border-emerald-800/30 ">
           <div className="max-w-6xl mx-auto">
             <ScrollReveal variant="fade-up">
               <div className="text-center mb-16">
@@ -276,15 +276,15 @@ const EmeraldModernTemplate = ({ weddingData }) => {
         {/* ══ GALLERY ═════════════════════════════════════════ */}
         <section className="py-20">
           <ScrollReveal variant="fade-up">
-            <div className="text-center mb-16 px-6">
+            <div className="text-center mb-16 px-4 sm:px-6">
               <span className="text-xs uppercase tracking-[0.8em] font-black text-emerald-500/40 mb-6 block">Artistic Moments</span>
               <h2 className="text-5xl font-bold tracking-tighter text-white" style={{ fontFamily: '"Playfair Display", serif' }}>Gallery</h2>
             </div>
           </ScrollReveal>
-          <div className="columns-1 sm:columns-2 lg:columns-4 gap-6 space-y-6 px-6">
+          <div className="columns-1 sm:columns-2 lg:columns-4 gap-6 space-y-6 px-4 sm:px-6">
             {gallery.map((photo, i) => (
               <ScrollReveal key={photo.id} delay={(i % 4) * 0.1} variant="scale-up">
-                <div className="break-inside-avoid rounded-[3rem] overflow-hidden border border-emerald-800/50 group relative shadow-2xl">
+                <div className="break-inside-avoid rounded-[3rem] overflow-hidden border border-emerald-800/50 group relative ">
                   <img src={photo.image_path} alt={photo.caption || ''} className="w-full object-cover transition-transform duration-[4s] group-hover:scale-110" />
                   <div className="absolute inset-0 bg-emerald-950/80 opacity-0 group-hover:opacity-100 transition-opacity duration-700 flex items-center justify-center p-8 text-center backdrop-blur-sm">
                     <p className="text-xs uppercase tracking-widest font-black text-emerald-400 border-b border-emerald-500/20 pb-4">{photo.caption || 'Eternal Love'}</p>
@@ -296,27 +296,27 @@ const EmeraldModernTemplate = ({ weddingData }) => {
         </section>
 
         {/* ══ GUESTBOOK ═════════════════════════════════════════ */}
-        <Guestbook 
-          wishes={weddingData.wishes} 
-          primaryColor="#10B981" 
+        <Guestbook
+          wishes={weddingData.wishes}
+          primaryColor="#10B981"
           secondaryColor="#064E3B"
           fontHeading='"Playfair Display", serif'
         />
 
         {/* ══ RSVP ════════════════════════════════════════════ */}
-        <section className="py-24 px-8">
+        <section className="py-16 sm:py-24 px-4 sm:px-8">
           <ScrollReveal variant="mask-reveal">
-            <div className="max-w-4xl mx-auto bg-emerald-900/40 p-12 sm:p-20 rounded-[4rem] border border-emerald-800 shadow-2xl text-center">
+            <div className="max-w-4xl mx-auto bg-emerald-900/40 p-6 sm:p-14 md:p-20 rounded-3xl sm:rounded-[4rem] border border-emerald-800 shadow-2xl text-center">
               <h2 className="text-5xl font-bold text-white mb-8" style={{ fontFamily: '"Playfair Display", serif' }}>Bạn Sẽ <br /> Tham Dự Chứ?</h2>
               <p className="text-emerald-100/60 mb-12 italic">Sự hiện diện của bạn là vinh hạnh của gia đình chúng tôi.</p>
-              <form className="space-y-10 max-w-md mx-auto text-left">
+              <form className="space-y-8 sm:space-y-10 max-w-md mx-auto text-left">
                 <div className="group">
-                  <label className="block text-xs uppercase tracking-widest mb-4 text-emerald-500/50 font-bold">Họ và Tên</label>
-                  <input type="text" className="w-full bg-transparent border-b-2 border-emerald-800 py-4 text-2xl font-bold text-white outline-none focus:border-emerald-500 transition-colors" />
+                  <label className="block text-xs uppercase tracking-widest mb-3 sm:mb-4 text-emerald-500/50 font-bold">Họ và Tên</label>
+                  <input type="text" placeholder="Họ và tên..." className="w-full bg-transparent border-b-2 border-emerald-800 py-3 sm:py-4 text-lg sm:text-xl md:text-2xl font-bold text-white outline-none focus:border-emerald-500 transition-colors placeholder:text-emerald-800/50" />
                 </div>
                 <div className="group">
-                  <label className="block text-xs uppercase tracking-widest mb-4 text-emerald-500/50 font-bold">Tham Dự?</label>
-                  <select className="w-full bg-transparent border-b-2 border-emerald-800 py-4 text-2xl font-bold text-white outline-none appearance-none cursor-pointer focus:border-emerald-500">
+                  <label className="block text-xs uppercase tracking-widest mb-3 sm:mb-4 text-emerald-500/50 font-bold">Tham Dự?</label>
+                  <select className="w-full bg-transparent border-b-2 border-emerald-800 py-3 sm:py-4 text-lg sm:text-xl md:text-2xl font-bold text-white outline-none appearance-none cursor-pointer focus:border-emerald-500">
                     <option className="bg-emerald-950">Chắc chắn tham dự</option>
                     <option className="bg-emerald-950">Rất tiếc không thể đến</option>
                   </select>
@@ -324,7 +324,7 @@ const EmeraldModernTemplate = ({ weddingData }) => {
                 <motion.button
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
-                  className="w-full py-6 rounded-2xl bg-emerald-500 text-emerald-950 font-black uppercase tracking-widest text-xs shadow-2xl"
+                  className="w-full py-4 sm:py-6 rounded-full bg-emerald-500 text-emerald-950 font-black uppercase tracking-widest text-xs "
                 >
                   XÁC NHẬN
                 </motion.button>
@@ -337,7 +337,11 @@ const EmeraldModernTemplate = ({ weddingData }) => {
         <footer className="py-20 text-center border-t border-emerald-900">
           <ScrollReveal variant="blur-reveal">
             <p className="text-xs uppercase tracking-[1em] font-black text-emerald-500/30 mb-8">Eternal Love</p>
-            <h2 className="text-4xl sm:text-5xl font-bold text-white mb-8" style={{ fontFamily: '"Playfair Display", serif' }}>{groom_name} & {bride_name}</h2>
+            <h2 className="text-4xl sm:text-5xl font-bold text-white mb-8 flex flex-col sm:flex-row items-center justify-center" style={{ fontFamily: '"Playfair Display", serif' }}>
+              <span className="max-w-full truncate px-2">{groom_name}</span>
+              <span className="text-emerald-500/50 italic font-light my-4 sm:my-0 sm:mx-4">&</span>
+              <span className="max-w-full truncate px-2">{bride_name}</span>
+            </h2>
             <div className="flex justify-center gap-6 opacity-20 text-emerald-500">
               <Leaf size={24} />
               <Heart size={24} />
