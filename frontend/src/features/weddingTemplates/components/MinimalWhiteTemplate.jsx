@@ -11,6 +11,9 @@ import { resolveGallery, resolveCover, formatDate, PORTRAITS } from '../../../as
 const MinimalWhiteTemplate = ({ weddingData }) => {
   const [mounted, setMounted] = useState(false);
   const [isPlaying, setIsPlaying] = useState(false);
+  const [rsvpName, setRsvpName] = useState('');
+  const [rsvpAttendance, setRsvpAttendance] = useState('attending');
+  const [rsvpSubmitted, setRsvpSubmitted] = useState(false);
   const audioRef = useRef(null);
   const heroRef = useRef(null);
 
@@ -40,6 +43,14 @@ const MinimalWhiteTemplate = ({ weddingData }) => {
 
   if (!mounted) return null;
 
+  const handleRsvpSubmit = (e) => {
+    e.preventDefault();
+    if (!rsvpName.trim()) return;
+    // TODO: POST to /api/weddings/{id}/rsvp
+    console.log('RSVP submitted:', { guest_name: rsvpName, attendance_status: rsvpAttendance, wedding_id: weddingData?.id });
+    setRsvpSubmitted(true);
+  };
+
   const {
     bride_name = '', groom_name = '',
     bride_full_name = '', groom_full_name = '',
@@ -60,7 +71,7 @@ const MinimalWhiteTemplate = ({ weddingData }) => {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 1.5 }}
-      className="min-min-h-[85vh] bg-[#FDFDFD] text-[#1a1a1a] font-serif antialiased overflow-x-hidden selection:bg-black selection:text-white"
+      className="min-h-screen bg-[#FDFDFD] text-[#1a1a1a] font-serif antialiased overflow-x-hidden selection:bg-black selection:text-white"
     >
       <FloatingDecorativeElements count={8} type="circle" color="#E2E8F0" />
 
@@ -88,7 +99,7 @@ const MinimalWhiteTemplate = ({ weddingData }) => {
       )}
 
       {/* ══ HERO SECTION ══════════════════════════════════════ */}
-      <section ref={heroRef} className="relative min-min-h-[85vh] flex flex-col items-center justify-center pt-24 pb-20 px-6 overflow-hidden">
+      <section ref={heroRef} className="relative min-h-screen flex flex-col items-center justify-center pt-24 pb-20 px-6 overflow-hidden">
         {/* Subtle Decorative Background */}
         <div className="absolute inset-0 flex items-center justify-center pointer-events-none opacity-[0.04]">
           <span className="text-[35vw] font-black uppercase tracking-tighter select-none text-slate-300">UNION</span>
@@ -198,7 +209,7 @@ const MinimalWhiteTemplate = ({ weddingData }) => {
             {/* Groom side */}
             <ScrollReveal variant="mask-reveal">
               <div className="flex flex-col items-center text-center group">
-                <div className="relative w-64 h-80 mb-10 rounded-3xl overflow-hidden shadow-xl transition-all duration-700 group-hover:scale-[1.01] border border-slate-50 bg-white p-3">
+                <div className="relative w-48 sm:w-64 h-60 sm:h-80 mb-10 rounded-3xl overflow-hidden shadow-xl transition-all duration-700 group-hover:scale-[1.01] border border-slate-50 bg-white p-3">
                   <img src={PORTRAITS.groom} alt="Groom" className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105" />
                 </div>
 
@@ -222,7 +233,7 @@ const MinimalWhiteTemplate = ({ weddingData }) => {
             {/* Bride side */}
             <ScrollReveal variant="mask-reveal" delay={0.2}>
               <div className="flex flex-col items-center text-center group">
-                <div className="relative w-64 h-80 mb-10 rounded-3xl overflow-hidden shadow-xl transition-all duration-700 group-hover:scale-[1.01] border border-slate-50 bg-white p-3">
+                <div className="relative w-48 sm:w-64 h-60 sm:h-80 mb-10 rounded-3xl overflow-hidden shadow-xl transition-all duration-700 group-hover:scale-[1.01] border border-slate-50 bg-white p-3">
                   <img src={PORTRAITS.bride} alt="Bride" className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105" />
                 </div>
 
@@ -391,33 +402,58 @@ const MinimalWhiteTemplate = ({ weddingData }) => {
                 </div>
               </div>
 
-              <div className="w-full lg:w-1/2 bg-white p-5 sm:p-10 md:p-14 border border-slate-100 rounded-3xl ">
-                <form className="space-y-8 sm:space-y-10">
-                  <div className="group relative">
-                    <label className="block text-xs uppercase tracking-widest mb-3 sm:mb-4 text-slate-500 group-focus-within:text-slate-950 transition-all font-bold">Họ và Tên</label>
-                    <input type="text" placeholder="Họ và tên..." className="w-full bg-transparent border-b-2 border-slate-100 py-3 sm:py-4 text-lg sm:text-xl md:text-2xl font-bold text-slate-950 outline-none transition-all duration-500 focus:border-slate-950 placeholder:text-slate-200" />
-                  </div>
-
-                  <div className="group relative">
-                    <label className="block text-xs uppercase tracking-widest mb-3 sm:mb-4 text-slate-500 group-focus-within:text-slate-950 transition-all font-bold">Sẽ Tham Dự?</label>
-                    <div className="relative">
-                      <select className="w-full bg-transparent border-b-2 border-slate-100 py-3 sm:py-4 text-lg sm:text-xl md:text-2xl font-bold text-slate-950 outline-none transition-all duration-500 focus:border-slate-950 appearance-none cursor-pointer">
-                        <option>Chắc chắn tham dự</option>
-                        <option>Rất tiếc không thể đến</option>
-                      </select>
-                      <ChevronDown size={20} className="absolute right-0 top-1/2 -translate-y-1/2 pointer-events-none text-slate-300" />
-                    </div>
-                  </div>
-
-                  <motion.button
-                    whileHover={{ scale: 1.02 }}
-                    whileTap={{ scale: 0.98 }}
-                    type="button"
-                    className="w-full py-4 sm:py-6 bg-slate-950 text-white font-black transition-all shadow-xl flex items-center justify-center gap-3 sm:gap-5 uppercase tracking-widest text-xs rounded-full"
+              <div className="w-full lg:w-1/2 bg-white p-5 sm:p-10 md:p-14 border border-slate-100 rounded-3xl">
+                {rsvpSubmitted ? (
+                  <motion.div
+                    initial={{ opacity: 0, scale: 0.9 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    className="flex flex-col items-center justify-center py-12 text-center"
                   >
-                    GỬI PHẢN HỒI <Send size={18} />
-                  </motion.button>
-                </form>
+                    <div className="w-20 h-20 rounded-full bg-slate-50 flex items-center justify-center mb-6">
+                      <Heart size={32} fill="currentColor" className="text-slate-900" />
+                    </div>
+                    <h3 className="text-2xl font-bold text-slate-900 mb-3" style={{ fontFamily: '"Playfair Display", serif' }}>Cảm ơn!</h3>
+                    <p className="text-slate-500 italic">Phản hồi của bạn đã được ghi nhận.</p>
+                  </motion.div>
+                ) : (
+                  <form onSubmit={handleRsvpSubmit} className="space-y-8 sm:space-y-10">
+                    <div className="group relative">
+                      <label className="block text-xs uppercase tracking-widest mb-3 sm:mb-4 text-slate-500 group-focus-within:text-slate-950 transition-all font-bold">Họ và Tên</label>
+                      <input
+                        type="text"
+                        required
+                        value={rsvpName}
+                        onChange={(e) => setRsvpName(e.target.value)}
+                        placeholder="Họ và tên..."
+                        className="w-full bg-transparent border-b-2 border-slate-100 py-3 sm:py-4 text-lg sm:text-xl md:text-2xl font-bold text-slate-950 outline-none transition-all duration-500 focus:border-slate-950 placeholder:text-slate-200"
+                      />
+                    </div>
+
+                    <div className="group relative">
+                      <label className="block text-xs uppercase tracking-widest mb-3 sm:mb-4 text-slate-500 group-focus-within:text-slate-950 transition-all font-bold">Sẽ Tham Dự?</label>
+                      <div className="relative">
+                        <select
+                          value={rsvpAttendance}
+                          onChange={(e) => setRsvpAttendance(e.target.value)}
+                          className="w-full bg-transparent border-b-2 border-slate-100 py-3 sm:py-4 text-lg sm:text-xl md:text-2xl font-bold text-slate-950 outline-none transition-all duration-500 focus:border-slate-950 appearance-none cursor-pointer"
+                        >
+                          <option value="attending">Chắc chắn tham dự</option>
+                          <option value="not_attending">Rất tiếc không thể đến</option>
+                        </select>
+                        <ChevronDown size={20} className="absolute right-0 top-1/2 -translate-y-1/2 pointer-events-none text-slate-300" />
+                      </div>
+                    </div>
+
+                    <motion.button
+                      whileHover={{ scale: 1.02 }}
+                      whileTap={{ scale: 0.98 }}
+                      type="submit"
+                      className="w-full py-4 sm:py-6 bg-slate-950 text-white font-black transition-all shadow-xl flex items-center justify-center gap-3 sm:gap-5 uppercase tracking-widest text-xs rounded-full"
+                    >
+                      GỬI PHẢN HỒI <Send size={18} />
+                    </motion.button>
+                  </form>
+                )}
               </div>
             </div>
           </ScrollReveal>

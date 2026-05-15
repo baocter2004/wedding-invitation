@@ -5,11 +5,15 @@ import ScrollReveal from '../shared/ScrollReveal';
 import GiftEnvelope from '../shared/GiftEnvelope';
 import FloatingDecorativeElements from '../shared/FloatingDecorativeElements';
 import Guestbook from '../shared/Guestbook';
+import Countdown from '../shared/Countdown';
 import { resolveGallery, resolveCover, formatDate, PORTRAITS } from '../../../assets/images';
 
 const TraditionalRedTemplate = ({ weddingData }) => {
   const [mounted, setMounted] = useState(false);
   const [isPlaying, setIsPlaying] = useState(false);
+  const [rsvpName, setRsvpName] = useState('');
+  const [rsvpAttendance, setRsvpAttendance] = useState('attending');
+  const [rsvpSubmitted, setRsvpSubmitted] = useState(false);
   const audioRef = useRef(null);
   const heroRef = useRef(null);
 
@@ -39,6 +43,14 @@ const TraditionalRedTemplate = ({ weddingData }) => {
 
   if (!mounted) return null;
 
+  const handleRsvpSubmit = (e) => {
+    e.preventDefault();
+    if (!rsvpName.trim()) return;
+    // TODO: POST to /api/weddings/{id}/rsvp
+    console.log('RSVP submitted:', { guest_name: rsvpName, attendance_status: rsvpAttendance, wedding_id: weddingData?.id });
+    setRsvpSubmitted(true);
+  };
+
   const {
     bride_name = '', groom_name = '',
     bride_full_name = '', groom_full_name = '',
@@ -63,7 +75,7 @@ const TraditionalRedTemplate = ({ weddingData }) => {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 1.5 }}
-      className="min-min-h-[85vh] font-serif antialiased overflow-x-hidden selection:bg-[#B91C1C] selection:text-white"
+      className="min-h-screen font-serif antialiased overflow-x-hidden selection:bg-[#B91C1C] selection:text-white"
       style={{ backgroundColor: cream, color: '#450a0a' }}
     >
       <FloatingDecorativeElements count={12} type="circle" color={red} />
@@ -93,7 +105,7 @@ const TraditionalRedTemplate = ({ weddingData }) => {
       )}
 
       {/* ══ HERO SECTION ══════════════════════════════════════ */}
-      <section ref={heroRef} className="relative min-min-h-[85vh] flex flex-col items-center justify-center pt-24 pb-20 px-6 overflow-hidden">
+      <section ref={heroRef} className="relative min-h-screen flex flex-col items-center justify-center pt-24 pb-20 px-6 overflow-hidden">
         {/* Intricate Decorative Borders */}
         <div className="absolute inset-6 border border-[#B91C1C]/10 pointer-events-none z-0" />
         <div className="absolute inset-10 border border-[#B91C1C]/5 pointer-events-none z-0" />
@@ -119,7 +131,7 @@ const TraditionalRedTemplate = ({ weddingData }) => {
 
           <motion.div
             style={{ scale: heroImageScale }}
-            className="relative w-64 sm:w-80 aspect-[3/4] mb-8 p-3 sm:p-4 bg-white shadow-2xl rounded-sm border border-red-900/10"
+            className="relative w-52 sm:w-72 aspect-[3/4] mb-8 p-3 sm:p-4 bg-white shadow-2xl rounded-sm border border-red-900/10"
           >
             <div className="w-full h-full overflow-hidden relative group">
               <img src={cover} alt="Wedding Couple" className="w-full h-full object-cover transition-transform duration-[4s] group-hover:scale-105" />
@@ -172,6 +184,9 @@ const TraditionalRedTemplate = ({ weddingData }) => {
               </div>
             </div>
             <p className="text-xs sm:text-sm font-medium tracking-wider text-red-900/60 uppercase px-4 text-center leading-relaxed">{lunar_date_text}</p>
+            <div className="pt-8">
+              <Countdown targetDate={wedding_date} primaryColor={red} />
+            </div>
           </div>
         </motion.div>
 
@@ -213,7 +228,7 @@ const TraditionalRedTemplate = ({ weddingData }) => {
             {/* Groom side */}
             <ScrollReveal variant="mask-reveal">
               <div className="flex flex-col items-center text-center group">
-                <div className="relative w-64 h-64 mb-10 rounded-full overflow-hidden shadow-xl transition-all duration-700 group-hover:scale-[1.01] border-[10px] bg-white" style={{ borderColor: red }}>
+                <div className="relative w-48 sm:w-64 h-48 sm:h-64 mb-10 rounded-full overflow-hidden shadow-xl transition-all duration-700 group-hover:scale-[1.01] border-[8px] sm:border-[10px] bg-white" style={{ borderColor: red }}>
                   <img src={PORTRAITS.groom} alt="Groom" className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105" />
                 </div>
 
@@ -237,7 +252,7 @@ const TraditionalRedTemplate = ({ weddingData }) => {
             {/* Bride side */}
             <ScrollReveal variant="mask-reveal" delay={0.2}>
               <div className="flex flex-col items-center text-center group">
-                <div className="relative w-64 h-64 mb-10 rounded-full overflow-hidden shadow-xl transition-all duration-700 group-hover:scale-[1.01] border-[10px] bg-white" style={{ borderColor: red }}>
+                <div className="relative w-48 sm:w-64 h-48 sm:h-64 mb-10 rounded-full overflow-hidden shadow-xl transition-all duration-700 group-hover:scale-[1.01] border-[8px] sm:border-[10px] bg-white" style={{ borderColor: red }}>
                   <img src={PORTRAITS.bride} alt="Bride" className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105" />
                 </div>
 
@@ -404,33 +419,58 @@ const TraditionalRedTemplate = ({ weddingData }) => {
                 </div>
               </div>
 
-              <div className="w-full lg:w-1/2 bg-white p-5 sm:p-10 md:p-14 border border-red-900/10 rounded-3xl ">
-                <form className="space-y-8 sm:space-y-10">
-                  <div className="group relative">
-                    <label className="block text-xs uppercase tracking-widest mb-3 sm:mb-4 text-red-900/60 group-focus-within:text-red-950 transition-all font-bold">Họ và Tên</label>
-                    <input type="text" placeholder="Họ và tên..." className="w-full bg-transparent border-b-2 border-red-900/10 py-3 sm:py-4 text-lg sm:text-xl md:text-2xl font-bold text-slate-900 outline-none transition-all duration-500 focus:border-red-900 placeholder:text-slate-200" />
-                  </div>
-
-                  <div className="group relative">
-                    <label className="block text-xs uppercase tracking-widest mb-3 sm:mb-4 text-red-900/60 group-focus-within:text-red-950 transition-all font-bold">Sẽ Tham Dự?</label>
-                    <div className="relative">
-                      <select className="w-full bg-transparent border-b-2 border-red-900/10 py-3 sm:py-4 text-lg sm:text-xl md:text-2xl font-bold text-slate-900 outline-none transition-all duration-500 focus:border-red-900 appearance-none cursor-pointer">
-                        <option>Chắc chắn tham dự</option>
-                        <option>Rất tiếc không thể đến</option>
-                      </select>
-                      <ChevronDown size={20} className="absolute right-0 top-1/2 -translate-y-1/2 pointer-events-none text-slate-300" />
+              <div className="w-full lg:w-1/2 bg-white p-5 sm:p-10 md:p-14 border border-red-900/10 rounded-3xl">
+                {rsvpSubmitted ? (
+                  <motion.div
+                    initial={{ opacity: 0, scale: 0.9 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    className="flex flex-col items-center justify-center py-12 text-center"
+                  >
+                    <div className="w-20 h-20 rounded-full bg-red-50 flex items-center justify-center mb-6">
+                      <Heart size={32} style={{ color: red }} fill="currentColor" />
                     </div>
-                  </div>
+                    <h3 className="text-2xl font-bold text-slate-900 mb-3" style={{ fontFamily: '"Playfair Display", serif' }}>Cảm ơn!</h3>
+                    <p className="text-slate-500 italic">Phản hồi của bạn đã được ghi nhận.</p>
+                  </motion.div>
+                ) : (
+                  <form onSubmit={handleRsvpSubmit} className="space-y-8 sm:space-y-10">
+                    <div className="group relative">
+                      <label className="block text-xs uppercase tracking-widest mb-3 sm:mb-4 text-red-900/60 group-focus-within:text-red-950 transition-all font-bold">Họ và Tên</label>
+                      <input
+                        type="text"
+                        required
+                        value={rsvpName}
+                        onChange={(e) => setRsvpName(e.target.value)}
+                        placeholder="Họ và tên..."
+                        className="w-full bg-transparent border-b-2 border-red-900/10 py-3 sm:py-4 text-lg sm:text-xl md:text-2xl font-bold text-slate-900 outline-none transition-all duration-500 focus:border-red-900 placeholder:text-slate-200"
+                      />
+                    </div>
 
-                  <motion.button
-                    whileHover={{ scale: 1.02 }}
-                    whileTap={{ scale: 0.98 }}
-                    type="button"
-                    className="w-full py-4 sm:py-6 text-white font-black transition-all shadow-xl flex items-center justify-center gap-3 sm:gap-5 uppercase tracking-widest text-xs rounded-full group/btn"
-                    style={{ backgroundColor: red }}>
-                    XÁC NHẬN <Send size={18} className="group-hover/btn:translate-x-2 transition-transform" />
-                  </motion.button>
-                </form>
+                    <div className="group relative">
+                      <label className="block text-xs uppercase tracking-widest mb-3 sm:mb-4 text-red-900/60 group-focus-within:text-red-950 transition-all font-bold">Sẽ Tham Dự?</label>
+                      <div className="relative">
+                        <select
+                          value={rsvpAttendance}
+                          onChange={(e) => setRsvpAttendance(e.target.value)}
+                          className="w-full bg-transparent border-b-2 border-red-900/10 py-3 sm:py-4 text-lg sm:text-xl md:text-2xl font-bold text-slate-900 outline-none transition-all duration-500 focus:border-red-900 appearance-none cursor-pointer"
+                        >
+                          <option value="attending">Chắc chắn tham dự</option>
+                          <option value="not_attending">Rất tiếc không thể đến</option>
+                        </select>
+                        <ChevronDown size={20} className="absolute right-0 top-1/2 -translate-y-1/2 pointer-events-none text-slate-300" />
+                      </div>
+                    </div>
+
+                    <motion.button
+                      whileHover={{ scale: 1.02 }}
+                      whileTap={{ scale: 0.98 }}
+                      type="submit"
+                      className="w-full py-4 sm:py-6 text-white font-black transition-all shadow-xl flex items-center justify-center gap-3 sm:gap-5 uppercase tracking-widest text-xs rounded-full group/btn"
+                      style={{ backgroundColor: red }}>
+                      XÁC NHẬN <Send size={18} className="group-hover/btn:translate-x-2 transition-transform" />
+                    </motion.button>
+                  </form>
+                )}
               </div>
             </div>
           </ScrollReveal>
