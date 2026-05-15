@@ -56,11 +56,13 @@ const WelcomeCover = ({ weddingData, templateId, onOpen }) => {
   const [isOpen, setIsOpen] = useState(false);
 
   // ── Extract Data ───────────────────────────────────────────
-  const groom = weddingData?.groom_short_name || 'Chú Rể';
-  const bride = weddingData?.bride_short_name || 'Cô Dâu';
+  // Fallback: backend doesn't have groom_short_name / bride_short_name → use groom_name / bride_name
+  const groom = weddingData?.groom_short_name || weddingData?.groom_name || 'Chú Rể';
+  const bride = weddingData?.bride_short_name || weddingData?.bride_name || 'Cô Dâu';
   const eventDate = weddingData?.wedding_date || weddingData?.events?.[0]?.event_time;
   const dt = useMemo(() => formatDate(eventDate), [eventDate]);
-  const guestName = weddingData?.guest_name || weddingData?.invitation?.guest_name;
+  // guest_name can come from URL param or invitation object in real API
+  const guestName = weddingData?.guest_name || weddingData?.invitation?.guest_name || null;
   const cover = useMemo(() => resolveCover(weddingData?.cover_image_path), [weddingData?.cover_image_path]);
 
   // ── Theme Configuration ─────────────────────────────────────

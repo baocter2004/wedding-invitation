@@ -2,20 +2,26 @@ import { useState } from 'react';
 import MinimalWhiteTemplate from './MinimalWhiteTemplate';
 import TraditionalRedTemplate from './TraditionalRedTemplate';
 import EmeraldModernTemplate from './EmeraldModernTemplate';
+import FloralPastelTemplate from './FloralPastelTemplate';
+import LuxuryGoldTemplate from './LuxuryGoldTemplate';
+import ModernPhotoStoryTemplate from './ModernPhotoStoryTemplate';
 import WelcomeCover from '../shared/WelcomeCover';
 
 const TEMPLATES = {
-  'modern': MinimalWhiteTemplate,
-  'traditional': TraditionalRedTemplate,
-  'emerald': EmeraldModernTemplate,
+  'MinimalWhiteTemplate': MinimalWhiteTemplate,
+  'TraditionalRedTemplate': TraditionalRedTemplate,
+  'EmeraldModernTemplate': EmeraldModernTemplate,
+  'FloralPastelTemplate': FloralPastelTemplate,
+  'LuxuryGoldTemplate': LuxuryGoldTemplate,
+  'ModernPhotoStoryTemplate': ModernPhotoStoryTemplate,
 };
 
 const TemplateRenderer = ({ componentName, weddingData }) => {
   const [coverOpen, setCoverOpen] = useState(false);
 
-  // Map incoming template ID to the simplified registry
-  const templateId = TEMPLATES[componentName] ? componentName : 'modern';
-  const TemplateComponent = TEMPLATES[templateId];
+  // Fallback to MinimalWhiteTemplate if not found
+  const TemplateComponent = TEMPLATES[componentName] || MinimalWhiteTemplate;
+  const templateId = componentName || 'MinimalWhiteTemplate';
 
   return (
     <>
